@@ -1,0 +1,662 @@
+{% doc %}
+  @prompt
+    a clean, responsive product grid featuring a top navigation bar with two categories: "NEW ARRIVALS" and "BEST SELLERS" in a serif, all-caps font, where the active category has a thick black underline. The grid must display two products per row on mobile, with each product having a large image, a centered title, and a centered price (e.g., "Rs. 1,399.00") below it. Remove the "View Product" button entirely; instead, make the entire product image clickable to open the product page. On the top right-hand corner of each product image, overlay two small icons: a heart for the wishlist and a cart for "Add to Cart." The layout should use the New York font for all text, have no borders around the product cards, and include 15px of padding on the left and right sides of the screen to prevent overflow. Ensure the price logic displays full values (like 1,399) correctly with the "Rs." prefix, and keep the design minimal and elegant with no hover effects on the images. Added options to show/hide wishlist and cart icons.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-product-grid-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 15px;
+    font-family: 'New York', serif;
+    box-sizing: border-box;
+  }
+
+  .ai-product-grid-nav-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .ai-product-grid-nav-item-{{ ai_gen_id }} {
+    font-family: 'New York', serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 15px 0;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s ease;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: #000000;
+  }
+
+  .ai-product-grid-nav-item-{{ ai_gen_id }}.active {
+    border-bottom-color: #000000;
+  }
+
+  .ai-product-grid-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .ai-product-grid-item-{{ ai_gen_id }} {
+    position: relative;
+    text-align: center;
+  }
+
+  .ai-product-grid-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    display: block;
+    overflow: hidden;
+  }
+
+  .ai-product-grid-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-product-grid-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-product-grid-image-placeholder-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.3;
+  }
+
+  .ai-product-grid-save-badge-{{ ai_gen_id }} {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 32px;
+    padding: 0 10px;
+    background-color: {{ block.settings.icon_bg_color }};
+    border: 1px solid {{ block.settings.icon_border_color }};
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'New York', serif;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: {{ block.settings.icon_color }};
+    opacity: 0.82;
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  .ai-product-grid-icons-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .ai-product-grid-icon-btn-{{ ai_gen_id }} {
+    width: 32px;
+    height: 32px;
+    background-color: {{ block.settings.icon_bg_color }};
+    border: 1px solid {{ block.settings.icon_border_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 0;
+    opacity: 0.82;
+  }
+
+  .ai-product-grid-icon-btn-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.icon_hover_bg_color }};
+  }
+
+  .ai-product-grid-icon-btn-{{ ai_gen_id }} svg {
+    width: 16px;
+    height: 16px;
+    stroke: {{ block.settings.icon_color }};
+    fill: none;
+  }
+
+  .ai-product-grid-icon-btn-{{ ai_gen_id }}.wishlisted svg {
+    fill: {{ block.settings.icon_color }};
+  }
+
+  .ai-product-grid-title-{{ ai_gen_id }} {
+    font-family: 'New York', serif;
+    font-size: {{ block.settings.title_font_size }}px;
+    margin: 0 0 8px 0;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-product-grid-price-{{ ai_gen_id }} {
+    font-family: 'New York', serif;
+    font-size: {{ block.settings.price_font_size }}px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .ai-product-grid-price-{{ ai_gen_id }} .ai-product-grid-price-current-{{ ai_gen_id }} {
+    color: {{ block.settings.price_color }};
+  }
+
+  .ai-product-grid-price-compare-{{ ai_gen_id }} {
+    text-decoration: line-through;
+    opacity: 0.55;
+    font-size: {{ block.settings.price_font_size | minus: 2 }}px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-product-grid-collection-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-product-grid-collection-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  .ai-product-grid-view-all-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .ai-product-grid-view-all-{{ ai_gen_id }} {
+    font-family: 'New York', serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: none;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 3px;
+    transition: opacity 0.2s ease;
+  }
+
+  .ai-product-grid-view-all-{{ ai_gen_id }}:hover {
+    opacity: 0.5;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-product-grid-container-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.desktop_columns }}, 1fr);
+      gap: 30px;
+      padding: 0 30px;
+    }
+
+    .ai-product-grid-{{ ai_gen_id }} {
+      width: {{ block.settings.desktop_width_percent }}%;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+
+    .ai-product-grid-nav-item-{{ ai_gen_id }} {
+      font-size: 18px;
+      letter-spacing: 1.5px;
+    }
+
+    .ai-product-grid-view-all-{{ ai_gen_id }} {
+      font-size: 14px;
+    }
+  }
+{% endstyle %}
+
+{% liquid
+  assign show_wishlist = block.settings.show_wishlist_icon
+  assign show_cart = block.settings.show_cart_icon
+%}
+
+<product-grid-{{ ai_gen_id }} class="ai-product-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-product-grid-nav-{{ ai_gen_id }}">
+    <button
+      class="ai-product-grid-nav-item-{{ ai_gen_id }} active"
+      data-collection="collection-1"
+    >
+      {{ block.settings.collection_1_title }}
+    </button>
+    <button
+      class="ai-product-grid-nav-item-{{ ai_gen_id }}"
+      data-collection="collection-2"
+    >
+      {{ block.settings.collection_2_title }}
+    </button>
+  </div>
+
+  {% for col_index in (1..2) %}
+    {% if col_index == 1 %}
+      {% assign col_id = "collection-1" %}
+      {% assign col_products = block.settings.collection_1.products %}
+      {% assign col_url = block.settings.collection_1.url %}
+      {% assign col_has = block.settings.collection_1 %}
+    {% else %}
+      {% assign col_id = "collection-2" %}
+      {% assign col_products = block.settings.collection_2.products %}
+      {% assign col_url = block.settings.collection_2.url %}
+      {% assign col_has = block.settings.collection_2 %}
+    {% endif %}
+
+    <div
+      class="ai-product-grid-collection-{{ ai_gen_id }}{% if col_index == 1 %} active{% endif %}"
+      data-collection-content="{{ col_id }}"
+    >
+      <div class="ai-product-grid-container-{{ ai_gen_id }}">
+        {% if col_has != blank %}
+          {% for product in col_products limit: block.settings.products_limit %}
+            <div class="ai-product-grid-item-{{ ai_gen_id }}">
+              <a href="{{ product.url }}" class="ai-product-grid-image-wrapper-{{ ai_gen_id }}">
+                {% if product.featured_image %}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 600 }}"
+                    alt="{{ product.featured_image.alt | escape }}"
+                    class="ai-product-grid-image-{{ ai_gen_id }}"
+                    loading="lazy"
+                    width="600"
+                    height="{{ 600 | divided_by: product.featured_image.aspect_ratio | round }}"
+                  >
+                {% else %}
+                  <div class="ai-product-grid-image-placeholder-{{ ai_gen_id }}">
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+
+                {% if product.compare_at_price > product.price %}
+                  {% assign savings = product.compare_at_price | minus: product.price %}
+                  {% assign savings_percent = savings | times: 100 | divided_by: product.compare_at_price %}
+                  <div class="ai-product-grid-save-badge-{{ ai_gen_id }}">
+                    Save {{ savings_percent }}%
+                  </div>
+                {% endif %}
+
+                {% if show_wishlist or show_cart %}
+                  <div class="ai-product-grid-icons-{{ ai_gen_id }}">
+                    {% if show_wishlist %}
+                      <button
+                        class="ai-product-grid-icon-btn-{{ ai_gen_id }} ai-wishlist-btn-{{ ai_gen_id }}"
+                        aria-label="Add to wishlist"
+                        data-product-handle="{{ product.handle }}"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5">
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                      </button>
+                    {% endif %}
+                    {% if show_cart %}
+                      <button
+                        class="ai-product-grid-icon-btn-{{ ai_gen_id }} ai-cart-btn-{{ ai_gen_id }}"
+                        aria-label="Add to bag"
+                        data-variant-id="{{ product.variants.first.id }}"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                          <line x1="3" y1="6" x2="21" y2="6"></line>
+                          <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                      </button>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </a>
+
+              <h3 class="ai-product-grid-title-{{ ai_gen_id }}">{{ product.title }}</h3>
+              <div class="ai-product-grid-price-{{ ai_gen_id }}">
+                {% if product.compare_at_price != blank and product.compare_at_price > product.price %}
+                  <span class="ai-product-grid-price-compare-{{ ai_gen_id }}">
+                    Rs. {{ product.compare_at_price | money_without_currency }}
+                  </span>
+                {% endif %}
+                <span class="ai-product-grid-price-current-{{ ai_gen_id }}">Rs. {{ product.price | money_without_currency }}</span>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          {% for i in (1..4) %}
+            <div class="ai-product-grid-item-{{ ai_gen_id }}">
+              <div class="ai-product-grid-image-wrapper-{{ ai_gen_id }}">
+                <div class="ai-product-grid-image-placeholder-{{ ai_gen_id }}">
+                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+                <div class="ai-product-grid-save-badge-{{ ai_gen_id }}">Save 30%</div>
+                {% if show_wishlist or show_cart %}
+                  <div class="ai-product-grid-icons-{{ ai_gen_id }}">
+                    {% if show_wishlist %}
+                      <button class="ai-product-grid-icon-btn-{{ ai_gen_id }}" aria-label="Add to wishlist">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5">
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                      </button>
+                    {% endif %}
+                    {% if show_cart %}
+                      <button class="ai-product-grid-icon-btn-{{ ai_gen_id }}" aria-label="Add to bag">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                          <line x1="3" y1="6" x2="21" y2="6"></line>
+                          <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                      </button>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+              <h3 class="ai-product-grid-title-{{ ai_gen_id }}">Product Title</h3>
+              <div class="ai-product-grid-price-{{ ai_gen_id }}">
+                <span class="ai-product-grid-price-compare-{{ ai_gen_id }}">Rs. 1,999.00</span>
+                <span class="ai-product-grid-price-current-{{ ai_gen_id }}">Rs. 1,399.00</span>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      {% if col_has != blank %}
+        <div class="ai-product-grid-view-all-wrapper-{{ ai_gen_id }}">
+          <a href="{{ col_url }}" class="ai-product-grid-view-all-{{ ai_gen_id }}">View All</a>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</product-grid-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ProductGrid{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.navItems = this.querySelectorAll('.ai-product-grid-nav-item-{{ ai_gen_id }}');
+        this.collectionContents = this.querySelectorAll('.ai-product-grid-collection-{{ ai_gen_id }}');
+        this.cartButtons = this.querySelectorAll('.ai-cart-btn-{{ ai_gen_id }}');
+        this.wishlistButtons = this.querySelectorAll('.ai-wishlist-btn-{{ ai_gen_id }}');
+        this.cartItems = new Set();
+
+        this.checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>`;
+        this.heartFilled = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+        this.heartEmpty = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+      }
+
+      async connectedCallback() {
+        this.setupNavigation();
+        this.setupCartButtons();
+        this.setupWishlistButtons();
+        await this.fetchCartState();
+      }
+
+      setupNavigation() {
+        this.navItems.forEach((navItem) => {
+          navItem.addEventListener('click', () => {
+            const collection = navItem.getAttribute('data-collection');
+            this.navItems.forEach((item) => item.classList.remove('active'));
+            navItem.classList.add('active');
+            this.collectionContents.forEach((content) => {
+              content.classList.toggle('active', content.getAttribute('data-collection-content') === collection);
+            });
+          });
+        });
+      }
+
+      async fetchCartState() {
+        try {
+          const response = await fetch('/cart.js');
+          const cart = await response.json();
+          this.cartItems = new Set(cart.items.map(item => item.variant_id));
+          this.updateCartIcons();
+        } catch (error) {
+          console.error('Error fetching cart:', error);
+        }
+      }
+
+      updateCartIcons() {
+        this.cartButtons.forEach(btn => {
+          const variantId = parseInt(btn.getAttribute('data-variant-id'));
+          if (this.cartItems.has(variantId)) {
+            btn.innerHTML = this.checkIcon;
+            btn.setAttribute('aria-label', 'In cart');
+          }
+        });
+      }
+
+      setupCartButtons() {
+        this.cartButtons.forEach(btn => {
+          btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const variantId = parseInt(btn.getAttribute('data-variant-id'));
+            if (!variantId || this.cartItems.has(variantId) || btn.disabled) return;
+            try {
+              btn.disabled = true;
+              btn.style.opacity = '0.5';
+              const response = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: variantId, quantity: 1 })
+              });
+              if (response.ok) {
+                this.cartItems.add(variantId);
+                btn.innerHTML = this.checkIcon;
+                btn.setAttribute('aria-label', 'In cart');
+                btn.style.opacity = '0.82';
+                document.dispatchEvent(new CustomEvent('cart:refresh'));
+                document.dispatchEvent(new CustomEvent('cart:build'));
+              } else {
+                btn.disabled = false;
+                btn.style.opacity = '0.82';
+              }
+            } catch (err) {
+              console.error('Error adding to cart:', err);
+              btn.disabled = false;
+              btn.style.opacity = '0.82';
+            }
+          });
+        });
+      }
+
+      setupWishlistButtons() {
+        const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        this.wishlistButtons.forEach(btn => {
+          const handle = btn.getAttribute('data-product-handle');
+          if (!handle) return;
+          if (wishlist.includes(handle)) {
+            btn.innerHTML = this.heartFilled;
+            btn.classList.add('wishlisted');
+          }
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            let current = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            const idx = current.indexOf(handle);
+            if (idx === -1) {
+              current.push(handle);
+              btn.innerHTML = this.heartFilled;
+              btn.classList.add('wishlisted');
+              btn.setAttribute('aria-label', 'Remove from wishlist');
+            } else {
+              current.splice(idx, 1);
+              btn.innerHTML = this.heartEmpty;
+              btn.classList.remove('wishlisted');
+              btn.setAttribute('aria-label', 'Add to wishlist');
+            }
+            localStorage.setItem('wishlist', JSON.stringify(current));
+            document.dispatchEvent(new CustomEvent('wishlist:updated', { detail: { count: current.length } }));
+          });
+        });
+      }
+    }
+
+    customElements.define('product-grid-{{ ai_gen_id }}', ProductGrid{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product grid",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Collections"
+    },
+    {
+      "type": "text",
+      "id": "collection_1_title",
+      "label": "Collection 1 title",
+      "default": "NEW ARRIVALS"
+    },
+    {
+      "type": "collection",
+      "id": "collection_1",
+      "label": "Collection 1"
+    },
+    {
+      "type": "text",
+      "id": "collection_2_title",
+      "label": "Collection 2 title",
+      "default": "BEST SELLERS"
+    },
+    {
+      "type": "collection",
+      "id": "collection_2",
+      "label": "Collection 2"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products to show",
+      "min": 2,
+      "max": 12,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "label": "Desktop columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist_icon",
+      "label": "Show wishlist icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_icon",
+      "label": "Show cart icon",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "price_font_size",
+      "label": "Price size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Title text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_bg_color",
+      "label": "Icon background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_border_color",
+      "label": "Icon border color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_hover_bg_color",
+      "label": "Icon hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product grid"
+    }
+  ]
+}
+{% endschema %}

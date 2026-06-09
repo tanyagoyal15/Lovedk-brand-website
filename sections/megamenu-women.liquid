@@ -1,0 +1,53 @@
+{% comment %}
+  Megamenu for Women category with circular subcategory images
+{% endcomment %}
+
+<div class="menu-dropdown__content menu-dropdown__content--megamenu">
+  <div class="menu-row">
+    {% for block in section.blocks %}
+      <li class="megamenu-item">
+        <a href="{{ block.settings.link }}">
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | img_url: '200x200' }}" alt="{{ block.settings.title }}">
+          {% endif %}
+          <span>{{ block.settings.title }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Women Megamenu",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "subcategory",
+      "name": "Subcategory",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Women Megamenu"
+    }
+  ]
+}
+{% endschema %}

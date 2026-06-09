@@ -1,0 +1,761 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Footer group",
+  "type": "footer",
+  "sections": {
+    "blocks_xPV749": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_14b210e_JbzkJ8": {
+          "type": "ai_gen_block_14b210e",
+          "settings": {
+            "badge_1": "shopify://shop_images/6_f2f84345-2e74-48f2-866e-bf7aea48aaa7.jpg",
+            "badge_2": "shopify://shop_images/3_0123c515-a8e6-4c3e-8ab1-e1f9d5a25542.jpg",
+            "badge_3": "shopify://shop_images/1_8c122d27-7bff-4be2-9a53-ddedde0fd20f.jpg",
+            "badge_4": "shopify://shop_images/7_e8581da5-f183-46a2-b16e-9af676f50a45.jpg",
+            "badge_5": "shopify://shop_images/5_c02121d0-9979-4939-9ef2-7d66c2be6676.jpg",
+            "desktop_width_percent": 100,
+            "badge_width": 290,
+            "badge_height": 150,
+            "badge_spacing": 10,
+            "padding_vertical": 30,
+            "badge_background": "#ffffff",
+            "badge_padding": 10,
+            "badge_border_radius": 32,
+            "animation_speed": 20,
+            "pause_on_hover": true,
+            "background_color": "#f8f8f2"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_14b210e_JbzkJ8"
+      ],
+      "name": "trust badges",
+      "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "column_d6jycj": {
+          "type": "_column",
+          "name": "gallery photos",
+          "disabled": true,
+          "settings": {
+            "width": 100,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "10px",
+            "margin": "",
+            "width_lap": 100,
+            "width_tab": 100,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "social_zCVDgC": {
+              "type": "social",
+              "name": "Social",
+              "disabled": true,
+              "settings": {
+                "padding": "",
+                "margin": "",
+                "align": "center",
+                "gap": 5,
+                "width": 40,
+                "height": 40,
+                "font_size": 14,
+                "border_radius": "50% 50% 50% 50%",
+                "border": true,
+                "color": "#000000",
+                "background": "rgba(0,0,0,0)",
+                "border_color": "#000000",
+                "color_hover": "#ffffff",
+                "background_hover": "#000000",
+                "border_color_hover": "#000000",
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            },
+            "collapsible_hgnYRV": {
+              "type": "collapsible",
+              "name": "Collapsible",
+              "settings": {
+                "padding": "",
+                "margin": ""
+              },
+              "blocks": {
+                "collapsible_item_dDgcg9": {
+                  "type": "_collapsible-item",
+                  "settings": {
+                    "padding": "",
+                    "margin": "",
+                    "border-radius": "0px 0px 0px 0px",
+                    "border-width": "0px 0px 0px 0px",
+                    "border-color": "",
+                    "background": "rgba(0,0,0,0)"
+                  },
+                  "blocks": {
+                    "collapsible-header": {
+                      "type": "collapsible-header",
+                      "static": true,
+                      "settings": {
+                        "padding": "",
+                        "margin": "",
+                        "icon_normal": "feather-plus",
+                        "icon_color": "",
+                        "icon_size": 15,
+                        "border-radius": "0px 0px 0px 0px",
+                        "border-width": "0px 0px 0px 0px",
+                        "border-color": "",
+                        "background": ""
+                      },
+                      "blocks": {
+                        "title": {
+                          "type": "title",
+                          "static": true,
+                          "settings": {
+                            "desktop_width_percent": 100,
+                            "badge_width": 150,
+                            "badge_height": 100,
+                            "badge_spacing": 40,
+                            "padding_vertical": 30,
+                            "badge_background": "#ffffff",
+                            "badge_border_radius": 8,
+                            "badge_padding": 10,
+                            "animation_speed": 20,
+                            "pause_on_hover": true,
+                            "background_color": "#f8f8f2"
+                          },
+                          "blocks": {}
+                        }
+                      },
+                      "block_order": []
+                    },
+                    "collapsible-body": {
+                      "type": "collapsible-body",
+                      "static": true,
+                      "settings": {
+                        "padding": "",
+                        "margin": "",
+                        "border-radius": "0px 0px 0px 0px",
+                        "border-width": "0px 0px 0px 0px",
+                        "border-color": "",
+                        "background": ""
+                      },
+                      "blocks": {
+                        "description_hhqGJk": {
+                          "type": "description",
+                          "name": "desc",
+                          "settings": {
+                            "desc": "Email: support@lovedk.in",
+                            "font": "--font-family-second",
+                            "color": "#000000",
+                            "font_size": 15,
+                            "line_height": 25,
+                            "letter_spacing": 0,
+                            "font_weight": "300",
+                            "align": "left",
+                            "padding": "0 20px 0",
+                            "margin": "5px",
+                            "color_mobi": "#000000",
+                            "font_size_mobi": 15,
+                            "line_height_mobi": 25,
+                            "letter_spacing_mobi": 0,
+                            "align_mobi": "left"
+                          },
+                          "blocks": {}
+                        },
+                        "description_HzpBdk": {
+                          "type": "description",
+                          "name": "desc",
+                          "settings": {
+                            "desc": "Hours: Mon - Fri // 11am - 6pm",
+                            "font": "--font-family-second",
+                            "color": "#000000",
+                            "font_size": 15,
+                            "line_height": 25,
+                            "letter_spacing": 0,
+                            "font_weight": "300",
+                            "align": "left",
+                            "padding": "0 20px 0",
+                            "margin": "5px",
+                            "color_mobi": "#000000",
+                            "font_size_mobi": 15,
+                            "line_height_mobi": 25,
+                            "letter_spacing_mobi": 0,
+                            "align_mobi": "left"
+                          },
+                          "blocks": {}
+                        },
+                        "description_fDyPBy": {
+                          "type": "description",
+                          "name": "desc",
+                          "settings": {
+                            "desc": "OFFICE ADDRESS:",
+                            "font": "--font-family-second",
+                            "color": "#000000",
+                            "font_size": 15,
+                            "line_height": 25,
+                            "letter_spacing": 0,
+                            "font_weight": "500",
+                            "align": "left",
+                            "padding": "0 20px 0",
+                            "margin": "5px",
+                            "color_mobi": "#000000",
+                            "font_size_mobi": 15,
+                            "line_height_mobi": 25,
+                            "letter_spacing_mobi": 0,
+                            "align_mobi": "left"
+                          },
+                          "blocks": {}
+                        },
+                        "description_3neKxx": {
+                          "type": "description",
+                          "name": "desc",
+                          "settings": {
+                            "desc": "911, 9th Floor, Magic Sqaure, Dwarkadish Road, Off, Poddar Rd, Malad (E, Mumbai, Maharashtra 400097",
+                            "font": "--font-family-second",
+                            "color": "#000000",
+                            "font_size": 15,
+                            "line_height": 25,
+                            "letter_spacing": 0,
+                            "font_weight": "300",
+                            "align": "left",
+                            "padding": "0 20px 0",
+                            "margin": "5px",
+                            "color_mobi": "#000000",
+                            "font_size_mobi": 15,
+                            "line_height_mobi": 25,
+                            "letter_spacing_mobi": 0,
+                            "align_mobi": "left"
+                          },
+                          "blocks": {}
+                        }
+                      },
+                      "block_order": [
+                        "description_hhqGJk",
+                        "description_HzpBdk",
+                        "description_fDyPBy",
+                        "description_3neKxx"
+                      ]
+                    }
+                  },
+                  "block_order": []
+                },
+                "collapsible_item_Phqaqy": {
+                  "type": "_collapsible-item",
+                  "settings": {
+                    "padding": "",
+                    "margin": "",
+                    "border-radius": "0px 0px 0px 0px",
+                    "border-width": "0px 0px 0px 0px",
+                    "border-color": "",
+                    "background": "rgba(0,0,0,0)"
+                  },
+                  "blocks": {
+                    "collapsible-header": {
+                      "type": "collapsible-header",
+                      "disabled": true,
+                      "static": true,
+                      "settings": {
+                        "padding": "",
+                        "margin": "",
+                        "icon_normal": "feather-plus",
+                        "icon_color": "",
+                        "icon_size": 15,
+                        "border-radius": "0px 0px 0px 0px",
+                        "border-width": "0px 0px 0px 0px",
+                        "border-color": "",
+                        "background": ""
+                      },
+                      "blocks": {
+                        "title": {
+                          "type": "title",
+                          "static": true,
+                          "settings": {
+                            "desktop_width_percent": 100,
+                            "badge_width": 150,
+                            "badge_height": 100,
+                            "badge_spacing": 40,
+                            "padding_vertical": 30,
+                            "badge_background": "#ffffff",
+                            "badge_border_radius": 8,
+                            "badge_padding": 10,
+                            "animation_speed": 20,
+                            "pause_on_hover": true,
+                            "background_color": "#f8f8f2"
+                          },
+                          "blocks": {}
+                        }
+                      },
+                      "block_order": []
+                    },
+                    "collapsible-body": {
+                      "type": "collapsible-body",
+                      "static": true,
+                      "settings": {
+                        "padding": "",
+                        "margin": "",
+                        "border-radius": "0px 0px 0px 0px",
+                        "border-width": "0px 0px 0px 0px",
+                        "border-color": "",
+                        "background": ""
+                      },
+                      "blocks": {
+                        "list_link_rHbGzN": {
+                          "type": "list-link",
+                          "name": "List link",
+                          "settings": {
+                            "padding": "0 20px 0",
+                            "margin": "",
+                            "text_align": "left",
+                            "list_style": "none",
+                            "font": "--font-family-second",
+                            "text_decoration": "none",
+                            "font_size": 14,
+                            "font_weight": "500",
+                            "color": "#000000",
+                            "color_hover": "#000000",
+                            "text_align_mobi": "left"
+                          },
+                          "blocks": {
+                            "list_item_zkXRWK": {
+                              "type": "_list-item",
+                              "settings": {
+                                "text": "About Us",
+                                "url": "shopify://pages/about-us",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_rA7RGB": {
+                              "type": "_list-item",
+                              "settings": {
+                                "text": "Contact Us",
+                                "url": "shopify://pages/contact",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_DagXYy": {
+                              "type": "_list-item",
+                              "settings": {
+                                "text": "My Wishlist",
+                                "url": "shopify://pages/wishlist-1",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_rWNGU9": {
+                              "type": "_list-item",
+                              "disabled": true,
+                              "settings": {
+                                "text": "Book a Free Styling Appointment",
+                                "url": "shopify://pages/book-a-free-styling-appointment",
+                                "icon": "",
+                                "padding": "",
+                                "margin": ""
+                              },
+                              "blocks": {}
+                            }
+                          },
+                          "block_order": [
+                            "list_item_zkXRWK",
+                            "list_item_rA7RGB",
+                            "list_item_DagXYy",
+                            "list_item_rWNGU9"
+                          ]
+                        }
+                      },
+                      "block_order": [
+                        "list_link_rHbGzN"
+                      ]
+                    }
+                  },
+                  "block_order": []
+                },
+                "collapsible_item_HmXmPV": {
+                  "type": "_collapsible-item",
+                  "settings": {
+                    "padding": "",
+                    "margin": "",
+                    "border-radius": "0px 0px 0px 0px",
+                    "border-width": "0px 0px 0px 0px",
+                    "border-color": "",
+                    "background": "rgba(0,0,0,0)"
+                  },
+                  "blocks": {
+                    "collapsible-header": {
+                      "type": "collapsible-header",
+                      "static": true,
+                      "settings": {
+                        "padding": "",
+                        "margin": "",
+                        "icon_normal": "feather-plus",
+                        "icon_color": "",
+                        "icon_size": 15,
+                        "border-radius": "0 0 0 0",
+                        "border-width": "0 0 0 0",
+                        "border-color": "",
+                        "background": ""
+                      },
+                      "blocks": {
+                        "title": {
+                          "type": "title",
+                          "static": true,
+                          "settings": {
+                            "desktop_width_percent": 100,
+                            "badge_width": 150,
+                            "badge_height": 100,
+                            "badge_spacing": 40,
+                            "padding_vertical": 30,
+                            "badge_background": "#ffffff",
+                            "badge_border_radius": 8,
+                            "badge_padding": 10,
+                            "animation_speed": 20,
+                            "pause_on_hover": true,
+                            "background_color": "#f8f8f2"
+                          },
+                          "blocks": {}
+                        }
+                      },
+                      "block_order": []
+                    },
+                    "collapsible-body": {
+                      "type": "collapsible-body",
+                      "static": true,
+                      "settings": {
+                        "padding": "0 20px 0",
+                        "margin": "",
+                        "border-radius": "0px 0px 0px 0px",
+                        "border-width": "0px 0px 0px 0px",
+                        "border-color": "",
+                        "background": ""
+                      },
+                      "blocks": {
+                        "list_link_aYgXcA": {
+                          "type": "list-link",
+                          "name": "List link",
+                          "settings": {
+                            "padding": "",
+                            "margin": "",
+                            "text_align": "left",
+                            "list_style": "none",
+                            "font": "--font-family-second",
+                            "text_decoration": "none",
+                            "font_size": 15,
+                            "font_weight": "500",
+                            "color": "#000000",
+                            "color_hover": "#000000",
+                            "text_align_mobi": "left"
+                          },
+                          "blocks": {
+                            "list_item_6Axwtg": {
+                              "type": "_list-item",
+                              "name": "List item",
+                              "settings": {
+                                "text": "Store Policy",
+                                "url": "shopify://pages/store-policy-1",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_UTk8KX": {
+                              "type": "_list-item",
+                              "settings": {
+                                "text": "Customer Service",
+                                "url": "shopify://pages/customer-service",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_qjkFCp": {
+                              "type": "_list-item",
+                              "settings": {
+                                "text": "Privacy Policies",
+                                "url": "shopify://pages/store-policy",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_DLWRVt": {
+                              "type": "_list-item",
+                              "disabled": true,
+                              "settings": {
+                                "text": "FAQ's",
+                                "url": "shopify://pages/faqs",
+                                "icon": "",
+                                "padding": "",
+                                "margin": ""
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_cyPTNd": {
+                              "type": "_list-item",
+                              "settings": {
+                                "text": "Terms & Conditions",
+                                "url": "shopify://pages/terms-and-conditions",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_MYFTnN": {
+                              "type": "_list-item",
+                              "settings": {
+                                "text": "Shipping Informations",
+                                "url": "shopify://pages/shipping-and-returns",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_mqk8fa": {
+                              "type": "_list-item",
+                              "disabled": true,
+                              "settings": {
+                                "text": "Wholesale & Bulk Inquiry",
+                                "url": "shopify://pages/whole-sale",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_hdBXtm": {
+                              "type": "_list-item",
+                              "name": "List item",
+                              "settings": {
+                                "text": "Cancellation Policy",
+                                "url": "shopify://pages/cancellation-policy",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            },
+                            "list_item_yGpEQw": {
+                              "type": "_list-item",
+                              "name": "List item",
+                              "settings": {
+                                "text": "Return & Exchange Policy",
+                                "url": "shopify://pages/return-exchange-policy",
+                                "icon": "",
+                                "padding": "",
+                                "margin": "2.5px"
+                              },
+                              "blocks": {}
+                            }
+                          },
+                          "block_order": [
+                            "list_item_6Axwtg",
+                            "list_item_UTk8KX",
+                            "list_item_qjkFCp",
+                            "list_item_DLWRVt",
+                            "list_item_cyPTNd",
+                            "list_item_MYFTnN",
+                            "list_item_mqk8fa",
+                            "list_item_hdBXtm",
+                            "list_item_yGpEQw"
+                          ]
+                        }
+                      },
+                      "block_order": [
+                        "list_link_aYgXcA"
+                      ]
+                    }
+                  },
+                  "block_order": []
+                }
+              },
+              "block_order": [
+                "collapsible_item_dDgcg9",
+                "collapsible_item_Phqaqy",
+                "collapsible_item_HmXmPV"
+              ]
+            }
+          },
+          "block_order": [
+            "social_zCVDgC",
+            "collapsible_hgnYRV"
+          ]
+        }
+      },
+      "block_order": [
+        "column_d6jycj"
+      ],
+      "name": "Gallery",
+      "settings": {
+        "max_width": "1440px",
+        "fullwidth": true,
+        "background_color": "",
+        "background_fixed": true,
+        "background_size": "contain",
+        "background_pos": "center center",
+        "padding": "",
+        "margin": ""
+      }
+    },
+    "featured_custom_section_8Eyfzj": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_yCWhtB": {
+          "type": "_column",
+          "settings": {
+            "width": 50,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "",
+            "margin": "",
+            "width_lap": 50,
+            "width_tab": 50,
+            "width_mobi": 90,
+            "border": false,
+            "border_width": "",
+            "border_color": "#000000",
+            "box_shadow": "",
+            "border_radius": ""
+          },
+          "blocks": {
+            "ai_gen_block_1de9103_G8xGeY": {
+              "type": "ai_gen_block_1de9103",
+              "settings": {
+                "link_1_text": "TERMS & CONDITIONS",
+                "link_1_url": "shopify://pages/terms-and-conditions",
+                "link_2_text": "BRAND POLICY",
+                "link_2_url": "shopify://pages/store-policy-1",
+                "link_3_text": "CONTACT US",
+                "link_3_url": "https://lovedk.in/pages/customer-service",
+                "link_4_text": "FAQ",
+                "link_4_url": "https://lovedk.in/pages/faqs",
+                "link_5_text": "PRIVACY AND SAFETY",
+                "link_5_url": "shopify://pages/store-policy",
+                "link_6_text": "",
+                "link_6_url": "shopify://policies/refund-policy",
+                "link_7_text": "REPAIR/RESTORE",
+                "link_7_url": "https://lovedk.in/pages/repairs-and-plating-services",
+                "link_8_text": "",
+                "link_8_url": "shopify://policies/contact-information",
+                "desktop_width_percent": 100,
+                "section_padding": 20,
+                "column_gap": 40,
+                "mobile_column_gap": 60,
+                "link_spacing": 15,
+                "background_color": "#f8f8f2",
+                "text_color": "#000000",
+                "hover_color": "#000000",
+                "font_size": 16,
+                "font_weight": "400",
+                "default_underline": false,
+                "hover_underline": true
+              },
+              "blocks": {}
+            },
+            "description_mfdcwb": {
+              "type": "description",
+              "name": "desc",
+              "settings": {
+                "desc": "LOVE DK",
+                "font": "--font-family-second",
+                "color": "#000000",
+                "font_size": 15,
+                "line_height": 20,
+                "letter_spacing": 0,
+                "font_weight": "300",
+                "align": "center",
+                "padding": "10px",
+                "margin": "",
+                "color_mobi": "#000000",
+                "font_size_mobi": 13,
+                "line_height_mobi": 18,
+                "letter_spacing_mobi": 0,
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            },
+            "description_3nd4Ma": {
+              "type": "description",
+              "name": "desc",
+              "settings": {
+                "desc": "© 2026 All products, designs, logos and content on this website belong exclusively to LOVE, DK (DEVANSHI KHETANI ROJECTS LLP). No copying, reproduction or use of our designs or trademarks is allowed without written permission.",
+                "font": "--font-family-second",
+                "color": "#000000",
+                "font_size": 15,
+                "line_height": 20,
+                "letter_spacing": 0,
+                "font_weight": "300",
+                "align": "center",
+                "padding": "",
+                "margin": "",
+                "color_mobi": "#000000",
+                "font_size_mobi": 10,
+                "line_height_mobi": 18,
+                "letter_spacing_mobi": 0,
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "ai_gen_block_1de9103_G8xGeY",
+            "description_mfdcwb",
+            "description_3nd4Ma"
+          ]
+        }
+      },
+      "block_order": [
+        "column_yCWhtB"
+      ],
+      "name": "Footer",
+      "settings": {
+        "max_width": "1440px",
+        "fullwidth": false,
+        "background_color": "",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "25px",
+        "margin": "",
+        "vertical_align": "middle",
+        "horizontal_align": "center",
+        "overflow": "hidden",
+        "id_section": ""
+      }
+    }
+  },
+  "order": [
+    "blocks_xPV749",
+    "footer",
+    "featured_custom_section_8Eyfzj"
+  ]
+}

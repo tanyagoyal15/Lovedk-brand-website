@@ -1,0 +1,270 @@
+{% doc %}
+  @prompt
+    Create an attractive announcement bar section with multiple rotating announcements and full customization options:
+    
+    Features needed:
+    - Support for multiple announcement messages (at least 5-6 blocks)
+    - Auto-rotating slideshow that cycles through announcements
+    - Smooth transition animations between announcements
+    - Optional icons or emojis before each announcement text
+    - Clickable announcements that can link to pages/products/collections
+    
+    Customization options:
+    - Section-level settings: background color, text color, height, auto-rotate speed, show/hide navigation arrows
+    - Per-announcement settings: message text, optional link URL, optional icon/emoji, text alignment
+    - Ability to add, remove, and reorder announcement blocks
+    - Typography controls for text size and font weight
+    - Option to pause rotation on hover
+    - Mobile-responsive with appropriate text sizing
+    
+    Design style:
+    - Modern and eye-catching design
+    - Clean, professional appearance
+    - Smooth fade or slide transitions
+    - Optional dots/indicators showing which announcement is active
+    - Centered text with good padding and spacing
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-announcement-bar-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+    overflow: hidden;
+    display: block;
+  }
+
+  .ai-announcement-bar-container-{{ ai_gen_id }} {
+    position: relative;
+    height: {{ block.settings.bar_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-announcement-content-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: {{ block.settings.text_alignment }};
+    gap: 8px;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .ai-announcement-icon-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .ai-announcement-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    font-weight: {{ block.settings.text_weight }};
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .ai-announcement-link-{{ ai_gen_id }} {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: {{ block.settings.text_alignment }};
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+  }
+
+  .ai-announcement-link-{{ ai_gen_id }}:hover {
+    opacity: 0.8;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-announcement-bar-container-{{ ai_gen_id }} {
+      height: {{ block.settings.bar_height_mobile }}px;
+    }
+
+    .ai-announcement-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size_mobile }}px;
+    }
+
+    .ai-announcement-icon-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size_mobile }}px;
+    }
+
+    .ai-announcement-content-{{ ai_gen_id }},
+    .ai-announcement-link-{{ ai_gen_id }} {
+      padding: 0 15px;
+    }
+  }
+{% endstyle %}
+
+<div
+  class="ai-announcement-bar-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-announcement-bar-container-{{ ai_gen_id }}">
+    {% if block.settings.link_url != blank %}
+      <a href="{{ block.settings.link_url }}" class="ai-announcement-link-{{ ai_gen_id }}">
+        {% if block.settings.icon != blank %}
+          <span class="ai-announcement-icon-{{ ai_gen_id }}">{{ block.settings.icon }}</span>
+        {% endif %}
+        <p class="ai-announcement-text-{{ ai_gen_id }}">{{ block.settings.message }}</p>
+      </a>
+    {% else %}
+      <div class="ai-announcement-content-{{ ai_gen_id }}">
+        {% if block.settings.icon != blank %}
+          <span class="ai-announcement-icon-{{ ai_gen_id }}">{{ block.settings.icon }}</span>
+        {% endif %}
+        <p class="ai-announcement-text-{{ ai_gen_id }}">{{ block.settings.message }}</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "message",
+      "label": "Message",
+      "default": "Welcome to our store! Free shipping on orders over ₹100"
+    },
+    {
+      "type": "text",
+      "id": "icon",
+      "label": "Icon or emoji",
+      "default": "🎉"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "bar_height",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bar height (desktop)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "bar_height_mobile",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bar height (mobile)",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size (desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size (mobile)",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Text weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar"
+    }
+  ]
+}
+{% endschema %}

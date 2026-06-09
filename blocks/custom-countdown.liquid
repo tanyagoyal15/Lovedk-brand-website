@@ -1,0 +1,383 @@
+
+{%- style -%}
+    #shopify-section-{{ section.id }} .wpbingo-widget--countdown .content-countdown{
+        text-align: {{ block.settings.align }};
+    }
+    #shopify-section-{{ section.id }} .wpbingo-widget--countdown .countdown {
+        gap:{{ block.settings.gap }}px;
+    }
+    #shopify-section-{{ section.id }} .wpbingo-widget--countdown .countdown__item{
+        {%- if block.settings.show_bg -%}
+            width:{{ block.settings.width_countdown }};
+            height:{{ block.settings.height_countdown }};
+            background:{{ block.settings.background }};
+            border-radius:{{ block.settings.border_radius_countdown }};
+            {%- if block.settings.border -%}
+                border-width:{{ block.settings.border_width }};
+                border-color:{{ block.settings.border_color }};
+                border-style:solid;
+            {%- endif -%}
+        {%- endif -%}
+    }
+    {%- if block.settings.background_image -%}
+		{%- assign background_image = block.settings.background_image | image_url -%}
+		#shopify-section-{{ section.id }} .wpbingo-widget--countdown .countdown__item{
+			background-image: url('{{ background_image }}');
+			background-position:{{ block.settings.background_pos }};
+			background-size:{{ block.settings.background_size }};
+            padding:{{ block.settings.padding }};
+		}
+	{%- endif -%}
+    #shopify-section-{{ section.id }} .wpbingo-widget--countdown .countdown__item > span:first-child{
+        font-size:{{ block.settings.font_countdown_amount }}px;
+        font-weight:{{ block.settings.font_weight }};
+        color:{{ block.settings.color_countdown_amount }};
+        line-height:{{ block.settings.line_height }};
+        font-family:var({{ block.settings.font }});
+        margin:{{ block.settings.margin_title }};
+    }
+    #shopify-section-{{ section.id }} .wpbingo-widget--countdown .countdown__item > span:last-child{
+        font-size:{{ block.settings.font_countdown_text }}px;
+        color:{{ block.settings.color_countdown_text }};
+        margin:{{ block.settings.margin_text }};
+    }
+    @media(max-width:767px){
+        #shopify-section-{{ section.id }} .wpbingo-widget--countdown .content-countdown{
+            text-align: {{ block.settings.align_mobi }};
+        }
+        #shopify-section-{{ section.id }} .wpbingo-widget--countdown .countdown {
+            gap:{{ block.settings.gap_mobi }}px;
+        }
+        #shopify-section-{{ section.id }} .wpbingo-widget--countdown .countdown__item{
+            {%- if block.settings.show_bg -%}
+                width:{{ block.settings.width_countdown_mobi }};
+                height:{{ block.settings.height_countdown_mobi }};
+            {%- endif -%}
+            padding:{{ block.settings.padding_mobi }};
+        }
+        #shopify-section-{{ section.id }} .wpbingo-widget--countdown .countdown__item > span:first-child{
+            line-height:{{ block.settings.line_height_mobi }};
+            font-size:{{ block.settings.font_countdown_amount_mobi }}px;
+        }
+        #shopify-section-{{ section.id }} .wpbingo-widget--countdown .countdown__item > span:last-child{
+            font-size:{{ block.settings.font_countdown_text_mobi }}px;
+        }
+    }
+{%- endstyle -%}
+{% schema %}
+  {
+    "name": "Custom css",
+    "settings": [
+        {
+            "type": "select",
+            "id": "align",
+            "label": "Text align",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                }
+            ],
+            "default": "left"
+        },
+        {
+            "type": "number",
+            "id": "gap",
+            "label": "Gap",
+            "default": 5,
+            "info": "px"
+        },
+        {
+            "type": "header",
+            "content": "Content countdowns"
+        },
+        {
+			"type": "image_picker",
+			"id": "background_image",
+			"label": "Background image"
+		},
+		{
+			"type": "select",
+			"id": "background_size",
+			"label": "Background Size",
+			"options": [
+				{
+					"value": "contain",
+					"label": "Contain"
+				},
+				{
+					"value": "auto",
+					"label": "Auto"
+				},
+				{
+					"value": "cover",
+					"label": "Cover"
+				}
+			],
+			"default": "cover"
+		},
+		{
+			"type": "select",
+			"id": "background_pos",
+			"label": "Background position",
+			"options": [
+				{
+					"value": "left top",
+					"label": "Left Top"
+				},
+				{
+					"value": "left  center",
+					"label": "Left Center"
+				},
+				{
+					"value": "left bottom",
+					"label": "Left Bottom"
+				},
+				{
+					"value": "center top",
+					"label": "Center Top"
+				},
+				{
+					"value": "center center",
+					"label": "Center Center"
+				},
+				{
+					"value": "center bottom",
+					"label": "Center Bottom"
+				},
+				{
+					"value": "right top",
+					"label": "Right Top"
+				},
+				{
+					"value": "right center",
+					"label": "Right Center"
+				},
+				{
+					"value": "right bottom",
+					"label": "Right Bottom"
+				}
+			],
+			"default": "center center"
+		},
+        {
+            "type": "text",
+            "id": "padding",
+            "label": "Padding",
+            "default": "0px 0px 0px 0px",
+            "info": "top right bottom left"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_bg",
+            "label": "Turn on background color",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "background",
+            "label": "Background color",
+            "default": "#000"
+        },
+        {
+            "type": "text",
+            "id": "width_countdown",
+            "label": "Width",
+            "default": "50px"
+        },
+        {
+            "type": "text",
+            "id": "height_countdown",
+            "label": "Height",
+            "default": "50px"
+        },
+        {
+            "type": "checkbox",
+            "id": "border",
+            "label": "Turn on border",
+            "default": false
+        },
+        {
+            "type": "text",
+            "id": "border_width",
+            "label": "Border width",
+            "default": "0px 0px 0px 0px",
+            "info": "top right bottom left"
+        },
+        {
+            "type": "color",
+            "id": "border_color",
+            "label": "Border color",
+            "default": "#fff"
+        },
+        {
+            "type": "text",
+            "id": "border_radius_countdown",
+            "label": "Border radius",
+            "default": "0px 0px 0px 0px",
+            "info": "top right bottom left"
+        },
+        {
+            "type": "header",
+            "content": "Amount"
+        },
+        {
+            "type": "select",
+            "id": "font",
+            "label": "Font family",
+            "options": [
+                {
+                    "value": "--font-family-second",
+                    "label": "Font Heading"
+                },
+                {
+                    "value": "--font-family-base",
+                    "label": "Font Body"
+                },
+                {
+                    "value": "--font-family-pre",
+                    "label": "Font preventive"
+                }
+            ],
+            "default": "--font-family-second"
+        },
+        {
+            "type": "number",
+            "id": "font_countdown_amount",
+            "label": "Font size",
+            "default": 15,
+            "info": "px"
+        },
+        {
+            "type": "number",
+            "id": "line-height",
+            "label": "Line Height",
+            "default": 15,
+            "info": "px"
+        },
+        {
+            "type": "text",
+            "id": "font_weight",
+            "label": "Font Weight",
+            "default": "500"
+        },
+        {
+            "type": "color",
+            "id": "color_countdown_amount",
+            "label": "Color amount",
+            "default": "#fff"
+        },
+        {
+            "type": "text",
+            "id": "margin_title",
+            "label": "Margin amount",
+            "default": "0px 0px 0px 0px",
+            "info": "top right bottom left"
+        },
+        {
+            "type": "header",
+            "content": "Text"
+        },
+        {
+            "type": "number",
+            "id": "font_countdown_text",
+            "label": "Font size",
+            "default": 15,
+            "info": "px"
+        },
+        {
+            "type": "color",
+            "id": "color_countdown_text",
+            "label": "Color text",
+            "default": "#fff"
+        },
+        {
+            "type": "text",
+            "id": "margin_text",
+            "label": "Margin",
+            "default": "0px 0px 0px 0px",
+            "info": "top right bottom left"
+        },
+         {
+            "type": "header",
+            "content": "Mobile ====================",
+            "info": "screen < 767px"
+        },
+        {
+            "type": "select",
+            "id": "align_mobi",
+            "label": "Text align",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                },
+                {
+                    "value": "center",
+                    "label": "Center"
+                }
+            ],
+            "default": "center"
+        },
+        {
+            "type": "number",
+            "id": "gap_mobi",
+            "label": "Gap",
+            "default": 5,
+            "info": "px"
+        },
+        {
+            "type": "number",
+            "id": "font_countdown_amount_mobi",
+            "label": "Font size amount",
+            "default": 15,
+            "info": "px"
+        },
+        {
+            "type": "number",
+            "id": "line-height_mobi",
+            "label": "Line Height",
+            "default": 15,
+            "info": "px"
+        },
+        {
+            "type": "number",
+            "id": "font_countdown_text_mobi",
+            "label": "Font size text",
+            "default": 15,
+            "info": "px"
+        },
+        {
+            "type": "text",
+            "id": "width_countdown_mobi",
+            "label": "Width",
+            "default": "0px"
+        },
+        {
+            "type": "text",
+            "id": "height_countdown_mobi",
+            "label": "Height",
+            "default": "0px"
+        },
+        {
+            "type": "text",
+            "id": "padding_mobi",
+            "label": "Padding",
+            "default": "0px 0px 0px 0px",
+            "info": "top right bottom left"
+        }
+    ]
+  }
+{% endschema %}

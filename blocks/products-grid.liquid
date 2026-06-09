@@ -1,0 +1,122 @@
+{%- assign collection_handle = block.settings.featured_products -%}
+{%- assign rows 			        = block.settings.rows -%}
+
+{%- assign limit = block.settings.limit | plus: 0 -%}
+{% assign margin 			= block.settings.margin | split: "|" %}
+{% assign padding 			= block.settings.padding | split: "|" %}
+<style>
+      {%- if margin[0] != blank or padding[0] != blank -%}
+		#shopify-block-{{ block.id }} .wpbingo-widget--products-grid{
+			{%- if margin[0] != blank -%}margin: {{ margin[0] }};{%- endif -%}
+			{%- if padding[0] != blank -%}padding:{{ padding[0] }};{%- endif -%}
+		}
+	{%- endif -%}
+	{%- if margin[1] != blank or padding[1] != blank -%}
+		@media (max-width:1199px){
+			#shopify-block-{{ block.id }} .wpbingo-widget--products-grid{
+				{%- if margin[1] != blank -%}margin: {{ margin[1] }};{%- endif -%}
+				{%- if padding[1] != blank -%}padding:{{ padding[1] }};{%- endif -%}
+			}
+		}
+	{%- endif -%}
+	{%- if margin[2] != blank or padding[2] != blank -%}
+		@media (max-width:991px){
+			#shopify-block-{{ block.id }} .wpbingo-widget--products-grid{
+				{%- if margin[2] != blank -%}margin: {{ margin[2] }};{%- endif -%}
+				{%- if padding[2] != blank -%}padding:{{ padding[2] }};{%- endif -%}
+			}
+		}
+	{%- endif -%}
+	{%- if margin[3] != blank or padding[3] != blank -%}
+		@media (max-width:767px){
+			#shopify-block-{{ block.id }} .wpbingo-widget--products-grid{
+				{%- if margin[3] != blank -%}margin: {{ margin[3] }};{%- endif -%}
+				{%- if padding[3] != blank -%}padding:{{ padding[3] }};{%- endif -%}
+			}
+		}
+	{%- endif -%}
+</style>
+<div class="wpbingo-block wpbingo-widget--products-grid wpbingo-block--{{ block.id }}">
+    <div class="wpbingo-section__content">
+          {%- if collection_handle == blank or collections[collection_handle] == empty or collections[collection_handle].products_count == 0 -%}
+              <div class="row">
+                  {% render 'onboarding-featured-products' %}
+              </div>
+          {%- else -%}
+              <div class="content-swiper-nav">
+              <div class="bwp-swiper-slider" data-rows={{ rows }} 
+  					data-columns="1"
+					data-column1440="1"
+					data-column1="1"
+					data-column2="1"
+					data-column3="1"
+					data-column4="1">
+                   <div class="swiper-wrapper">
+                  {%- for product in collections[collection_handle].products limit: limit -%}
+                      <div class="swiper-slide">
+                          {% render 'product-grid-hover-10', product:product %}
+                      </div>
+                  {%- endfor -%}
+                   </div>
+                {%- if nav -%}
+                <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style=""></button>
+                <button class="slick-next slick-arrow" aria-label="Next" type="button" style=""></button>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+      </div>
+</div>
+{% schema %}
+  {
+    "name": "Product grid",
+    "settings": [
+        {
+			"type": "textarea",
+			"id": "padding",
+			"label": "Padding",
+			"placeholder": "0px 0px 0px 0px",
+			"info":"Screen: desktop | 1200px | 991px | 767px"
+		},
+		{
+			"type": "textarea",
+			"id": "margin",
+			"label": "Margin",
+			"placeholder": "0px 0px 0px 0px",
+			"info":"Screen: desktop | 1200px | 991px | 767px"
+		},
+        {
+			"type": "header",
+			"content": "General Settings"
+		},
+        {
+			"type": "collection",
+			"id": "featured_products",
+			"label": "Collection"
+		},
+		{
+			"type": "range",
+			"id": "limit",
+			"min": 1,
+			"max": 20,
+			"step": 1,
+			"label": "Number of products",
+			"default": 8
+		},
+         {
+			"type": "header",
+			"content": "Carousel Settings"
+		},
+		{
+			"type": "range",
+			"id": "rows",
+			"min": 1,
+			"max": 7,
+			"step": 1,
+			"label": "Rows",
+			"default": 1
+		}
+    ],
+    "presets": [{"name": "Product grid"}]
+  }
+{% endschema %}

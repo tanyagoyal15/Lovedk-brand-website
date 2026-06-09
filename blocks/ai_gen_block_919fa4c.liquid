@@ -1,0 +1,336 @@
+{% doc %}
+  @prompt
+    Create a fully customizable moving marquee section for a Shopify store.
+    
+    Requirements:
+    
+    * Editable background color
+    * Editable text color
+    * Editable padding (top/bottom + left/right)
+    * Editable font family
+    * Editable font size
+    * Editable font weight
+    * Editable text alignment
+    * Editable letter spacing
+    * Editable text transform (uppercase/lowercase/capitalized)
+    * Editable border radius
+    * Editable spacing between marquee items
+    * Ability to add multiple text items
+    * Smooth infinite scrolling marquee animation
+    * Mobile responsive
+    * Clean luxury aesthetic suitable for a premium fashion/jewelry brand
+    
+    Important:
+    
+    * I will manually control:
+    
+      * marquee speed
+      * direction
+      * layout style
+      * spacing behavior
+    
+    Please structure the code cleanly with:
+    
+    * Shopify schema settings
+    * Separate CSS styling
+    * Easy-to-edit customization controls
+    * Minimal and modern code
+    * No unnecessary JavaScript
+    
+    The final output should be production-ready Shopify Liquid code.
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-marquee-container-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ai-marquee-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    width: fit-content;
+    animation: ai-marquee-scroll-{{ ai_gen_id }} {{ block.settings.speed }}s linear infinite;
+  }
+
+  @keyframes ai-marquee-scroll-{{ ai_gen_id }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .ai-marquee-content-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .ai-marquee-item-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-family: {{ block.settings.font_family }};
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: {{ block.settings.font_weight }};
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-transform: {{ block.settings.text_transform }};
+    margin-right: {{ block.settings.item_spacing }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-marquee-item-{{ ai_gen_id }} {
+      font-size: {{ block.settings.font_size | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-marquee-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-marquee-wrapper-{{ ai_gen_id }}">
+    <div class="ai-marquee-content-{{ ai_gen_id }}">
+      {% if block.settings.item_1 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_1 }}</span>
+      {% endif %}
+      {% if block.settings.item_2 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_2 }}</span>
+      {% endif %}
+      {% if block.settings.item_3 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_3 }}</span>
+      {% endif %}
+      {% if block.settings.item_4 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_4 }}</span>
+      {% endif %}
+      {% if block.settings.item_5 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_5 }}</span>
+      {% endif %}
+      {% if block.settings.item_6 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_6 }}</span>
+      {% endif %}
+      {% if block.settings.item_7 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_7 }}</span>
+      {% endif %}
+      {% if block.settings.item_8 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_8 }}</span>
+      {% endif %}
+    </div>
+    <div class="ai-marquee-content-{{ ai_gen_id }}" aria-hidden="true">
+      {% if block.settings.item_1 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_1 }}</span>
+      {% endif %}
+      {% if block.settings.item_2 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_2 }}</span>
+      {% endif %}
+      {% if block.settings.item_3 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_3 }}</span>
+      {% endif %}
+      {% if block.settings.item_4 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_4 }}</span>
+      {% endif %}
+      {% if block.settings.item_5 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_5 }}</span>
+      {% endif %}
+      {% if block.settings.item_6 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_6 }}</span>
+      {% endif %}
+      {% if block.settings.item_7 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_7 }}</span>
+      {% endif %}
+      {% if block.settings.item_8 != blank %}
+        <span class="ai-marquee-item-{{ ai_gen_id }}">{{ block.settings.item_8 }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Moving marquee",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Marquee items"
+    },
+    {
+      "type": "text",
+      "id": "item_1",
+      "label": "Item 1",
+      "default": "Free Shipping Worldwide"
+    },
+    {
+      "type": "text",
+      "id": "item_2",
+      "label": "Item 2",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "text",
+      "id": "item_3",
+      "label": "Item 3",
+      "default": "Limited Time Offer"
+    },
+    {
+      "type": "text",
+      "id": "item_4",
+      "label": "Item 4"
+    },
+    {
+      "type": "text",
+      "id": "item_5",
+      "label": "Item 5"
+    },
+    {
+      "type": "text",
+      "id": "item_6",
+      "label": "Item 6"
+    },
+    {
+      "type": "text",
+      "id": "item_7",
+      "label": "Item 7"
+    },
+    {
+      "type": "text",
+      "id": "item_8",
+      "label": "Item 8"
+    },
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "s",
+      "default": 20,
+      "info": "Lower = faster"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Padding top/bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Padding left/right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "label": "Spacing between items",
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "font_family",
+      "label": "Font family",
+      "default": "New York",
+      "info": "Use system fonts or Google Fonts"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Moving marquee"
+    }
+  ]
+}
+{% endschema %}

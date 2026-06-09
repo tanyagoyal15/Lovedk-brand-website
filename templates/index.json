@@ -1,0 +1,1761 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1774455799cabe0ae9": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_212c062_YpBeBM": {
+          "type": "ai_gen_block_212c062",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Organic_products_made_with_love._That_s_what_you_get_from_us._1.jpg",
+            "video_mobile": "shopify://files/videos/Your paragraph text.mp4",
+            "media_fit": "fill",
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": false,
+            "height_desktop": 600,
+            "height_mobile": 450,
+            "background_color": "#000000",
+            "show_overlay": true,
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "center",
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "content_padding_desktop": 50,
+            "content_padding_mobile": 20,
+            "subtitle": "",
+            "subtitle_color": "#ffffff",
+            "subtitle_size_desktop": 16,
+            "subtitle_size_mobile": 14,
+            "subtitle_weight": 400,
+            "subtitle_transform": "uppercase",
+            "subtitle_letter_spacing": 1,
+            "subtitle_spacing": 15,
+            "title": "",
+            "title_color": "#ffffff",
+            "title_size_desktop": 40,
+            "title_size_mobile": 35,
+            "title_weight": 700,
+            "title_line_height": 1.2,
+            "title_transform": "none",
+            "title_letter_spacing": 0,
+            "title_spacing": 20,
+            "description": "",
+            "description_color": "#ffffff",
+            "description_size_desktop": 18,
+            "description_size_mobile": 16,
+            "description_weight": 400,
+            "description_line_height": 1.5,
+            "description_spacing": 30,
+            "button_text": "Shop now",
+            "button_link": "",
+            "button_bg_color": "#ffffff",
+            "button_bg_hover_color": "#000000",
+            "button_text_color": "#000000",
+            "button_text_hover_color": "#ffffff",
+            "button_border_color": "#ffffff",
+            "button_border_hover_color": "#000000",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_text_transform": "uppercase",
+            "button_letter_spacing": 1,
+            "button_padding_vertical": 15,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 0,
+            "button_border_width": 2
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_212c062_YpBeBM"
+      ],
+      "settings": {}
+    },
+    "slidershow_wFjjfz": {
+      "type": "slidershow",
+      "blocks": {
+        "slide_f8aPDr": {
+          "type": "_slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/us.jpg",
+            "size_img": "contain",
+            "pos_img": "center_center",
+            "size_img_mobi": "cover",
+            "pos_img_mobi": "center_center"
+          },
+          "blocks": {
+            "group_content_slide_FY8fwf": {
+              "type": "_group-content-slide",
+              "settings": {
+                "caption_width": "",
+                "vertical_align": "middle",
+                "horizontal_align": "center",
+                "align": "center",
+                "animation": "left-to-right",
+                "padding": "",
+                "margin": "10px",
+                "disable_absolute": false,
+                "vertical_align_mobi": "middle",
+                "horizontal_align_mobi": "center",
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_content_slide_FY8fwf"
+          ]
+        },
+        "slide_6tiyVP": {
+          "type": "_slide",
+          "settings": {
+            "image": "shopify://shop_images/us.jpg",
+            "image_mobi": "shopify://shop_images/us.jpg",
+            "size_img": "contain",
+            "pos_img": "center_center",
+            "size_img_mobi": "contain",
+            "pos_img_mobi": "center_center"
+          },
+          "blocks": {
+            "group_content_slide_FiMHM4": {
+              "type": "_group-content-slide",
+              "settings": {
+                "caption_width": "full",
+                "vertical_align": "middle",
+                "horizontal_align": "center",
+                "align": "center",
+                "animation": "left-to-right",
+                "padding": "",
+                "margin": "10px",
+                "disable_absolute": false,
+                "vertical_align_mobi": "middle",
+                "horizontal_align_mobi": "center",
+                "align_mobi": "center"
+              },
+              "blocks": {
+                "text_block_gfxBWj": {
+                  "type": "text-block",
+                  "name": "Text block",
+                  "disabled": true,
+                  "settings": {
+                    "title": "Strolling around the city",
+                    "font": "--font-family-base",
+                    "text_transform": "none",
+                    "font_style": "normal",
+                    "color": "#ffffff",
+                    "font_size": 16,
+                    "line_height": 26,
+                    "letter_spacing": 0,
+                    "font_weight": "500",
+                    "align": "center",
+                    "padding": "",
+                    "margin": "0 0 15px",
+                    "color_mobi": "#ffffff",
+                    "font_size_mobi": 14,
+                    "line_height_mobi": 24,
+                    "letter_spacing_mobi": 0,
+                    "align_mobi": "center"
+                  },
+                  "blocks": {}
+                },
+                "title_iVBmNw": {
+                  "type": "title",
+                  "disabled": true,
+                  "settings": {
+                    "desktop_width_percent": 100,
+                    "badge_width": 150,
+                    "badge_height": 100,
+                    "badge_spacing": 40,
+                    "padding_vertical": 30,
+                    "badge_background": "#ffffff",
+                    "badge_border_radius": 8,
+                    "badge_padding": 10,
+                    "animation_speed": 20,
+                    "pause_on_hover": true,
+                    "background_color": "#f8f8f2"
+                  },
+                  "blocks": {}
+                },
+                "button_grXCpY": {
+                  "type": "button",
+                  "disabled": true,
+                  "settings": {
+                    "title": "Explore Now",
+                    "layout": "layout-1",
+                    "font": "--font-family-second",
+                    "text_transform": "none",
+                    "icon_title": "",
+                    "font_icon": 14,
+                    "color_icon": "#000000",
+                    "background_icon": "#ffffff",
+                    "color_icon_hover": "#000000",
+                    "background_icon_hover": "#ffffff",
+                    "pos_icon": 0,
+                    "border_radius_icon": "0px 0px 0px 0px",
+                    "width_icon": 20,
+                    "margin_icon": "0px 0px 0px 0px",
+                    "button_link": "shopify://collections/all",
+                    "border_radius": "0px 0px 0px 0px",
+                    "border": false,
+                    "border_width": "0px 0px 0px 0px",
+                    "color": "#ffffff",
+                    "background": "#000000",
+                    "border_color": "#ffffff",
+                    "color_hover": "#000000",
+                    "background_hover": "#ffffff",
+                    "border_color_hover": "#ffffff",
+                    "font_size": 16,
+                    "line_height": 48,
+                    "letter_spacing": 0,
+                    "font_weight": "600",
+                    "padding": "0 40px | 0 35px",
+                    "margin": "",
+                    "align": "center",
+                    "font_size_mobi": 16,
+                    "font_icon_mobi": 14,
+                    "margin_icon_mobi": 0,
+                    "line_height_mobi": 45,
+                    "letter_spacing_mobi": 0,
+                    "border_radius_mobi": "0px 0px 0px 0px",
+                    "border_mobi": false,
+                    "border_width_mobi": "0px 0px 0px 0px",
+                    "color_mobi": "#ffffff",
+                    "background_mobi": "#000000",
+                    "border_color_mobi": "#ffffff",
+                    "color_hover_mobi": "#000000",
+                    "background_hover_mobi": "#ffffff",
+                    "border_color_hover_mobi": "#ffffff",
+                    "align_mobi": "center"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_block_gfxBWj",
+                "title_iVBmNw",
+                "button_grXCpY"
+              ]
+            }
+          },
+          "block_order": [
+            "group_content_slide_FiMHM4"
+          ]
+        }
+      },
+      "block_order": [
+        "slide_f8aPDr",
+        "slide_6tiyVP"
+      ],
+      "disabled": true,
+      "settings": {
+        "max_width": "1440px",
+        "fullwidth": true,
+        "navigation": true,
+        "pagination": false,
+        "effect": "slide",
+        "autoplay": true,
+        "autoplay_speed": "7000",
+        "min_height_slider": "500px| 450px| 400px| 400px",
+        "border_arrow": "0px 0px 0px 0px",
+        "border_radius_arrow": "50%",
+        "bg_arrow": "#0000001a",
+        "border_color_arrow": "#ffffff",
+        "color_arrow": "#000000",
+        "bg_arrow_hover": "#000000",
+        "border_color_arrow_hover": "#cb8161",
+        "color_arrow_hover": "#ffffff"
+      }
+    },
+    "1774271206b35fc895": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ef93bff_djacHc": {
+          "type": "ai_gen_block_ef93bff",
+          "settings": {
+            "padding_top": 35,
+            "padding_bottom": 0,
+            "spacing": 10,
+            "background_color": "#ffffff",
+            "collection_1": "necklaces",
+            "image_1": "shopify://shop_images/DSCF3123.jpg",
+            "label_1": "Necklace",
+            "collection_2": "bracelets",
+            "image_2": "shopify://shop_images/bracelet.jpg",
+            "label_2": "BRACELET",
+            "collection_3": "earrings",
+            "image_3": "shopify://shop_images/EA0BDF61-55AE-4ECE-9442-C339CE742D91.jpg",
+            "label_3": "Earring",
+            "collection_4": "anklets",
+            "image_4": "shopify://shop_images/31541302-FE3E-4021-84CB-FF1CE9B44990_1_201_a.jpg",
+            "label_4": "Anklet",
+            "collection_5": "waist-chains",
+            "image_5": "shopify://shop_images/18728B0F-5820-4DDA-9144-F7E1E43EE2CC_1_105_c.jpg",
+            "label_5": "Waist chain",
+            "collection_6": "rings",
+            "image_6": "shopify://shop_images/island.png",
+            "label_6": "Rings",
+            "label_font_size": 16,
+            "label_color": "#000000",
+            "scrollbar_height": 4,
+            "scrollbar_track_color": "#e5e5e5",
+            "scrollbar_thumb_color": "#000000",
+            "scrollbar_thumb_hover_color": "#333333"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ef93bff_djacHc"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "17744563983e0fc3de": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_50e9808_tKxUGm": {
+          "type": "ai_gen_block_50e9808",
+          "settings": {
+            "background_color": "#fdfdfb",
+            "padding_top": 20,
+            "padding_bottom": 20,
+            "gap": 25,
+            "mobile_image_size": 180,
+            "mobile_gap": 20,
+            "font_family": "New York",
+            "font_size": 12,
+            "text_color": "#5e5e4a",
+            "text_spacing": 15,
+            "arrow_size": 24,
+            "arrow_background": "#ffffff",
+            "arrow_hover_background": "#f5f5f5",
+            "arrow_border_color": "#e0e0e0",
+            "arrow_color": "#000000",
+            "collection_1": "necklaces",
+            "image_1": "shopify://shop_images/CCA6D198-A452-468B-A202-27787A07E67D.jpg",
+            "label_1": "NECKLACE",
+            "collection_2": "bracelets",
+            "image_2": "shopify://shop_images/F5F54F72-FB5B-4D06-AB45-77A355934C95.jpg",
+            "label_2": "BRACELET",
+            "collection_3": "earrings",
+            "image_3": "shopify://shop_images/WhatsAppImage2025-11-24at6.19.46PM.jpg",
+            "label_3": "EARRING",
+            "collection_4": "anklets",
+            "image_4": "shopify://shop_images/96FBE660-FCB7-40B4-99D5-5A1F27D5E516_1_105_c.jpg",
+            "label_4": "ANKLET",
+            "collection_5": "waist-chains",
+            "image_5": "shopify://shop_images/18728B0F-5820-4DDA-9144-F7E1E43EE2CC_1_105_c.jpg",
+            "label_5": "WAIST CHAIN",
+            "collection_6": "rings",
+            "image_6": "shopify://shop_images/island.png",
+            "label_6": "RINGS"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_50e9808_tKxUGm"
+      ],
+      "settings": {}
+    },
+    "featured_custom_section_afdVpG": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_zHXE3h": {
+          "type": "_column",
+          "settings": {
+            "width": 100,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "",
+            "margin": "",
+            "width_lap": 100,
+            "width_tab": 100,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "collection_image_8VwBL3": {
+              "type": "collection-image",
+              "settings": {
+                "padding": "",
+                "margin": "",
+                "navigation": true,
+                "infinite": true,
+                "autoplay": false,
+                "autoplay_speed": "10000",
+                "rows": 1,
+                "columns": 6,
+                "pergroup_columns": 1,
+                "space_columns": 30,
+                "column1440": 6,
+                "pergroup_column1440": 1,
+                "space_column1440": 15,
+                "column1": 6,
+                "pergroup_column1": 1,
+                "space_column1": 15,
+                "column2": 4.5,
+                "pergroup_column2": 1,
+                "space_column2": 15,
+                "column3": 3,
+                "pergroup_column3": 1,
+                "space_column3": 12,
+                "column4": 3,
+                "pergroup_column4": 1,
+                "space_column4": 10
+              },
+              "blocks": {
+                "collection_image_MbfwCJ": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "necklaces",
+                    "image": "shopify://shop_images/902AEEEB-0744-49D6-B06A-F5DB05E83F14.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_fWUYEU": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "bracelets",
+                    "image": "shopify://shop_images/48b929_b39bf93cff944f70b31838c1f9efa0ba_mv2.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_8TRPXy": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "earrings",
+                    "image": "shopify://shop_images/IMG_7551.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_nFT3dT": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "anklets",
+                    "image": "shopify://shop_images/DF1228B3-4322-4F56-A623-74C6EB456C94_1_201_a.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_MEtLfe": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "waist-chains",
+                    "image": "shopify://shop_images/E72F7309-A30D-443A-9E8B-5E388B9FAA01_1_105_c.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_9WKkTF": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "rings",
+                    "image": "shopify://shop_images/IMG_6934.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "custom-colleciont-image": {
+                  "type": "custom-collection-image",
+                  "static": true,
+                  "settings": {
+                    "border_image": "50%",
+                    "width_image": "100%",
+                    "font": "--font-family-second",
+                    "color": "#000000",
+                    "background": "rgba(0,0,0,0)",
+                    "color_hover": "#92614c",
+                    "background_hover": "rgba(0,0,0,0)",
+                    "font_size": 20,
+                    "line_height": 18,
+                    "letter_spacing": 0,
+                    "font_weight": "500",
+                    "padding_title": "0px 0px 0px 0px",
+                    "border_radius": "01",
+                    "text_transform": "capitalize",
+                    "text_align": "center",
+                    "font_count": "--font-family-second",
+                    "color_count": "#000000",
+                    "font_size_count": 16,
+                    "line_height_count": 22,
+                    "letter_spacing_count": 0,
+                    "font_weight_count": "500",
+                    "text_transform_count": "uppercase",
+                    "margin_count": "0px 0px 0px 0px",
+                    "font_size_mobi": 15,
+                    "line_height_mobi": 18,
+                    "letter_spacing_mobi": 0,
+                    "font_weight_mobi": "400",
+                    "padding_title_mobi": "0px 0px 0px 0px",
+                    "font_size_count_mobi": 16,
+                    "line_height_count_mobi": 22,
+                    "letter_spacing_count_mobi": 0,
+                    "font_weight_count_mobi": "500"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "collection_image_MbfwCJ",
+                "collection_image_fWUYEU",
+                "collection_image_8TRPXy",
+                "collection_image_nFT3dT",
+                "collection_image_MEtLfe",
+                "collection_image_9WKkTF"
+              ]
+            }
+          },
+          "block_order": [
+            "collection_image_8VwBL3"
+          ]
+        }
+      },
+      "block_order": [
+        "column_zHXE3h"
+      ],
+      "disabled": true,
+      "name": "Collections ",
+      "settings": {
+        "max_width": "1440px",
+        "fullwidth": false,
+        "background_color": "",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "18px 0",
+        "margin": "",
+        "vertical_align": "middle",
+        "horizontal_align": "left",
+        "overflow": "hidden",
+        "id_section": ""
+      }
+    },
+    "177426871581c31afa": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_c1b1ab5_cV73EY": {
+          "type": "ai_gen_block_c1b1ab5",
+          "settings": {
+            "collection_1_title": "BEST SELLERS",
+            "collection_1": "best-selling",
+            "collection_2_title": "New arrivals",
+            "collection_2": "summer26",
+            "products_limit": 8,
+            "desktop_columns": 4,
+            "desktop_width_percent": 100,
+            "show_wishlist_icon": true,
+            "show_cart_icon": true,
+            "title_font_size": 14,
+            "price_font_size": 14,
+            "text_color": "#5e5e4a",
+            "price_color": "#000000",
+            "icon_bg_color": "#fdfdfb",
+            "icon_border_color": "#000000",
+            "icon_hover_bg_color": "#f5f5f5",
+            "icon_color": "#000000"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_919fa4c_aArNDT": {
+          "type": "ai_gen_block_919fa4c",
+          "settings": {
+            "item_1": "India’s Original ✦",
+            "item_2": "Bestseller Forever ✦",
+            "item_3": "Wear On Repeat ✦",
+            "item_4": "",
+            "item_5": "",
+            "item_6": "",
+            "item_7": "",
+            "item_8": "",
+            "speed": 20,
+            "background_color": "#000000",
+            "padding_vertical": 15,
+            "padding_horizontal": 20,
+            "border_radius": 0,
+            "item_spacing": 60,
+            "text_color": "#ffffff",
+            "font_family": "New York",
+            "font_size": 16,
+            "font_weight": "400",
+            "letter_spacing": 0,
+            "text_transform": "uppercase"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_7888999_9Kqh78": {
+          "type": "ai_gen_block_7888999",
+          "disabled": true,
+          "settings": {
+            "heading": "AS SPOTTED ON",
+            "heading_size": 20,
+            "heading_weight": "600",
+            "heading_alignment": "center",
+            "heading_spacing": 30,
+            "number_of_cards": 6,
+            "card_width_mobile": 240,
+            "card_width_desktop": 280,
+            "card_spacing": 20,
+            "image_radius": 8,
+            "card_image_1": "shopify://shop_images/19.jpg",
+            "card_name_1": "Diipa Khosla",
+            "card_caption_1": "Influencer",
+            "card_name_2": "Srishti Garg",
+            "card_caption_2": "Styled with DK jewellery",
+            "card_name_3": "Hustle Rani",
+            "card_caption_3": "Styled with DK jewellery",
+            "card_name_4": "Worn by our community",
+            "card_caption_4": "Styled with DK jewellery",
+            "card_name_5": "Worn by our community",
+            "card_caption_5": "Styled with DK jewellery",
+            "card_name_6": "Worn by our community",
+            "card_caption_6": "Styled with DK jewellery",
+            "card_name_7": "Worn by our community",
+            "card_caption_7": "Styled with DK jewellery",
+            "card_name_8": "Worn by our community",
+            "card_caption_8": "Styled with DK jewellery",
+            "card_name_9": "Worn by our community",
+            "card_caption_9": "Styled with DK jewellery",
+            "card_name_10": "Worn by our community",
+            "card_caption_10": "Styled with DK jewellery",
+            "card_name_11": "Worn by our community",
+            "card_caption_11": "Styled with DK jewellery",
+            "card_name_12": "Worn by our community",
+            "card_caption_12": "Styled with DK jewellery",
+            "background_color": "#f8f8f2",
+            "text_color": "#4d3f38",
+            "padding_top": 50,
+            "padding_bottom": 10
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_c1b1ab5_cV73EY",
+        "ai_gen_block_919fa4c_aArNDT",
+        "ai_gen_block_7888999_9Kqh78"
+      ],
+      "settings": {}
+    },
+    "blocks_EyUtbQ": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5c27691_TW9wJy": {
+          "type": "ai_gen_block_5c27691",
+          "settings": {
+            "title": "<strong>Where it all began for Love DK.</strong>",
+            "title_font": "serif",
+            "title_size": 48,
+            "title_color": "#000000",
+            "subtitle": "The original bestselling wrap bracelet, available in multiple colours.",
+            "subtitle_font": "serif",
+            "subtitle_size": 18,
+            "subtitle_color": "#666666",
+            "text_alignment": "center",
+            "spacing_between": 6,
+            "padding_top": 40,
+            "padding_bottom": 16,
+            "padding_left": 32,
+            "padding_right": 28,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_540ef0f_JpJGDi": {
+          "type": "ai_gen_block_540ef0f",
+          "name": "different banners",
+          "settings": {
+            "desktop_height": 600,
+            "mobile_height": 400,
+            "image_fit": "cover",
+            "desktop_image": "shopify://shop_images/One_rope.jpg",
+            "mobile_image": "shopify://shop_images/summer_ad_set_1_d967de7c-f405-4b0b-969b-b4d4283cbd74.jpg",
+            "desktop_video": "",
+            "mobile_video": "",
+            "show_overlay": false,
+            "overlay_color": "#000000",
+            "overlay_opacity": 0.3,
+            "banner_link": ""
+          },
+          "blocks": {}
+        },
+        "image_KzUNz8": {
+          "type": "image",
+          "name": "Image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/summer_ad_set_1_d967de7c-f405-4b0b-969b-b4d4283cbd74.jpg",
+            "url": "",
+            "padding": "",
+            "margin": "",
+            "size": "",
+            "image_size": "cover",
+            "image_pos": "center center",
+            "align": "left",
+            "border_radius": "0px 0px 0px 0px",
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "effect": "none",
+            "align_mobi": "left"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_55aa8ee_wXVQzq": {
+          "type": "ai_gen_block_55aa8ee",
+          "settings": {
+            "collection": "global-wraps",
+            "products_limit": 24,
+            "card_width": 200,
+            "image_height": 240,
+            "card_spacing": 15,
+            "card_padding": 10,
+            "card_bg": "#f8f8f2",
+            "card_border_radius": 0,
+            "text_alignment": "left",
+            "title_font": "serif",
+            "title_size": 14,
+            "title_font_weight": "500",
+            "title_color": "#000000",
+            "price_font": "serif",
+            "price_size": 14,
+            "price_font_weight": "400",
+            "price_color": "#000000",
+            "compare_price_size": 12,
+            "compare_price_font_weight": "400",
+            "compare_price_color": "#888888",
+            "background_color": "#f8f8f2",
+            "padding_vertical": 10,
+            "animation_speed": 50,
+            "pause_on_hover": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5c27691_TW9wJy",
+        "ai_gen_block_540ef0f_JpJGDi",
+        "image_KzUNz8",
+        "ai_gen_block_55aa8ee_wXVQzq"
+      ],
+      "name": "trust badges",
+      "settings": {}
+    },
+    "1774188331605dc7bc": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_9ae43a9_kxm66M": {
+          "type": "ai_gen_block_9ae43a9",
+          "settings": {
+            "desktop_width_percent": 100,
+            "heading_1": "New Arrivals",
+            "collection_1": "wedding-editt",
+            "heading_2": "Best Sellers",
+            "collection_2": "best-seller",
+            "heading_size": 28,
+            "heading_color": "#000000",
+            "heading_hover_color": "#000000",
+            "text_container_height": 80,
+            "product_title_size": 14,
+            "product_title_color": "#000000",
+            "price_size": 14,
+            "price_color": "#000000",
+            "sale_price_color": "#8a2f2f",
+            "button_text": "View Product",
+            "button_text_size": 12
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_9ae43a9_kxm66M"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "featured_custom_section_zWBFPg": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_4NykTK": {
+          "type": "_column",
+          "settings": {
+            "width": 100,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "",
+            "margin": "",
+            "width_lap": 100,
+            "width_tab": 100,
+            "width_mobi": 100,
+            "border": true,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "marquee_DnACyj": {
+              "type": "marquee",
+              "name": "Marquee",
+              "settings": {
+                "padding": "1px",
+                "margin": "0",
+                "marquee_content": true,
+                "marquee_loop": 10,
+                "marquee_time": 8
+              },
+              "blocks": {
+                "text_block_fbmaaf": {
+                  "type": "text-block",
+                  "settings": {
+                    "title": "Elegance Delivered.",
+                    "font": "--font-family-base",
+                    "text_transform": "none",
+                    "font_style": "normal",
+                    "color": "#ffffff",
+                    "font_size": 20,
+                    "line_height": 30,
+                    "letter_spacing": 0,
+                    "font_weight": "800",
+                    "align": "center",
+                    "padding": "",
+                    "margin": "0 34px",
+                    "color_mobi": "#ffffff",
+                    "font_size_mobi": 18,
+                    "line_height_mobi": 24,
+                    "letter_spacing_mobi": 0,
+                    "align_mobi": "center"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_block_fbmaaf"
+              ]
+            }
+          },
+          "block_order": [
+            "marquee_DnACyj"
+          ]
+        }
+      },
+      "block_order": [
+        "column_4NykTK"
+      ],
+      "disabled": true,
+      "name": "Marquee",
+      "settings": {
+        "max_width": "1440px",
+        "fullwidth": true,
+        "background_color": "#000",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "5px",
+        "margin": "",
+        "vertical_align": "top",
+        "horizontal_align": "center",
+        "overflow": "hidden",
+        "id_section": ""
+      }
+    },
+    "featured_product_tabs_iXUdVh": {
+      "type": "featured-product-tabs",
+      "blocks": {
+        "tab_dB9KnV": {
+          "type": "tab",
+          "settings": {
+            "title": "New Arrival",
+            "collection": "valentines-day",
+            "limit": 4
+          }
+        },
+        "tab_U6Hjic": {
+          "type": "tab",
+          "settings": {
+            "title": "Best Sellers",
+            "collection": "best-selling-1",
+            "limit": 4
+          }
+        },
+        "css_TaHyiB": {
+          "type": "css",
+          "settings": {
+            "font": "--font-family-second",
+            "text_transform": "none",
+            "color_title": "#00000033",
+            "color_title_active": "#000000",
+            "font_weight_title_active": "550",
+            "font_size_title": 30,
+            "line_height_title": 38,
+            "letter_spacing_title": 0,
+            "font_weight_title": "500",
+            "border_title": false,
+            "border_width_title": 0,
+            "bg_title": "",
+            "border_color_title": "#dddddd",
+            "bg_title_hover": "",
+            "border_color_hover_title": "#dddddd",
+            "border_radius_title": "0px 0px 0px 0px",
+            "padding_title": "0px 0px 0px 0px",
+            "margin_title": "0px 0px 0px 0px",
+            "font_size_title_mobi": 25,
+            "line_height_title_mobi": 30,
+            "padding_title_mobi": "0px 0px 0px 0px",
+            "margin_title_mobi": "0px 0px 0px 0px"
+          }
+        }
+      },
+      "block_order": [
+        "tab_dB9KnV",
+        "tab_U6Hjic",
+        "css_TaHyiB"
+      ],
+      "disabled": true,
+      "settings": {
+        "color": "",
+        "max_width": "1440px",
+        "fullwidth": false,
+        "padding": "15px 0 0",
+        "margin": "",
+        "navigation": false,
+        "infinite": false,
+        "autoplay": false,
+        "autoplay_speed": "10000",
+        "rows": 2,
+        "columns": 4,
+        "pergroup_columns": 1,
+        "space_columns": 30,
+        "column1440": 4,
+        "pergroup_column1440": 1,
+        "space_column1440": 30,
+        "column1": 4,
+        "pergroup_column1": 1,
+        "space_column1": 15,
+        "column2": 3,
+        "pergroup_column2": 1,
+        "space_column2": 15,
+        "column3": 2,
+        "pergroup_column3": 1,
+        "space_column3": 15,
+        "column4": 2,
+        "pergroup_column4": 2,
+        "space_column4": 15,
+        "layout": "layout-1"
+      }
+    },
+    "1774186572cb878b18": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4a6d3b1_MFWaf9": {
+          "type": "ai_gen_block_4a6d3b1",
+          "disabled": true,
+          "settings": {
+            "title": "shop by mood",
+            "title_size": 30,
+            "title_color": "#000000",
+            "top_padding": 20,
+            "image_1": "shopify://shop_images/ChatGPT_Image_Feb_23_2026_06_57_03_PM.png",
+            "text_1": "Weddings",
+            "link_1": "shopify://collections/wedding-collection",
+            "image_2": "shopify://shop_images/89C01ABA-7508-48E0-8AF1-A90E9AA788A5_1_105_c.jpg",
+            "text_2": "work wear",
+            "link_2": "shopify://collections/office",
+            "image_3": "shopify://shop_images/7775521D-2689-41E3-AEA4-B0192AFFA73F.jpg",
+            "text_3": "DATE NIGHT",
+            "link_3": "shopify://collections/formal",
+            "image_4": "shopify://shop_images/IMG_7559.jpg",
+            "text_4": "VACATIONS",
+            "link_4": "shopify://collections/travel",
+            "image_aspect_ratio": "3/4",
+            "image_border_radius": 2,
+            "text_size": 16,
+            "text_color": "#000000",
+            "text_hover_color": "#747776",
+            "text_weight": "500",
+            "text_transform": "uppercase",
+            "text_letter_spacing": 1,
+            "desktop_columns": 4,
+            "gap": 10,
+            "desktop_width_percent": 100,
+            "autoplay": true,
+            "autoplay_speed": 3000,
+            "infinite_loop": true,
+            "show_dots": false,
+            "dot_color": "#cccccc",
+            "dot_active_color": "#747776"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4a6d3b1_MFWaf9"
+      ],
+      "settings": {}
+    },
+    "featured_custom_section_Kzj9mY": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_kWUUEF": {
+          "type": "_column",
+          "settings": {
+            "width": 100,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "",
+            "margin": "",
+            "width_lap": 100,
+            "width_tab": 100,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "text_block_Kg6fGk": {
+              "type": "text-block",
+              "name": "Text block",
+              "settings": {
+                "title": "Shop By Mood",
+                "font": "--font-family-second",
+                "text_transform": "uppercase",
+                "font_style": "italic",
+                "color": "#af5031",
+                "font_size": 50,
+                "line_height": 50,
+                "letter_spacing": 0,
+                "font_weight": "500",
+                "align": "center",
+                "padding": "",
+                "margin": "",
+                "color_mobi": "#af5031",
+                "font_size_mobi": 20,
+                "line_height_mobi": 24,
+                "letter_spacing_mobi": 0,
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_block_Kg6fGk"
+          ]
+        }
+      },
+      "block_order": [
+        "column_kWUUEF"
+      ],
+      "disabled": true,
+      "name": "Shop by mood",
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "background_color": "",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "10px 0px 0px 0px",
+        "margin": "",
+        "vertical_align": "top",
+        "horizontal_align": "left",
+        "overflow": "hidden",
+        "id_section": ""
+      }
+    },
+    "featured_custom_section_ehmhB7": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_TB3Pw7": {
+          "type": "_column",
+          "name": "Column",
+          "settings": {
+            "width": 100,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "",
+            "margin": "",
+            "width_lap": 100,
+            "width_tab": 100,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "collection_image_rzRj99": {
+              "type": "collection-image",
+              "name": "Collections image",
+              "settings": {
+                "padding": "",
+                "margin": "",
+                "navigation": true,
+                "infinite": false,
+                "autoplay": false,
+                "autoplay_speed": "8000",
+                "rows": 1,
+                "columns": 4,
+                "pergroup_columns": 4,
+                "space_columns": 30,
+                "column1440": 4,
+                "pergroup_column1440": 4,
+                "space_column1440": 30,
+                "column1": 4,
+                "pergroup_column1": 4,
+                "space_column1": 15,
+                "column2": 3,
+                "pergroup_column2": 3,
+                "space_column2": 15,
+                "column3": 2,
+                "pergroup_column3": 1,
+                "space_column3": 15,
+                "column4": 2,
+                "pergroup_column4": 1,
+                "space_column4": 15
+              },
+              "blocks": {
+                "collection_image_QgAkfa": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "travel",
+                    "image": "shopify://shop_images/368C68E6-EBCE-41D1-AEBD-B437664B4E27.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_i8NBTn": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "brunch-dates",
+                    "image": "shopify://shop_images/7775521D-2689-41E3-AEA4-B0192AFFA73F.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_JCkq3A": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "office",
+                    "image": "shopify://shop_images/A6C1D3BD-FB0E-4211-88AE-12732FE7C879.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_DYR6UV": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "wedding",
+                    "image": "shopify://shop_images/0954737C-6A62-4FE9-95D9-7EEA0F315EB7_1_105_c.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_wAiYcA": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "all-day",
+                    "image": "shopify://shop_images/IMG_7343_2.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_E4Gpmd": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "summer",
+                    "image": "shopify://shop_images/7775521D-2689-41E3-AEA4-B0192AFFA73F.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "collection_image_HLzJYz": {
+                  "type": "_collection-image",
+                  "settings": {
+                    "collection": "after-party",
+                    "image": "shopify://shop_images/B22D49F4-79EC-4FE9-AC42-92CD0FA3ABCB.jpg",
+                    "count": false,
+                    "text_count": "",
+                    "effects": "grow"
+                  },
+                  "blocks": {}
+                },
+                "custom-colleciont-image": {
+                  "type": "custom-collection-image",
+                  "static": true,
+                  "settings": {
+                    "border_image": "0%",
+                    "width_image": "100%",
+                    "font": "--font-family-second",
+                    "color": "#000000",
+                    "background": "rgba(0,0,0,0)",
+                    "color_hover": "#000000",
+                    "background_hover": "#ffffff",
+                    "font_size": 16,
+                    "line_height": 22,
+                    "letter_spacing": 0,
+                    "font_weight": "500",
+                    "padding_title": "0px 0px 0px 0px",
+                    "border_radius": "0",
+                    "text_transform": "uppercase",
+                    "text_align": "center",
+                    "font_count": "--font-family-second",
+                    "color_count": "#000000",
+                    "font_size_count": 16,
+                    "line_height_count": 22,
+                    "letter_spacing_count": 0,
+                    "font_weight_count": "500",
+                    "text_transform_count": "uppercase",
+                    "margin_count": "0px 0px 0px 0px",
+                    "font_size_mobi": 16,
+                    "line_height_mobi": 22,
+                    "letter_spacing_mobi": 0,
+                    "font_weight_mobi": "500",
+                    "padding_title_mobi": "0px 0px 0px 0px",
+                    "font_size_count_mobi": 16,
+                    "line_height_count_mobi": 22,
+                    "letter_spacing_count_mobi": 0,
+                    "font_weight_count_mobi": "500"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "collection_image_QgAkfa",
+                "collection_image_i8NBTn",
+                "collection_image_JCkq3A",
+                "collection_image_DYR6UV",
+                "collection_image_wAiYcA",
+                "collection_image_E4Gpmd",
+                "collection_image_HLzJYz"
+              ]
+            }
+          },
+          "block_order": [
+            "collection_image_rzRj99"
+          ]
+        }
+      },
+      "block_order": [
+        "column_TB3Pw7"
+      ],
+      "disabled": true,
+      "name": "Shop by mood 2",
+      "settings": {
+        "max_width": "1440px",
+        "fullwidth": true,
+        "background_color": "",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "10px 5px 20px 5px",
+        "margin": "",
+        "vertical_align": "middle",
+        "horizontal_align": "center",
+        "overflow": "hidden",
+        "id_section": ""
+      }
+    },
+    "177445805177326f2d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d49de2d_Nzh9rV": {
+          "type": "ai_gen_block_d49de2d",
+          "settings": {
+            "collection": "after-party",
+            "products_limit": 4,
+            "custom_heading": "Silver girlies",
+            "heading_font": "serif",
+            "heading_alignment": "left",
+            "heading_size": 16,
+            "heading_font_weight": "400",
+            "heading_text_transform": "uppercase",
+            "heading_letter_spacing": 0,
+            "heading_line_height": 1.2,
+            "heading_margin_bottom": 20,
+            "heading_color": "#000000",
+            "subtext": "For the best times.",
+            "subtext_font": "assistant_n4",
+            "subtext_alignment": "left",
+            "subtext_size": 14,
+            "subtext_font_weight": "400",
+            "subtext_text_transform": "none",
+            "subtext_letter_spacing": 0,
+            "subtext_color": "#666666",
+            "background_color": "#f8f8f2",
+            "section_padding": 5,
+            "section_margin_top": 40,
+            "image_aspect_ratio": 140,
+            "product_card_bg": "#f8f8f2",
+            "card_border_radius": 0,
+            "grid_gap": 10,
+            "text_alignment": "left",
+            "product_title_size": 15,
+            "product_title_color": "#19130d",
+            "price_size": 14,
+            "price_color": "#736964",
+            "show_wishlist_icon": true,
+            "show_cart_icon": true,
+            "icon_bg_color": "#fdfdfb",
+            "icon_border_color": "#000000",
+            "icon_color": "#000000"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_d49de2d_URHHRd": {
+          "type": "ai_gen_block_d49de2d",
+          "settings": {
+            "collection": "summer26",
+            "products_limit": 4,
+            "custom_heading": "SUMMER",
+            "heading_font": "serif",
+            "heading_alignment": "left",
+            "heading_size": 30,
+            "heading_font_weight": "300",
+            "heading_text_transform": "uppercase",
+            "heading_letter_spacing": 0,
+            "heading_line_height": 1.2,
+            "heading_margin_bottom": 20,
+            "heading_color": "#000000",
+            "subtext": "For the beaches",
+            "subtext_font": "assistant_n4",
+            "subtext_alignment": "left",
+            "subtext_size": 14,
+            "subtext_font_weight": "400",
+            "subtext_text_transform": "none",
+            "subtext_letter_spacing": 0,
+            "subtext_color": "#666666",
+            "background_color": "#f8f8f2",
+            "section_padding": 5,
+            "section_margin_top": 40,
+            "image_aspect_ratio": 130,
+            "product_card_bg": "#f8f8f2",
+            "card_border_radius": 0,
+            "grid_gap": 10,
+            "text_alignment": "left",
+            "product_title_size": 15,
+            "product_title_color": "#000000",
+            "price_size": 14,
+            "price_color": "#000000",
+            "show_wishlist_icon": true,
+            "show_cart_icon": true,
+            "icon_bg_color": "#ffffff",
+            "icon_border_color": "#000000",
+            "icon_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d49de2d_Nzh9rV",
+        "ai_gen_block_d49de2d_URHHRd"
+      ],
+      "settings": {}
+    },
+    "featured_custom_section_XFJkTx": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_49QpiB": {
+          "type": "_column",
+          "settings": {
+            "width": 100,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "",
+            "margin": "",
+            "width_lap": 100,
+            "width_tab": 100,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "text_block_p7pLpE": {
+              "type": "text-block",
+              "name": "Text block",
+              "settings": {
+                "title": "Join our Ig community",
+                "font": "--font-family-pre",
+                "text_transform": "uppercase",
+                "font_style": "normal",
+                "color": "#000000",
+                "font_size": 42,
+                "line_height": 50,
+                "letter_spacing": 0,
+                "font_weight": "500",
+                "align": "center",
+                "padding": "20px",
+                "margin": "",
+                "color_mobi": "#000000",
+                "font_size_mobi": 20,
+                "line_height_mobi": 24,
+                "letter_spacing_mobi": 0,
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            },
+            "instafeed_app_block_BUWNQk": {
+              "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+              "settings": {
+                "title": "",
+                "title_color": "",
+                "title_size_v2": 0,
+                "alignment": "center",
+                "instafeed_margin_top": 0,
+                "instafeed_margin_bottom": 0,
+                "instafeed_margin_sides": 0,
+                "show_instagram_link": false,
+                "link_alignment": "center",
+                "link_color": "#000000",
+                "background_color": "",
+                "feed_id": "",
+                "html_area": ""
+              }
+            },
+            "ai_gen_block_f3a68f2_QQhTNf": {
+              "type": "ai_gen_block_f3a68f2",
+              "settings": {
+                "button_text": "Follow our journey!",
+                "button_link": "https://www.instagram.com/love___dk/",
+                "button_bg_color": "#4d3f38",
+                "button_hover_bg_color": "#333333",
+                "button_text_color": "#ffffff",
+                "button_hover_text_color": "#ffffff",
+                "font_size": 16,
+                "font_bold": false,
+                "font_underline": false,
+                "border_width": 0,
+                "border_color": "#000000",
+                "border_hover_color": "#333333",
+                "border_radius": 4,
+                "button_padding_top": 12,
+                "button_padding_right": 30,
+                "button_padding_bottom": 12,
+                "button_padding_left": 30,
+                "alignment": "center",
+                "desktop_width_percent": 100,
+                "container_padding_top": 20,
+                "container_padding_right": 0,
+                "container_padding_bottom": 20,
+                "container_padding_left": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_block_p7pLpE",
+            "instafeed_app_block_BUWNQk",
+            "ai_gen_block_f3a68f2_QQhTNf"
+          ]
+        }
+      },
+      "block_order": [
+        "column_49QpiB"
+      ],
+      "name": "instagram",
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "background_color": "",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "15px 0px 0px 0px",
+        "margin": "",
+        "vertical_align": "top",
+        "horizontal_align": "left",
+        "overflow": "hidden",
+        "id_section": ""
+      }
+    },
+    "featured_testimonials_FbhGiL": {
+      "type": "featured-testimonials",
+      "blocks": {
+        "testimonial_wXkAQx": {
+          "type": "testimonial",
+          "settings": {
+            "show_image": true,
+            "image": "shopify://shop_images/ChatGPT_Image_Feb_23_2026_07_22_42_PM.png",
+            "show_name": false,
+            "name": "Luca Moretti",
+            "show_title": false,
+            "title": "Designer",
+            "show_review": false,
+            "review": "“If you’re looking for luxury products and professional service, look no further. I had a great experience...",
+            "show_rating": true,
+            "rating": "5"
+          }
+        },
+        "testimonial_UerCn7": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "show_image": true,
+            "show_name": false,
+            "name": "Ann Smith",
+            "show_title": false,
+            "title": "CEO & Founder",
+            "show_review": false,
+            "review": "“I had an amazing experience shopping here! The store has a fantastic selection of trendy and…”",
+            "show_rating": true,
+            "rating": "5"
+          }
+        },
+        "testimonial_xqt7V4": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "show_image": true,
+            "show_name": false,
+            "name": "Anana",
+            "show_title": false,
+            "title": "Photographer",
+            "show_review": false,
+            "review": "“I had an amazing experience shopping here! The store has a fantastic selection of trendy…”",
+            "show_rating": true,
+            "rating": "5"
+          }
+        },
+        "testimonial_Gx97G7": {
+          "type": "testimonial",
+          "disabled": true,
+          "settings": {
+            "show_image": true,
+            "show_name": false,
+            "name": "Linda",
+            "show_title": false,
+            "title": "Designer",
+            "show_review": false,
+            "review": "“This fashion store is a gem! The variety of styles available is impressive, and I always find...",
+            "show_rating": true,
+            "rating": "5"
+          }
+        },
+        "css_JFFE3D": {
+          "type": "css",
+          "settings": {
+            "text_align": "center",
+            "color_heading": "#000000",
+            "font_size_heading": 25,
+            "letter_spacing_heading": 3,
+            "line_height_heading": 20,
+            "font_weight_heading": "600",
+            "margin_heading": "0px 0px 50px 0px",
+            "color_review": "#000000",
+            "font_size_review": 14,
+            "line_height_review": 22,
+            "font_weight_review": "500",
+            "margin_review": "0px 0px 8px 0px",
+            "color_title": "#000000",
+            "font_size_title": 12,
+            "line_height_title": 23,
+            "font_weight_title": "700",
+            "letter_spacing_title": 0,
+            "margin_title": "0px 0px 0px 0px",
+            "font_name": "",
+            "color_name": "#000000",
+            "font_size_name": 12,
+            "line_height_name": 23,
+            "font_weight_name": "500",
+            "letter_spacing_name": 0,
+            "width_avatar": 300,
+            "border_avatar": "0%",
+            "margin_avatar": "0px 0px 12px 0px",
+            "font_size_heading_mobi": 16,
+            "line_height_heading_mobi": 20,
+            "margin_heading_mobi": "0px 0px 40px 0px",
+            "font_size_review_mobi": 12,
+            "line_height_review_mobi": 18,
+            "font_size_title_mobi": 12,
+            "line_height_title_mobi": 23,
+            "font_size_name_mobi": 12,
+            "line_height_name_mobi": 23,
+            "width_avatar_mobi": 280,
+            "margin_avatar_mobi": "0px 0px 20px 0px"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_wXkAQx",
+        "testimonial_UerCn7",
+        "testimonial_xqt7V4",
+        "testimonial_Gx97G7",
+        "css_JFFE3D"
+      ],
+      "disabled": true,
+      "settings": {
+        "background": "#f7e8e8",
+        "bg_fixed": false,
+        "bg_position": "center",
+        "bg_size": "cover",
+        "bg_width": "full",
+        "max_width": "",
+        "fullwidth": false,
+        "padding": "30px",
+        "margin": "",
+        "heading": "-CUSTOMER REVIEWS-",
+        "centermode": true,
+        "navigation": true,
+        "pagination": true,
+        "infinite": true,
+        "autoplay": true,
+        "autoplay_speed": "2000"
+      }
+    },
+    "1777094564c7ba6ab9": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_14b210e_MMzjMp": {
+          "type": "ai_gen_block_14b210e",
+          "settings": {
+            "desktop_width_percent": 100,
+            "badge_width": 150,
+            "badge_height": 100,
+            "badge_spacing": 40,
+            "padding_vertical": 30,
+            "badge_background": "#ffffff",
+            "badge_padding": 10,
+            "badge_border_radius": 8,
+            "animation_speed": 20,
+            "pause_on_hover": true,
+            "background_color": "#f8f8f2"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_14b210e_MMzjMp"
+      ],
+      "disabled": true,
+      "name": "trust badges",
+      "settings": {}
+    },
+    "1777097885ff13bb64": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_bbd3302_Hc3X6z": {
+          "type": "ai_gen_block_bbd3302",
+          "settings": {
+            "heading": "AS SPOTTED ON",
+            "heading_size": 24,
+            "heading_weight": "600",
+            "heading_alignment": "center",
+            "heading_bottom_spacing": 30,
+            "card_width_mobile": 260,
+            "card_width_desktop": 280,
+            "card_spacing": 16,
+            "image_border_radius": 8,
+            "padding_top": 50,
+            "padding_bottom": 50,
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "card_name_1": "Worn by our community",
+            "card_caption_1": "Styled with DK jewellery",
+            "card_name_2": "Worn by our community",
+            "card_caption_2": "Styled with DK jewellery",
+            "card_name_3": "Worn by our community",
+            "card_caption_3": "Styled with DK jewellery",
+            "card_name_4": "Worn by our community",
+            "card_caption_4": "Styled with DK jewellery",
+            "card_name_5": "Worn by our community",
+            "card_caption_5": "Styled with DK jewellery",
+            "card_name_6": "Worn by our community",
+            "card_caption_6": "Styled with DK jewellery",
+            "card_name_7": "Worn by our community",
+            "card_caption_7": "Styled with DK jewellery",
+            "card_name_8": "Worn by our community",
+            "card_caption_8": "Styled with DK jewellery",
+            "card_name_9": "Worn by our community",
+            "card_caption_9": "Styled with DK jewellery",
+            "card_name_10": "Worn by our community",
+            "card_caption_10": "Styled with DK jewellery",
+            "card_name_11": "Worn by our community",
+            "card_caption_11": "Styled with DK jewellery",
+            "card_name_12": "Worn by our community",
+            "card_caption_12": "Styled with DK jewellery"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_bbd3302_Hc3X6z"
+      ],
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "1774455799cabe0ae9",
+    "slidershow_wFjjfz",
+    "1774271206b35fc895",
+    "17744563983e0fc3de",
+    "featured_custom_section_afdVpG",
+    "177426871581c31afa",
+    "blocks_EyUtbQ",
+    "1774188331605dc7bc",
+    "featured_custom_section_zWBFPg",
+    "featured_product_tabs_iXUdVh",
+    "1774186572cb878b18",
+    "featured_custom_section_Kzj9mY",
+    "featured_custom_section_ehmhB7",
+    "177445805177326f2d",
+    "featured_custom_section_XFJkTx",
+    "featured_testimonials_FbhGiL",
+    "1777094564c7ba6ab9",
+    "1777097885ff13bb64"
+  ]
+}

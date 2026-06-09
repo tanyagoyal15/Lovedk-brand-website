@@ -1,0 +1,738 @@
+
+{%- if section.settings.fullwidth -%}
+	{%- assign container = 'container-full' -%}
+{%- elsif section.settings.max_width != blank -%}
+	{%- assign container = 'bwp-container' -%}
+{%- else -%}
+	{%- assign container = 'container' -%}
+{%- endif -%}
+
+{%- assign max_width = '' -%}
+{%- if section.settings.fullwidth == blank and section.settings.max_width != blank -%}
+	{%- assign width_container = section.settings.max_width | plus: 0 -%}
+	{%- capture max_width -%}style="max-width: {{ section.settings.max_width }};"{%- endcapture -%}
+{%- endif -%}
+
+{% assign margin 	= section.settings.margin | split: "|" %}
+{% assign padding 	= section.settings.padding | split: "|" %}
+{%- style -%}
+	{%- if section.settings.fullwidth == blank and section.settings.max_width != blank and width_container > 1200 -%}
+		@media (max-width: {{ section.settings.max_width }}) and (min-width: 1200px){
+			#shopify-section-{{ section.id }} .bwp-container{
+				padding-left:30px;
+				padding-right:30px;
+			}
+		}
+	{%- endif -%}
+	{%- if margin[0] != blank or padding[0] != blank -%}
+		#shopify-section-{{ section.id }} .wpbingo-section--product-tabs{
+			{%- if margin[0] != blank -%}margin: {{ margin[0] }};{%- endif -%}
+			{%- if padding[0] != blank -%}padding:{{ padding[0] }};{%- endif -%}
+		}
+	{%- endif -%}
+	{%- if margin[1] != blank or padding[1] != blank -%}
+		@media (max-width:1200px){
+			#shopify-section-{{ section.id }} .wpbingo-section--product-tabs{
+				{%- if margin[1] != blank -%}margin: {{ margin[1] }};{%- endif -%}
+				{%- if padding[1] != blank -%}padding:{{ padding[1] }};{%- endif -%}
+			}
+		}
+	{%- endif -%}
+	{%- if margin[2] != blank or padding[2] != blank -%}
+		@media (max-width:991px){
+			#shopify-section-{{ section.id }} .wpbingo-section--product-tabs{
+				{%- if margin[2] != blank -%}margin: {{ margin[2] }};{%- endif -%}
+				{%- if padding[2] != blank -%}padding:{{ padding[2] }};{%- endif -%}
+			}
+		}
+	{%- endif -%}
+	{%- if margin[3] != blank or padding[3] != blank -%}
+		@media (max-width:767px){
+			#shopify-section-{{ section.id }} .wpbingo-section--product-tabs{
+				{%- if margin[3] != blank -%}margin: {{ margin[3] }};{%- endif -%}
+				{%- if padding[3] != blank -%}padding:{{ padding[3] }};{%- endif -%}
+			}
+		}
+	{%- endif -%}
+	{%- if section.blocks.size > 0 -%}
+		{%- for block in section.blocks -%}
+			{%- if block.type == 'css' -%}
+				#shopify-section-{{ section.id }} .wpbingo-section--product-tabs .product-tabs__nav-link{
+					display: inline-flex;
+					font-size: {{ block.settings.font_size_title }}px;
+					line-height: {{ block.settings.line_height_title }}px;
+					font-weight: {{ block.settings.font_weight_title }};
+					letter-spacing:{{ block.settings.letter_spacing_title }}px;
+					color:{{ block.settings.color_title }};
+					margin:{{ block.settings.margin_title }};
+					text-transform: {{ block.settings.text_transform }};
+					background:{{ block.settings.bg_title }};
+					padding:{{ block.settings.padding_title }};
+					border-radius:{{ block.settings.border_radius_title }};
+					{%- if block.settings.border_title -%}
+						border:{{ block.settings.border_width_title }}px dashed {{ block.settings.border_color_title }};
+					{%- endif -%}
+					font-family:var({{ block.settings.font }});
+					transition: all .5s ease;
+				}
+				#shopify-section-{{ section.id }} .wpbingo-section--product-tabs .product-tabs__nav-item .active{
+					color:{{ block.settings.color_title_active }};
+					font-weight: {{ block.settings.font_weight_title_active }};
+					background:{{ block.settings.bg_title_hover }};
+					border-color:{{ block.settings.border_color_hover_title }};
+					padding:{{ block.settings.padding_title }};
+				}
+				#shopify-section-{{ section.id }} .wpbingo-section--product-tabs .product-tabs__nav-link:hover{
+					color:{{ block.settings.color_title_active }};
+					background:{{ block.settings.bg_title_hover }};
+					{%- if block.settings.border_title -%}
+						border-color:{{ block.settings.border_color_hover_title }};
+					{%- endif -%}
+				}
+				#shopify-section-{{ section.id }} .wpbingo-section--product-tabs .button-content{
+					text-align:{{ block.settings.align }};
+				}
+				@media(max-width:767px){
+					#shopify-section-{{ section.id }} .wpbingo-section--product-tabs .product-tabs__nav-link{
+						font-size: {{ block.settings.font_size_title_mobi }}px;
+						line-height: {{ block.settings.line_height_title_mobi }}px;
+						margin:{{ block.settings.margin_title_mobi }};
+						padding:{{ block.settings.padding_title_mobi }};
+					}
+				}
+			{%- endif -%}
+		{%- endfor -%}
+	{%- endif -%}
+{%- endstyle -%}
+
+{%- assign collection_handle = section.settings.featured_products -%}
+{%- assign nav = section.settings.navigation -%}
+{%- assign infinite = section.settings.infinite -%}
+{%- assign autoplay = section.settings.autoplay -%}
+{%- assign autoplay_speed = section.settings.autoplay_speed | escape -%}
+{%- assign rows 			        = section.settings.rows -%}
+{%- assign columns 			        = section.settings.columns -%}
+{%- assign space_columns 			= section.settings.space_columns -%}
+{%- assign pergroup_columns 		= section.settings.pergroup_columns -%}
+{%- assign column1440 		        = section.settings.column1440 -%}
+{%- assign space_column1440 		= section.settings.space_column1440 -%}
+{%- assign pergroup_column1440 		= section.settings.pergroup_column1440 -%}
+{%- assign column1 			        = section.settings.column1 -%}
+{%- assign space_column1 			= section.settings.space_column1 -%}
+{%- assign pergroup_column1 		= section.settings.pergroup_column1 -%}
+{%- assign column2 			        = section.settings.column2 -%}
+{%- assign space_column2 			= section.settings.space_column2 -%}
+{%- assign pergroup_column2 		= section.settings.pergroup_column2 -%}
+{%- assign column3 			        = section.settings.column3 -%}
+{%- assign space_column3 			= section.settings.space_column3 -%}
+{%- assign pergroup_column3 		= section.settings.pergroup_column3 -%}
+{%- assign column4 			        = section.settings.column4 -%}
+{%- assign space_column4 			= section.settings.space_column4 -%}
+{%- assign pergroup_column4 		= section.settings.pergroup_column4 -%}
+
+<section class="wpbingo-section--{{ section.id }} wpbingo-section--product-tabs product-tabs overflow-hidden {{section.settings.layout}}"{% if section.settings.color != blank %} style="background-color:{{ section.settings.color }}"{% endif %}>
+  <div class="{{ container }}" {{ max_width }}>
+    <div class="wpbingo-section__inner">
+      <div class="wpbingo-section__content">
+        {%- if section.blocks.size > 0 -%}
+			<div class="product-tabs__nav">
+				<ul class="nav">
+					{%- for block in section.blocks -%}
+						{%- if block.type == 'tab' -%}
+							{%- assign tab_heading =  block.settings.title | escape -%}
+							<li class="nav-item product-tabs__nav-item">
+								<a class="product-tabs__nav-link{% if forloop.first %} active{% endif %}" data-toggle="tab" href="#product-tabs-{{ section.id }}{{ forloop.index }}">
+									{{ tab_heading }}
+								</a>
+							</li>
+						{%- endif -%}
+					{%- endfor -%}
+				</ul>
+			</div>
+			<div class="tab-content product-tabs__content bwp_slider-carousel bwp_slick-margin-mobile">
+				{%- for block in section.blocks -%}
+					{%- assign collection_handle = block.settings.collection -%}
+					{%- assign limit = block.settings.limit | plus: 0 -%}
+					<div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="product-tabs-{{ section.id }}{{ forloop.index }}">
+						{%- if collection_handle == blank or collections[collection_handle] == empty or collections[collection_handle].products_count == 0 -%}
+							<div class="row">
+								{% render 'onboarding-featured-products' %}
+							</div>
+						{%- else -%}
+                          <div class="content-swiper-nav">
+							<div class="bwp-swiper-slider" data-infinite="{{ infinite }}" data-rows="{{ rows }}"
+                                data-autoplay="{{ autoplay }}"
+            					data-autoplayspeed="{{ autoplay_speed }}"
+            					data-columns="{{ columns }}"
+                              data-space-columns="{{ space_columns }}"
+                              data-pergroup-columns="{{ pergroup_columns }}"
+            					data-column1440="{{ column1440 }}"
+                              data-space-column1440="{{ space_column1440 }}"
+                              data-pergroup-column1440="{{ pergroup_column1440 }}"
+            					data-column1="{{ column1 }}"
+                              data-space-column1="{{ space_column1 }}"
+                              data-pergroup-column1="{{ pergroup_column1 }}"
+            					data-column2="{{ column2 }}"
+                              data-space-column2="{{ space_column2 }}"
+                              data-pergroup-column2="{{ pergroup_column2 }}"
+            					data-column3="{{ column3 }}"
+                              data-space-column3="{{ space_column3 }}"
+                              data-pergroup-column3="{{ pergroup_column3 }}"
+            					data-column4="{{ column4 }}"
+                              data-space-column4="{{ space_column4 }}"
+                              data-pergroup-column4="{{ pergroup_column4 }}">
+                              <div class="swiper-wrapper">
+									{%- for product in collections[collection_handle].products limit: limit -%}
+										<div class="swiper-slide">
+											{% render 'product-grid-item', product:product %}
+										</div>
+									{%- endfor -%}
+                              </div>
+                               {%- if nav -%}
+                                <button class="slick-prev slick-arrow" aria-label="Previous" type="button" style=""></button>
+                                <button class="slick-next slick-arrow" aria-label="Next" type="button" style=""></button>
+                                {%- endif -%}
+							</div>
+                          </div>
+						{%- endif -%}
+					</div>
+				{%- endfor -%}
+			</div>
+        {%- else -%}
+			<div class="wpbingo-section__empty">
+				<div class="rte text-center">
+					{{ 'home_page.onboarding.no_content' | t }}
+				</div>
+			</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product tabs",
+  "class": "wpbingo-framework",
+  "disabled_on": {
+		"groups": ["header"]
+	},
+  "settings": [
+    {
+		"type": "header",
+		"content": "Layout settings"
+	},
+	{
+		"type": "color",
+		"id": "color",
+		"label": "Background"
+	},
+	{
+		"type": "text",
+		"id": "max_width",
+		"label": "Width container",
+		"info": "Default: 1440px"
+	},
+	{
+		"type": "checkbox",
+		"id": "fullwidth",
+		"label": "Fullwidth"
+	},
+	{
+		"type": "text",
+		"id": "padding",
+		"label": "Padding",
+		"placeholder": "0px 0px 0px 0px",
+		"info":"Screen: desktop | 1200px | 991px | 767px"
+	},
+	{
+		"type": "text",
+		"id": "margin",
+		"label": "Margin",
+		"placeholder": "0px 0px 0px 0px",
+		"info":"Screen: desktop | 1200px | 991px | 767px"
+	},
+    {
+      "type": "header",
+      "content": "Carousel Settings"
+    },
+    {
+		"type": "checkbox",
+		"id": "navigation",
+		"label": "Show navigation",
+		"default": true
+	},
+	{
+		"type": "checkbox",
+		"id": "infinite",
+		"label": "Infinite loop sliding",
+		"default": true
+	},
+	{
+		"type": "checkbox",
+		"id": "autoplay",
+		"label": "Enable autoplay",
+		"default": false
+	},
+	{
+		"type": "text",
+		"id": "autoplay_speed",
+		"label": "Autoplay speed",
+		"info": "Autoplay speed in milliseconds. Type: int(ms)",
+		"default": "10000"
+	},
+    {
+        "type": "range",
+        "id": "rows",
+        "min": 1,
+        "max": 7,
+        "step": 1,
+        "label": "Rows",
+        "default": 1
+    },
+	{
+		"type": "header",
+		"content": "-----Screen >1440px"
+	},
+	{
+		"type": "range",
+		"id": "columns",
+		"min": 1,
+		"max": 7,
+		"step": 0.5,
+		"label": "Columns",
+		"default": 4
+	},
+	{
+		"type": "range",
+		"id": "pergroup_columns",
+		"min": 1,
+		"max": 7,
+		"step": 1,
+		"label": "Group",
+		"default": 4
+	},
+	{
+		"type": "range",
+		"id": "space_columns",
+		"min": 1,
+		"max": 100,
+		"step": 1,
+		"label": "Space",
+		"default": 30,
+		"info": "px"
+	},
+	{
+		"type": "header",
+		"content": "-----Screen 1200px to 1440px"
+	},
+	{
+		"type": "range",
+		"id": "column1440",
+		"min": 1,
+		"max": 7,
+		"step": 0.5,
+		"label": "Columns",
+		"default": 4
+	},
+	{
+		"type": "range",
+		"id": "pergroup_column1440",
+		"min": 1,
+		"max": 7,
+		"step": 1,
+		"label": "Group",
+		"default": 4
+	},
+	{
+		"type": "range",
+		"id": "space_column1440",
+		"min": 1,
+		"max": 100,
+		"step": 1,
+		"label": "Space",
+		"default": 30,
+		"info": "px"
+	},
+	{
+		"type": "header",
+		"content": "-----Screen 992px to 1199px"
+	},
+	{
+		"type": "range",
+		"id": "column1",
+		"min": 1,
+		"max": 7,
+		"step": 0.5,
+		"label": "Columns",
+		"default": 4
+	},
+	{
+		"type": "range",
+		"id": "pergroup_column1",
+		"min": 1,
+		"max": 7,
+		"step": 1,
+		"label": "Group",
+		"default": 4
+	},
+	{
+		"type": "range",
+		"id": "space_column1",
+		"min": 1,
+		"max": 100,
+		"step": 1,
+		"label": "Space",
+		"default": 15,
+		"info": "px"
+	},
+	{
+		"type": "header",
+		"content": "-----Screen 768px to 991px"
+	},
+	{
+		"type": "range",
+		"id": "column2",
+		"min": 1,
+		"max": 7,
+		"step": 0.5,
+		"label": "Columns",
+		"default": 3
+	},
+	{
+		"type": "range",
+		"id": "pergroup_column2",
+		"min": 1,
+		"max": 7,
+		"step": 1,
+		"label": "Group",
+		"default": 3
+	},
+	{
+		"type": "range",
+		"id": "space_column2",
+		"min": 1,
+		"max": 100,
+		"step": 1,
+		"label": "Space",
+		"default": 15,
+		"info": "px"
+	},
+	{
+		"type": "header",
+		"content": "-----Screen 480px to 767px"
+	},
+	{
+		"type": "range",
+		"id": "column3",
+		"min": 1,
+		"max": 7,
+		"step": 0.5,
+		"label": "Columns",
+		"default": 1
+	},
+	{
+		"type": "range",
+		"id": "pergroup_column3",
+		"min": 1,
+		"max": 7,
+		"step": 1,
+		"label": "Group",
+		"default": 1
+	},
+	{
+		"type": "range",
+		"id": "space_column3",
+		"min": 1,
+		"max": 100,
+		"step": 1,
+		"label": "Space",
+		"default": 15,
+		"info": "px"
+	},
+	{
+		"type": "header",
+		"content": "-----Screen < 480px"
+	},
+	{
+		"type": "range",
+		"id": "column4",
+		"min": 1,
+		"max": 7,
+		"step": 0.5,
+		"label": "Columns",
+		"default": 1
+	},
+	{
+		"type": "range",
+		"id": "pergroup_column4",
+		"min": 1,
+		"max": 7,
+		"step": 1,
+		"label": "Group",
+		"default": 1
+	},
+	{
+		"type": "range",
+		"id": "space_column4",
+		"min": 1,
+		"max": 100,
+		"step": 1,
+		"label": "Space",
+		"default": 15,
+		"info": "px"
+	},
+	{
+		"type": "select",
+		"id": "layout",
+		"label": "List style",
+		"options": [
+			{
+				"value": "layout-1",
+				"label": "Layout 1"
+			},
+			{
+				"value": "layout-2",
+				"label": "Layout 2"
+			}
+		]
+	}
+  ],
+	"blocks": [
+		{
+			"type": "tab",
+			"name": "Tab item",
+			"settings": [
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Heading",
+					"default": "Tab heading"
+				},
+				{
+					"type": "collection",
+					"id": "collection",
+					"label": "Collection"
+				},
+				{
+					"type": "range",
+					"id": "limit",
+					"min": 1,
+					"max": 20,
+					"step": 1,
+					"label": "Number of products",
+					"default": 8
+				}
+			]
+		},
+		{
+			"type": "css",
+			"name": "Custom css",
+			"limit": 1,
+			"settings": [
+				{
+					"type": "header",
+					"content": "====== Title ======"
+				},
+				{
+                    "type": "select",
+                    "id": "font",
+                    "label": "Font family",
+                    "options": [
+                        {
+                            "value": "--font-family-second",
+                            "label": "Font Heading"
+                        },
+                        {
+                            "value": "--font-family-base",
+                            "label": "Font Body"
+                        }
+                    ],
+                    "default": "--font-family-second"
+                },
+				{
+					"type": "select",
+					"id": "text_transform",
+					"label": "Text Transform",
+					"options": [
+						{
+							"value": "none",
+							"label": "Default"
+						},
+						{
+							"value": "capitalize",
+							"label": "Capitalize"
+						},
+						{
+							"value": "uppercase",
+							"label": "Uppercase"
+						},
+						{
+							"value": "lowercase",
+							"label": "Lowercase"
+						}
+					],
+					"default": "none"
+				},
+				{
+					"type": "color",
+					"id": "color_title",
+					"label": "color",
+					"default": "#666666"
+				},
+				{
+					"type": "color",
+					"id": "color_title_active",
+					"label": "color active",
+					"default": "#000"
+				},
+				{
+					"type": "text",
+					"id": "font_weight_title_active",
+					"label": "Font Weight Active",
+					"default": "500"
+				},
+				{
+					"type": "number",
+					"id": "font_size_title",
+					"label": "Font size",
+					"default": 16,
+					"info": "px"
+				},
+				{
+					"type": "number",
+					"id": "line_height_title",
+					"label": "Line height",
+					"default": 22,
+					"info": "px"
+				},
+				{
+					"type": "number",
+					"id": "letter_spacing_title",
+					"label": "Letter spacing",
+					"default": 0,
+					"info": "px"
+				},
+				{
+					"type": "text",
+					"id": "font_weight_title",
+					"label": "Font Weight",
+					"default": "400"
+				},
+				{
+					"type": "checkbox",
+					"id": "border_title",
+					"label": "Turn on border",
+					"default": false
+				},
+				{
+					"type": "number",
+					"id": "border_width_title",
+					"label": "Border width",
+					"default": 0
+				},
+				{
+					"type": "color",
+					"id": "bg_title",
+					"label": "Background "
+				},
+				{
+					"type": "color",
+					"id": "border_color_title",
+					"label": "Border color",
+					"default": "#dddddd"
+				},
+				{
+					"type": "header",
+					"content": "hover active"
+				},
+				{
+					"type": "color",
+					"id": "bg_title_hover",
+					"label": "Background"
+				},
+				{
+					"type": "color",
+					"id": "border_color_hover_title",
+					"label": "Border color title",
+					"default": "#dddddd"
+				},
+				{
+					"type": "text",
+					"id": "border_radius_title",
+					"label": "Border radius title",
+					"default": "0px 0px 0px 0px",
+					"info": "top right bottom left"
+				},
+				{
+					"type": "text",
+					"id": "padding_title",
+					"label": "Padding",
+					"default": "0px 0px 0px 0px",
+					"placeholder":"0px 0px 0px 0px"
+				},
+				{
+					"type": "text",
+					"id": "margin_title",
+					"label": "margin",
+					"default": "0px 0px 0px 0px",
+					"placeholder":"0px 0px 0px 0px"
+				},
+				{
+					"type": "header",
+					"content": "====== Mobile ======",
+					"info": "screen < 767px"
+				},
+				{
+					"type": "header",
+					"content": "---------- Title"
+				},
+				{
+					"type": "number",
+					"id": "font_size_title_mobi",
+					"label": "Font size",
+					"default": 16,
+					"info": "px"
+				},
+				{
+					"type": "number",
+					"id": "line_height_title_mobi",
+					"label": "Line height",
+					"default": 22,
+					"info": "px"
+				},
+				{
+					"type": "text",
+					"id": "padding_title_mobi",
+					"label": "Padding",
+					"default": "0px 0px 0px 0px",
+					"placeholder":"0px 0px 0px 0px"
+				},
+				{
+					"type": "text",
+					"id": "margin_title_mobi",
+					"label": "margin",
+					"default": "0px 0px 0px 0px",
+					"placeholder":"0px 0px 0px 0px"
+				}
+			]
+		}
+	],
+  "presets": [
+    {
+      "name": "Product tabs",
+      "blocks": [
+        {
+          "type": "tab"
+        },
+        {
+          "type": "tab"
+        },
+        {
+          "type": "tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

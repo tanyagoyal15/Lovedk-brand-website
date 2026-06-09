@@ -1,0 +1,78 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "search-breadcrumb",
+      "disabled": true,
+      "settings": {
+        "enable": true,
+        "bgimage": false
+      }
+    },
+    "main": {
+      "type": "main-search",
+      "blocks": {
+        "blog-sidebar-search": {
+          "type": "blog-sidebar-search",
+          "static": true,
+          "settings": {
+            "search_enable": true,
+            "categories_enable": true,
+            "categories_title": "Categories",
+            "menu_categories": "",
+            "relatedarticles_enable": true,
+            "relatedarticles_title": "Related Articles",
+            "relatedarticles_limit": 6
+          },
+          "blocks": {}
+        },
+        "blog-template-search": {
+          "type": "blog-template-search",
+          "static": true,
+          "settings": {
+            "limit": 5
+          },
+          "blocks": {}
+        },
+        "search-product": {
+          "type": "search-product",
+          "static": true,
+          "settings": {
+            "desktop_columns": 4,
+            "mobile_columns": 2,
+            "grid_gap": 10,
+            "horizontal_padding": 40,
+            "mobile_horizontal_padding": 10,
+            "image_aspect_ratio": 140,
+            "text_alignment": "left",
+            "product_name_size": 14,
+            "price_size": 16,
+            "button_bg_color": "#ffffff",
+            "button_text_color": "#000000",
+            "sidebar_bg_color": "#ffffff",
+            "action_btn_bg": "#ffffff",
+            "action_btn_border_color": "#000000",
+            "action_btn_icon_color": "#000000",
+            "product_name_color": "#000000",
+            "original_price_color": "#999999",
+            "sale_price_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {}
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main"
+  ]
+}

@@ -1,0 +1,488 @@
+{% doc %}
+  @prompt
+    make a single product image thing. so what you nee to do is show one main image in the left hand side of the lappet screen and teh rest of the images available of the product towards the right side of the screen in smaller photos. I can click one of them adn that comes on the big left hand side. , 2 things. the video are not shown. as in its only calling the images. if a product has a singular video, then the video is not shown. it just says add product images, okay the video is not playing. just a singular image of the video is shown adn then the erro ri also shown : Liquid error (temp/ai_gen_block_bb4369c line 179): wrong number of arguments (given 3, expected 2)
+    
+    and the video is not playing. just a photo , always mute the video. everything else is fine
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-product-gallery-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-product-gallery-container-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.gap }}px;
+    flex-direction: row-reverse;
+  }
+
+  .ai-product-gallery-main-{{ ai_gen_id }} {
+    flex: 1;
+    position: relative;
+  }
+
+  .ai-product-gallery-main-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: {{ block.settings.border_radius }}px;
+    object-fit: cover;
+  }
+
+  .ai-product-gallery-main-image-{{ ai_gen_id }}.hidden {
+    display: none;
+  }
+
+  .ai-product-gallery-main-video-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: none;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-product-gallery-main-video-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  .ai-product-gallery-main-video-{{ ai_gen_id }} video,
+  .ai-product-gallery-main-video-{{ ai_gen_id }} iframe {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-product-gallery-main-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: {{ block.settings.placeholder_bg }};
+    border-radius: {{ block.settings.border_radius }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-product-gallery-main-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .ai-product-gallery-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-product-gallery-thumbnails-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.thumbnail_gap }}px;
+    width: {{ block.settings.thumbnail_width }}px;
+    overflow-y: auto;
+    max-height: 600px;
+  }
+
+  .ai-product-gallery-thumbnail-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: {{ block.settings.thumbnail_border_radius }}px;
+    transition: border-color 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .ai-product-gallery-thumbnail-{{ ai_gen_id }}:hover {
+    opacity: 0.8;
+  }
+
+  .ai-product-gallery-thumbnail-{{ ai_gen_id }}.active {
+    border-color: {{ block.settings.active_border_color }};
+  }
+
+  .ai-product-gallery-thumbnail-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-product-gallery-thumbnail-video-icon-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .ai-product-gallery-thumbnail-video-icon-{{ ai_gen_id }} svg {
+    width: 14px;
+    height: 14px;
+    fill: white;
+    margin-left: 2px;
+  }
+
+  @media screen and (max-width: 749px) {
+
+    .ai-product-gallery-{{ ai_gen_id }} {
+      width: 100% !important;   /* ← ADD THIS */
+    }
+    
+    .ai-product-gallery-container-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-product-gallery-thumbnails-{{ ai_gen_id }} {
+      flex-direction: row;
+      width: 100%;
+      max-height: none;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .ai-product-gallery-thumbnail-{{ ai_gen_id }} {
+      width: {{ block.settings.thumbnail_width_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<product-gallery-{{ ai_gen_id }} class="ai-product-gallery-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-product-gallery-container-{{ ai_gen_id }}">
+    <div class="ai-product-gallery-main-{{ ai_gen_id }}">
+      {% if product.featured_media %}
+        {% if product.featured_media.media_type == 'image' %}
+          <img
+            src="{{ product.featured_media | image_url: width: 1000 }}"
+            alt="{{ product.featured_media.alt | escape }}"
+            class="ai-product-gallery-main-image-{{ ai_gen_id }}"
+            data-main-image
+            width="{{ product.featured_media.width }}"
+            height="{{ product.featured_media.height }}"
+            loading="lazy"
+          >
+        {% elsif product.featured_media.media_type == 'video' or product.featured_media.media_type == 'external_video' %}
+          <div class="ai-product-gallery-main-video-{{ ai_gen_id }} active" data-main-video-active>
+            {% if block.settings.loop_videos %}
+              {{ product.featured_media | video_tag: image_size: '1000x', autoplay: true, loop: true, muted: true, controls: true }}
+            {% else %}
+              {{ product.featured_media | video_tag: image_size: '1000x', autoplay: true, muted: true, controls: true }}
+            {% endif %}
+          </div>
+          <img
+            src="{{ product.featured_media.preview_image | image_url: width: 1000 }}"
+            alt="{{ product.featured_media.alt | escape }}"
+            class="ai-product-gallery-main-image-{{ ai_gen_id }} hidden"
+            data-main-image
+            width="{{ product.featured_media.preview_image.width }}"
+            height="{{ product.featured_media.preview_image.height }}"
+            loading="lazy"
+          >
+        {% endif %}
+      {% else %}
+        <div class="ai-product-gallery-main-placeholder-{{ ai_gen_id }}">
+          {{ 'product-1' | placeholder_svg_tag }}
+          <div class="ai-product-gallery-empty-state-{{ ai_gen_id }}">
+            Add product images or videos
+          </div>
+        </div>
+      {% endif %}
+
+      <div data-main-video-container></div>
+    </div>
+
+    {% assign media_count = product.media.size %}
+    {% if media_count > 1 %}
+      <div class="ai-product-gallery-thumbnails-{{ ai_gen_id }}">
+        {% for media in product.media %}
+          {% if media.media_type == 'image' %}
+            <div
+              class="ai-product-gallery-thumbnail-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}"
+              data-thumbnail
+              data-media-type="image"
+              data-image-url="{{ media | image_url: width: 1000 }}"
+              data-image-alt="{{ media.alt | escape }}"
+              data-image-width="{{ media.width }}"
+              data-image-height="{{ media.height }}"
+            >
+              <img
+                src="{{ media | image_url: width: 200 }}"
+                alt="{{ media.alt | escape }}"
+                class="ai-product-gallery-thumbnail-image-{{ ai_gen_id }}"
+                width="{{ media.width }}"
+                height="{{ media.height }}"
+                loading="lazy"
+              >
+            </div>
+          {% elsif media.media_type == 'video' or media.media_type == 'external_video' %}
+            <div
+              class="ai-product-gallery-thumbnail-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}"
+              data-thumbnail
+              data-media-type="video"
+              data-media-id="{{ media.id }}"
+            >
+              <img
+                src="{{ media.preview_image | image_url: width: 200 }}"
+                alt="{{ media.alt | escape }}"
+                class="ai-product-gallery-thumbnail-image-{{ ai_gen_id }}"
+                width="{{ media.preview_image.width }}"
+                height="{{ media.preview_image.height }}"
+                loading="lazy"
+              >
+              <div class="ai-product-gallery-thumbnail-video-icon-{{ ai_gen_id }}">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+              <template data-video-template>
+                {% if block.settings.loop_videos %}
+                  {{ media | video_tag: image_size: '1000x', autoplay: true, loop: true, muted: true, controls: true }}
+                {% else %}
+                  {{ media | video_tag: image_size: '1000x', autoplay: true, muted: true, controls: true }}
+                {% endif %}
+              </template>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</product-gallery-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ProductGallery{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.mainImage = this.querySelector('[data-main-image]');
+        this.mainVideoContainer = this.querySelector('[data-main-video-container]');
+        this.mainVideoActive = this.querySelector('[data-main-video-active]');
+        this.thumbnails = this.querySelectorAll('[data-thumbnail]');
+        this.currentVideo = null;
+        
+        if (this.thumbnails.length > 0) {
+          this.setupEventListeners();
+        }
+      }
+
+      setupEventListeners() {
+        this.thumbnails.forEach((thumbnail) => {
+          thumbnail.addEventListener('click', () => {
+            this.handleThumbnailClick(thumbnail);
+          });
+        });
+      }
+
+      handleThumbnailClick(clickedThumbnail) {
+        this.thumbnails.forEach((thumb) => {
+          thumb.classList.remove('active');
+        });
+        
+        clickedThumbnail.classList.add('active');
+        
+        const mediaType = clickedThumbnail.dataset.mediaType;
+        
+        if (mediaType === 'image') {
+          this.showImage(clickedThumbnail);
+        } else if (mediaType === 'video') {
+          this.showVideo(clickedThumbnail);
+        }
+      }
+
+      showImage(thumbnail) {
+        if (this.currentVideo) {
+          this.currentVideo.remove();
+          this.currentVideo = null;
+        }
+
+        if (this.mainVideoActive) {
+          this.mainVideoActive.classList.remove('active');
+        }
+
+        if (this.mainImage) {
+          const imageUrl = thumbnail.dataset.imageUrl;
+          const imageAlt = thumbnail.dataset.imageAlt;
+          const imageWidth = thumbnail.dataset.imageWidth;
+          const imageHeight = thumbnail.dataset.imageHeight;
+          
+          this.mainImage.src = imageUrl;
+          this.mainImage.alt = imageAlt;
+          this.mainImage.width = imageWidth;
+          this.mainImage.height = imageHeight;
+          this.mainImage.classList.remove('hidden');
+        }
+      }
+
+      showVideo(thumbnail) {
+        const videoTemplate = thumbnail.querySelector('[data-video-template]');
+        
+        if (videoTemplate) {
+          if (this.currentVideo) {
+            this.currentVideo.remove();
+          }
+
+          if (this.mainVideoActive) {
+            this.mainVideoActive.classList.remove('active');
+          }
+
+          if (this.mainImage) {
+            this.mainImage.classList.add('hidden');
+          }
+
+          const videoContent = videoTemplate.content.cloneNode(true);
+          const videoElement = videoContent.querySelector('video, iframe');
+          
+          if (videoElement) {
+            const videoWrapper = document.createElement('div');
+            videoWrapper.classList.add('ai-product-gallery-main-video-{{ ai_gen_id }}', 'active');
+            videoWrapper.appendChild(videoElement);
+            this.currentVideo = videoWrapper;
+            this.mainVideoContainer.appendChild(this.currentVideo);
+          }
+        }
+      }
+    }
+
+    customElements.define('product-gallery-{{ ai_gen_id }}', ProductGallery{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product image gallery",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between main and thumbnails",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Main image"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Video settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "loop_videos",
+      "label": "Loop videos",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Thumbnails"
+    },
+    {
+      "type": "range",
+      "id": "thumbnail_width",
+      "label": "Thumbnail width (desktop)",
+      "min": 60,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "thumbnail_width_mobile",
+      "label": "Thumbnail width (mobile)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "thumbnail_gap",
+      "label": "Gap between thumbnails",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "thumbnail_border_radius",
+      "label": "Thumbnail border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "active_border_color",
+      "label": "Active thumbnail border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_bg",
+      "label": "Placeholder background",
+      "default": "#f5f5f5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product image gallery"
+    }
+  ]
+}
+{% endschema %}

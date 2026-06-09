@@ -1,0 +1,66 @@
+/*============== SECTION NEWSLETTER =============*/
+.wpbingo-widget--newsletter .newsletter__content.layout-1 .newsletter-form__wrap {
+  display: flex;
+}
+.wpbingo-widget--newsletter .newsletter__content.layout-1 .newsletter-form__wrap input {
+  width: 100%;
+  border: 0;
+  padding: 0 0 5px;
+  font-size: var(--font-size-base);
+  background: transparent;
+  border-bottom: 2px solid var(--gray-dark);
+  height: auto;
+}
+.wpbingo-widget--newsletter .newsletter__content.layout-1 .newsletter-form__wrap input::placeholder {
+  color: var(--text-color-50);
+}
+.wpbingo-widget--newsletter .newsletter__content.layout-1 .newsletter-form__wrap .newsletter-form__submit {
+	border: 0;
+    border-bottom: 2px solid var(--gray-dark);
+    background: transparent;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+    padding: 0 15px 5px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    position: relative;
+    top: 1px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.wpbingo-widget--newsletter .newsletter__content.layout-1 .newsletter-form__wrap .newsletter-form__submit:hover {
+  color: var(--theme-color);
+  border-color:var(--theme-color);
+}
+.wpbingo-widget--newsletter .newsletter__content.layout-2 .newsletter-form__wrap {
+	display: block;
+}
+.wpbingo-widget--newsletter .newsletter__content.layout-2 .newsletter-form__wrap input {
+	height: 45px;
+  border-radius: 0;
+  padding: 0 20px;
+  color: var(--text-color);
+  font-size: 12px;
+  line-height: 45px;
+  margin-bottom: 20px;
+}
+.wpbingo-widget--newsletter .newsletter__content.layout-2 .newsletter-form__wrap .newsletter-form__submit {
+	line-height: 45px;
+  height: 45px;
+  border: 0;
+  font-size: 12px;
+  font-weight: var(--body-font-weight-semibold);
+  padding: 0 44px;
+  background: var(--gray-dark);
+  color: var(--white);
+  position: relative;
+}
+.wpbingo-widget--newsletter .newsletter__content.layout-2 .newsletter-form__wrap .newsletter-form__submit:hover {
+	background: var(--theme-color);
+}
+@media(max-width: 767px){
+  .wpbingo-widget--newsletter .newsletter__content.layout-2 .newsletter-form__wrap .newsletter-form__submit {
+    padding: 0 40px;
+  }
+}

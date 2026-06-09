@@ -1,0 +1,336 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "page-breadcrumb",
+      "settings": {
+        "enable": true,
+        "bgimage": false,
+        "show_pagetitle": true,
+        "show_breadcrumb": true,
+        "color_breadcrumb": "#000000",
+        "align_breadcrumb": "center"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "enable": false,
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "featured_custom_section_W4q6EC": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_KddGVg": {
+          "type": "_column",
+          "settings": {
+            "width": 63.4,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "0 62.5px 0 15px | 0 7.5px",
+            "margin": "| | | 0 0 30px",
+            "width_lap": 63.4,
+            "width_tab": 63.4,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "title_b9k8gU": {
+              "type": "title",
+              "settings": {
+                "heading_size": "h3",
+                "title": "Get In Touch",
+                "font": "--font-family-second",
+                "text_transform": "none",
+                "color": "#000000",
+                "font_size": 30,
+                "line_height": 30,
+                "letter_spacing": 0,
+                "font_weight": "600",
+                "align": "left",
+                "padding": "",
+                "margin": "0 0 43px",
+                "color_tablet": "#000000",
+                "font_size_tablet": 25,
+                "line_height_tablet": 30,
+                "letter_spacing_tablet": 0,
+                "align_tablet": "left",
+                "color_mobi": "#000000",
+                "font_size_mobi": 30,
+                "line_height_mobi": 35,
+                "letter_spacing_mobi": 0,
+                "align_mobi": "left"
+              },
+              "blocks": {}
+            },
+            "contact_form_Ehhtit": {
+              "type": "contact-form",
+              "settings": {
+                "padding": "",
+                "margin": "",
+                "placeholder_name": "Your Name*",
+                "placeholder_email": "Your Email*",
+                "placeholder_phone": "Phone Number*",
+                "placeholder_message": "Your Message*",
+                "label_button": "Send Message"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "title_b9k8gU",
+            "contact_form_Ehhtit"
+          ]
+        },
+        "column_kbWjKb": {
+          "type": "_column",
+          "settings": {
+            "width": 36.6,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "0 15px 0 62.5px | 0 7.5px",
+            "margin": "",
+            "width_lap": 36.6,
+            "width_tab": 36.6,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "inner_section_deKLJk": {
+              "type": "inner-section",
+              "settings": {
+                "max_width": "",
+                "fullwidth": false,
+                "background_color": "#ffffff",
+                "background_fixed": false,
+                "background_size": "cover",
+                "background_pos": "center center",
+                "padding": "65px 50px 38px | 30px 15px",
+                "margin": "",
+                "vertical_align": "start",
+                "horizontal_align": "left",
+                "box_shadow": "0px 8px 24px 0px #959da526",
+                "border": false,
+                "border_width": "0px 0px 0px 0px",
+                "border_color": "#ffffff",
+                "border_radius": "0px 0px 0px 0px"
+              },
+              "blocks": {
+                "column_C4P94i": {
+                  "type": "_column",
+                  "settings": {
+                    "width": 100,
+                    "background_fixed": false,
+                    "background_size": "cover",
+                    "background_pos": "center center",
+                    "padding": "",
+                    "margin": "",
+                    "width_lap": 100,
+                    "width_tab": 100,
+                    "width_mobi": 100,
+                    "border": false,
+                    "border_width": "0px 0px 0px 0px",
+                    "border_color": "#ffffff",
+                    "box_shadow": "none",
+                    "border_radius": "0px 0px 0px 0px"
+                  },
+                  "blocks": {
+                    "title_jMEUia": {
+                      "type": "title",
+                      "settings": {
+                        "heading_size": "h3",
+                        "title": "Address",
+                        "font": "--font-family-second",
+                        "text_transform": "none",
+                        "color": "#000000",
+                        "font_size": 18,
+                        "line_height": 18,
+                        "letter_spacing": 0,
+                        "font_weight": "700",
+                        "align": "left",
+                        "padding": "",
+                        "margin": "0 0 20px",
+                        "color_tablet": "#000000",
+                        "font_size_tablet": 25,
+                        "line_height_tablet": 30,
+                        "letter_spacing_tablet": 0,
+                        "align_tablet": "left",
+                        "color_mobi": "#000000",
+                        "font_size_mobi": 18,
+                        "line_height_mobi": 18,
+                        "letter_spacing_mobi": 0,
+                        "align_mobi": "left"
+                      },
+                      "blocks": {}
+                    },
+                    "description_mPzdEd": {
+                      "type": "description",
+                      "settings": {
+                        "desc": "REGISTERED ADDRESS:\nBuilding No./Flat No.: Survey No 24\nName Of Premises/Building: Opp Reliance Book Co.\nRoad/Street: Khairpada Road\nCity/Town/Village: vasai\nDistrict: Mumbai\nState: Maharashtra\nPIN Code: 401208",
+                        "font": "--font-family-second",
+                        "color": "#000000",
+                        "font_size": 14,
+                        "line_height": 24,
+                        "letter_spacing": 0,
+                        "font_weight": "500",
+                        "align": "left",
+                        "padding": "",
+                        "margin": "0 0 35px",
+                        "color_mobi": "#000000",
+                        "font_size_mobi": 14,
+                        "line_height_mobi": 24,
+                        "letter_spacing_mobi": 0,
+                        "align_mobi": "left"
+                      },
+                      "blocks": {}
+                    },
+                    "description_rXgx7V": {
+                      "type": "description",
+                      "settings": {
+                        "desc": "Physical address: DEVANSHI KHETANI PROJECTS LLP, Mumbai, 400097 Mumbai MH, India",
+                        "font": "--font-family-second",
+                        "color": "#000000",
+                        "font_size": 14,
+                        "line_height": 24,
+                        "letter_spacing": 0,
+                        "font_weight": "500",
+                        "align": "left",
+                        "padding": "",
+                        "margin": "0 0 35px",
+                        "color_mobi": "#000000",
+                        "font_size_mobi": 14,
+                        "line_height_mobi": 24,
+                        "letter_spacing_mobi": 0,
+                        "align_mobi": "left"
+                      },
+                      "blocks": {}
+                    },
+                    "line_Fg6Dz3": {
+                      "type": "line",
+                      "settings": {
+                        "padding": "",
+                        "margin": "0 0 35px",
+                        "width": "",
+                        "height": 1,
+                        "background": "#00000014",
+                        "bg_opacity": 1,
+                        "margin_line": "0px auto"
+                      },
+                      "blocks": {}
+                    },
+                    "title_ypc7a4": {
+                      "type": "title",
+                      "settings": {
+                        "heading_size": "h3",
+                        "title": "Email",
+                        "font": "--font-family-second",
+                        "text_transform": "none",
+                        "color": "#000000",
+                        "font_size": 18,
+                        "line_height": 18,
+                        "letter_spacing": 0,
+                        "font_weight": "700",
+                        "align": "left",
+                        "padding": "",
+                        "margin": "0 0 20px",
+                        "color_tablet": "#000000",
+                        "font_size_tablet": 25,
+                        "line_height_tablet": 30,
+                        "letter_spacing_tablet": 0,
+                        "align_tablet": "left",
+                        "color_mobi": "#000000",
+                        "font_size_mobi": 18,
+                        "line_height_mobi": 18,
+                        "letter_spacing_mobi": 0,
+                        "align_mobi": "left"
+                      },
+                      "blocks": {}
+                    },
+                    "description_gzaEm6": {
+                      "type": "description",
+                      "settings": {
+                        "desc": "<a href=\"care@lovedk.in\">care@lovedk.in</a>",
+                        "font": "--font-family-second",
+                        "color": "#ffffff",
+                        "font_size": 14,
+                        "line_height": 24,
+                        "letter_spacing": 0,
+                        "font_weight": "500",
+                        "align": "left",
+                        "padding": "",
+                        "margin": "",
+                        "color_mobi": "#000000",
+                        "font_size_mobi": 14,
+                        "line_height_mobi": 24,
+                        "letter_spacing_mobi": 0,
+                        "align_mobi": "left"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "title_jMEUia",
+                    "description_mPzdEd",
+                    "description_rXgx7V",
+                    "line_Fg6Dz3",
+                    "title_ypc7a4",
+                    "description_gzaEm6"
+                  ]
+                }
+              },
+              "block_order": [
+                "column_C4P94i"
+              ]
+            }
+          },
+          "block_order": [
+            "inner_section_deKLJk"
+          ]
+        }
+      },
+      "block_order": [
+        "column_KddGVg",
+        "column_kbWjKb"
+      ],
+      "settings": {
+        "max_width": "1440px",
+        "fullwidth": false,
+        "background_color": "",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "",
+        "margin": "0 0 85px | 0 0 70px",
+        "vertical_align": "top",
+        "horizontal_align": "left",
+        "overflow": "unset",
+        "id_section": ""
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main",
+    "featured_custom_section_W4q6EC"
+  ]
+}

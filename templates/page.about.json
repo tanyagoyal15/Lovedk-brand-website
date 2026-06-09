@@ -1,0 +1,574 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "page-breadcrumb",
+      "settings": {
+        "enable": true,
+        "bgimage": false,
+        "show_pagetitle": true,
+        "show_breadcrumb": true,
+        "color_breadcrumb": "#000000",
+        "align_breadcrumb": "center"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "enable": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_custom_section_9qk4JT": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_q7Xqtz": {
+          "type": "_column",
+          "settings": {
+            "width": 50,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "0 15px | 0 7px",
+            "margin": "| | | 0 0 50px",
+            "width_lap": 50,
+            "width_tab": 50,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "title_Kdpja8": {
+              "type": "title",
+              "settings": {
+                "heading_size": "h3",
+                "title": "Welcome to Love DK",
+                "font": "--font-family-second",
+                "text_transform": "none",
+                "color": "#000000",
+                "font_size": 45,
+                "line_height": 55,
+                "letter_spacing": 1,
+                "font_weight": "700",
+                "align": "left",
+                "padding": "",
+                "margin": "0 0 28px",
+                "color_tablet": "#000000",
+                "font_size_tablet": 30,
+                "line_height_tablet": 35,
+                "letter_spacing_tablet": 0,
+                "align_tablet": "left",
+                "color_mobi": "#000000",
+                "font_size_mobi": 22,
+                "line_height_mobi": 25,
+                "letter_spacing_mobi": 1,
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            },
+            "description_QReNBJ": {
+              "type": "description",
+              "settings": {
+                "desc": "where love meets craftsmanship in every piece of jewellery you wear.\nFounded with a passion for beauty, style, and heartfelt connection, Love DK is a woman-led jewellery brand dedicated to creating designs that reflect personality, emotion, and timeless charm. Each product we create isn’t just an accessory — it’s a piece of story, identity, and expression.",
+                "font": "--font-family-second",
+                "color": "#000000",
+                "font_size": 14,
+                "line_height": 24,
+                "letter_spacing": 0,
+                "font_weight": "500",
+                "align": "left",
+                "padding": "",
+                "margin": "0 0 40px",
+                "color_mobi": "#000000",
+                "font_size_mobi": 14,
+                "line_height_mobi": 24,
+                "letter_spacing_mobi": 0,
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            },
+            "button_hPrQJE": {
+              "type": "button",
+              "settings": {
+                "title": "Shop Now",
+                "layout": "layout-1",
+                "font": "--font-family-second",
+                "text_transform": "none",
+                "icon_title": "",
+                "font_icon": 14,
+                "color_icon": "#000000",
+                "background_icon": "#ffffff",
+                "color_icon_hover": "#000000",
+                "background_icon_hover": "#ffffff",
+                "pos_icon": 0,
+                "border_radius_icon": "0px 0px 0px 0px",
+                "width_icon": 20,
+                "margin_icon": "0px 0px 0px 0px",
+                "button_link": "shopify://collections/all",
+                "border_radius": "0px 0px 0px 0px",
+                "border": true,
+                "border_width": "1px",
+                "color": "#000000",
+                "background": "rgba(0,0,0,0)",
+                "border_color": "#000000",
+                "color_hover": "#ffffff",
+                "background_hover": "#92614c",
+                "border_color_hover": "#92614c",
+                "font_size": 14,
+                "line_height": 48,
+                "letter_spacing": 0,
+                "font_weight": "600",
+                "padding": "0 42px",
+                "margin": "",
+                "align": "left",
+                "font_size_mobi": 14,
+                "font_icon_mobi": 14,
+                "margin_icon_mobi": 0,
+                "line_height_mobi": 45,
+                "letter_spacing_mobi": 0,
+                "border_radius_mobi": "0px 0px 0px 0px",
+                "border_mobi": false,
+                "border_width_mobi": "0px 0px 0px 0px",
+                "color_mobi": "#000000",
+                "background_mobi": "rgba(0,0,0,0)",
+                "border_color_mobi": "#000000",
+                "color_hover_mobi": "#ffffff",
+                "background_hover_mobi": "#92614c",
+                "border_color_hover_mobi": "#92614c",
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "title_Kdpja8",
+            "description_QReNBJ",
+            "button_hPrQJE"
+          ]
+        },
+        "column_3NFrrU": {
+          "type": "_column",
+          "settings": {
+            "width": 50,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "0 15px | 0 7.5px",
+            "margin": "",
+            "width_lap": 50,
+            "width_tab": 50,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "image_AzJrEa": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/C9A83DAD-6CA8-454C-B600-D93C4AC3203E_1_201_a.jpg",
+                "url": "",
+                "padding": "",
+                "margin": "",
+                "size": "",
+                "image_size": "cover",
+                "image_pos": "center center",
+                "align": "left",
+                "border_radius": "0px 0px 0px 0px",
+                "border": false,
+                "border_width": "0px 0px 0px 0px",
+                "border_color": "#ffffff",
+                "effect": "grow",
+                "align_mobi": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_AzJrEa"
+          ]
+        },
+        "column_76y6rP": {
+          "type": "_column",
+          "name": "Column",
+          "settings": {
+            "width": 100,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "25px",
+            "margin": "",
+            "width_lap": 100,
+            "width_tab": 50,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "title_wGN8Ft": {
+              "type": "title",
+              "name": "Title",
+              "settings": {
+                "heading_size": "h3",
+                "title": "Our Story",
+                "font": "--font-family-second",
+                "text_transform": "none",
+                "color": "#000000",
+                "font_size": 45,
+                "line_height": 55,
+                "letter_spacing": 0,
+                "font_weight": "700",
+                "align": "center",
+                "padding": "",
+                "margin": "0 0 20px",
+                "color_tablet": "#000000",
+                "font_size_tablet": 30,
+                "line_height_tablet": 35,
+                "letter_spacing_tablet": 0,
+                "align_tablet": "center",
+                "color_mobi": "#000000",
+                "font_size_mobi": 22,
+                "line_height_mobi": 25,
+                "letter_spacing_mobi": 0,
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            },
+            "description_tYDztJ": {
+              "type": "description",
+              "name": "desc",
+              "settings": {
+                "desc": "Born from a belief that jewellery should do more than just sparkle, Love DK was created to connect hearts and inspire confidence. With careful attention to detail and a focus on thoughtful design, our pieces are made to be cherished — whether you’re gifting someone special or celebrating your own unique style.\nEvery creation at Love DK is made-to-order and crafted with care, blending contemporary trends with classic aesthetics. Our collections include elegantly designed bracelets, earrings, necklaces, and more — each designed to reflect the joy of self-expression and personal style.\nWhat We Believe In",
+                "font": "--font-family-second",
+                "color": "#000000",
+                "font_size": 15,
+                "line_height": 24,
+                "letter_spacing": 0,
+                "font_weight": "300",
+                "align": "center",
+                "padding": "0px 10px",
+                "margin": "",
+                "color_mobi": "#000000",
+                "font_size_mobi": 14,
+                "line_height_mobi": 24,
+                "letter_spacing_mobi": 0,
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "title_wGN8Ft",
+            "description_tYDztJ"
+          ]
+        }
+      },
+      "block_order": [
+        "column_q7Xqtz",
+        "column_3NFrrU",
+        "column_76y6rP"
+      ],
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "background_color": "",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "",
+        "margin": "",
+        "vertical_align": "middle",
+        "horizontal_align": "center",
+        "overflow": "hidden",
+        "id_section": ""
+      }
+    },
+    "featured_custom_section_mnEaKn": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_t6hCax": {
+          "type": "_column",
+          "settings": {
+            "width": 100,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "",
+            "margin": "",
+            "width_lap": 100,
+            "width_tab": 100,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "column_t6hCax"
+      ],
+      "name": "Custom Section",
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "background_color": "",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "",
+        "margin": "",
+        "vertical_align": "top",
+        "horizontal_align": "left",
+        "overflow": "hidden",
+        "id_section": ""
+      }
+    },
+    "featured_custom_section_HfJzAE": {
+      "type": "featured-custom-section",
+      "blocks": {
+        "column_aaCirP": {
+          "type": "_column",
+          "settings": {
+            "width": 100,
+            "background_fixed": false,
+            "background_size": "cover",
+            "background_pos": "center center",
+            "padding": "",
+            "margin": "",
+            "width_lap": 100,
+            "width_tab": 100,
+            "width_mobi": 100,
+            "border": false,
+            "border_width": "0px 0px 0px 0px",
+            "border_color": "#ffffff",
+            "box_shadow": "none",
+            "border_radius": "0px 0px 0px 0px"
+          },
+          "blocks": {
+            "text_block_iWpe3k": {
+              "type": "text-block",
+              "name": "Text block",
+              "settings": {
+                "title": "Follow our INSTAGRAM!",
+                "font": "--font-family-second",
+                "text_transform": "uppercase",
+                "font_style": "italic",
+                "color": "#af5031",
+                "font_size": 50,
+                "line_height": 50,
+                "letter_spacing": 0,
+                "font_weight": "500",
+                "align": "center",
+                "padding": "20px",
+                "margin": "",
+                "color_mobi": "#af5031",
+                "font_size_mobi": 20,
+                "line_height_mobi": 24,
+                "letter_spacing_mobi": 0,
+                "align_mobi": "center"
+              },
+              "blocks": {}
+            },
+            "instafeed_app_block_rxaeXE": {
+              "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+              "settings": {
+                "title": "",
+                "title_color": "",
+                "title_size_v2": 0,
+                "alignment": "center",
+                "instafeed_margin_top": 0,
+                "instafeed_margin_bottom": 0,
+                "instafeed_margin_sides": 0,
+                "show_instagram_link": false,
+                "link_alignment": "left",
+                "link_color": "#000000",
+                "background_color": "",
+                "feed_id": "",
+                "html_area": ""
+              }
+            }
+          },
+          "block_order": [
+            "text_block_iWpe3k",
+            "instafeed_app_block_rxaeXE"
+          ]
+        }
+      },
+      "block_order": [
+        "column_aaCirP"
+      ],
+      "name": "instagram",
+      "settings": {
+        "max_width": "",
+        "fullwidth": false,
+        "background_color": "",
+        "background_fixed": false,
+        "background_size": "cover",
+        "background_pos": "center center",
+        "padding": "15px 0px 0px 0px",
+        "margin": "",
+        "vertical_align": "top",
+        "horizontal_align": "left",
+        "overflow": "hidden",
+        "id_section": ""
+      }
+    },
+    "featured_testimonials_E8RrQJ": {
+      "type": "featured-testimonials",
+      "blocks": {
+        "testimonial_mcdrkC": {
+          "type": "testimonial",
+          "settings": {
+            "show_image": true,
+            "show_name": true,
+            "name": "Anana",
+            "show_title": true,
+            "title": "Photographer",
+            "show_review": true,
+            "review": "“I had an amazing experience shopping here! The store has a fantastic selection of trendy…”",
+            "show_rating": false,
+            "rating": "5"
+          }
+        },
+        "testimonial_LzTRzA": {
+          "type": "testimonial",
+          "settings": {
+            "show_image": true,
+            "show_name": true,
+            "name": "Ann Smith",
+            "show_title": true,
+            "title": "CEO & Founder",
+            "show_review": true,
+            "review": "“I had an amazing experience shopping here! The store has a fantastic selection of trendy and…”",
+            "show_rating": false,
+            "rating": "5"
+          }
+        },
+        "testimonial_Tg8fR6": {
+          "type": "testimonial",
+          "settings": {
+            "show_image": true,
+            "show_name": true,
+            "name": "Luca Moretti",
+            "show_title": true,
+            "title": "Designer",
+            "show_review": true,
+            "review": "“If you’re looking for luxury products and professional service, look no further. I had a great experience...",
+            "show_rating": false,
+            "rating": "5"
+          }
+        },
+        "testimonial_VfgACC": {
+          "type": "testimonial",
+          "settings": {
+            "show_image": true,
+            "show_name": true,
+            "name": "Linda",
+            "show_title": true,
+            "title": "Designer",
+            "show_review": true,
+            "review": "“This fashion store is a gem! The variety of styles available is impressive, and I always find...",
+            "show_rating": false,
+            "rating": "5"
+          }
+        },
+        "css_edQAxg": {
+          "type": "css",
+          "settings": {
+            "text_align": "center",
+            "color_heading": "#000000",
+            "font_size_heading": 16,
+            "letter_spacing_heading": 3,
+            "line_height_heading": 20,
+            "font_weight_heading": "500",
+            "margin_heading": "0px 0px 77px 0px",
+            "color_review": "#000000",
+            "font_size_review": 25,
+            "line_height_review": 40,
+            "font_weight_review": "500",
+            "margin_review": "0px 0px 28px 0px",
+            "color_title": "#000000",
+            "font_size_title": 14,
+            "line_height_title": 22,
+            "font_weight_title": "500",
+            "letter_spacing_title": 0,
+            "margin_title": "0px 0px 0px 0px",
+            "font_name": "",
+            "color_name": "#000000",
+            "font_size_name": 14,
+            "line_height_name": 22,
+            "font_weight_name": "500",
+            "letter_spacing_name": 0,
+            "width_avatar": 118,
+            "border_avatar": "50%",
+            "margin_avatar": "0px 0px 25px 0px",
+            "font_size_heading_mobi": 16,
+            "line_height_heading_mobi": 25,
+            "margin_heading_mobi": "0px 0px 40px 0px",
+            "font_size_review_mobi": 16,
+            "line_height_review_mobi": 28,
+            "font_size_title_mobi": 14,
+            "line_height_title_mobi": 22,
+            "font_size_name_mobi": 14,
+            "line_height_name_mobi": 22,
+            "width_avatar_mobi": 80,
+            "margin_avatar_mobi": "0px 0px 25px 0px"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_mcdrkC",
+        "testimonial_LzTRzA",
+        "testimonial_Tg8fR6",
+        "testimonial_VfgACC",
+        "css_edQAxg"
+      ],
+      "settings": {
+        "background": "#f9f9f9",
+        "bg_fixed": false,
+        "bg_position": "center",
+        "bg_size": "cover",
+        "bg_width": "full",
+        "max_width": "",
+        "fullwidth": false,
+        "padding": "95px 0 | 70px 0",
+        "margin": "",
+        "heading": "- CUSTOMER REVIEWS -",
+        "centermode": true,
+        "navigation": false,
+        "pagination": false,
+        "infinite": false,
+        "autoplay": false,
+        "autoplay_speed": "2000"
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main",
+    "featured_custom_section_9qk4JT",
+    "featured_custom_section_mnEaKn",
+    "featured_custom_section_HfJzAE",
+    "featured_testimonials_E8RrQJ"
+  ]
+}

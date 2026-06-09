@@ -1,0 +1,227 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<div class="product-single__buttons" style="--payment-bg:{{ block.settings.payment_button_color }};--payment-color:{{ block.settings.payment_text_color }};">
+
+    {% comment %}Product quantity{% endcomment %}
+    {%- if block.settings.quantity_enabled and current_variant.available -%}
+    <div class="js-quantity-selector product-quantity">
+        <label for="Quantity" class="product-quantity__label">{{ 'products.product.quantity' | t }}</label>
+        <div class="product-quantity__selector">
+            {%- if block.settings.quantity_selector == 'text' -%}
+                <div class="wpbingo-qty">
+                    <button type="button" class="js-qty-adjust wpbingo-qty__adjust wpbingo-qty__adjust--minus" aria-label="{{ 'cart.general.reduce_quantity' | t }}">
+                        <i class="feather-minus"></i>
+                    </button>
+                    <input type="text" name="quantity" class="js-qty-number wpbingo-qty__number" value="1" min="1" aria-label="quantity" pattern="[0-9]*">
+                    <button type="button" class="js-qty-adjust wpbingo-qty__adjust wpbingo-qty__adjust--plus" aria-label="{{ 'cart.general.increase_quantity' | t }}">
+                        <i class="feather-plus"></i>
+                    </button>
+                </div>
+            {%- else -%}
+                <select name="quantity" id="Quantity" class="product-quantity__select">
+                    {%- for i in (1..10) -%}
+                        <option {% if forloop.first %}selected="selected"{% endif %} value="{{ i }}">{{ i }}</option>
+                    {%- endfor -%}
+                </select>
+            {%- endif -%}
+        </div>
+    </div>
+    {%- endif -%}
+
+    {% comment %}Add to cart button{% endcomment %}
+    <div class="product-single__add-to-cart" style="--atc-bg:{{ block.settings.atc_button_color }};">
+        <button class="btn btn--add-to-cart{% if block.settings.enable_payment_button %} btn--secondary-accent{% endif %}"{% unless current_variant.available %} disabled="disabled"{% endunless %}
+            type="submit"
+            name="add">
+            <span class="btn__text">
+                {% if current_variant.available %}
+                    {% if current_variant.inventory_policy == "continue" %}
+                        {{ 'products.product.pre_order' | t }}
+                    {% else %}
+                        {{ 'products.product.add_to_cart' | t }}
+                    {% endif %}
+                {% else %}
+                    {{ 'products.product.sold_out' | t }}
+                {% endif %}
+            </span>
+        </button>
+
+        {%- if product.handle != blank and block.settings.product_button_wishlist -%}
+            <div class="button-wishlist">
+                <button
+                    type="button"
+                    aria-label="Add to wishlist"
+                    class="wishlist-btn-pdp"
+                    id="wishlist-btn-{{ product.handle }}"
+                    data-product-handle="{{ product.handle }}"
+                >
+                </button>
+            </div>
+        {%- endif -%}
+    </div>
+
+    {% if block.settings.enable_payment_button and current_variant.available %}
+        {% if settings.show_terms_conditions %}
+            <p class="ajaxcart_terms_conditions">
+                <input name="agree" style="float:none; vertical-align: middle;" type="checkbox" class="agree_terms_conditions" />
+                <label style="display:inline; float:none" for="agree">
+                    {{ settings.content_terms_conditions }}
+                </label>
+            </p>
+        {% endif %}
+        {% form 'product', product, class:form_classes, data-product-form: '' %}
+            {% render 'gokwik-buy-now' %}
+        {% endform %}
+    {% endif %}
+
+</div>
+
+{% if product.handle != blank and block.settings.product_button_wishlist %}
+<style>
+  .wishlist-btn-pdp {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wishlist-btn-pdp svg {
+    width: 22px;
+    height: 22px;
+    transition: fill 0.2s ease, stroke 0.2s ease;
+  }
+  .wishlist-btn-pdp .wl-icon-empty {
+    display: block;
+  }
+  .wishlist-btn-pdp .wl-icon-filled {
+    display: none;
+  }
+  .wishlist-btn-pdp.wishlisted .wl-icon-empty {
+    display: none;
+  }
+  .wishlist-btn-pdp.wishlisted .wl-icon-filled {
+    display: block;
+  }
+</style>
+
+<script>
+(function() {
+  const STORAGE_KEY = 'wishlist';
+  const handle      = {{ product.handle | json }};
+  const btn         = document.getElementById('wishlist-btn-' + handle);
+
+  if (!btn) return;
+
+  const emptyHeart  = `<svg class="wl-icon-empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
+  const filledHeart = `<svg class="wl-icon-filled" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
+
+  function getWishlist() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { return []; }
+  }
+
+  function setWishlist(list) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    document.dispatchEvent(new CustomEvent('wishlist:updated', { detail: { count: list.length } }));
+  }
+
+  function updateBtn(inWishlist) {
+    btn.innerHTML = emptyHeart + filledHeart;
+    if (inWishlist) {
+      btn.classList.add('wishlisted');
+      btn.setAttribute('aria-label', 'Remove from wishlist');
+    } else {
+      btn.classList.remove('wishlisted');
+      btn.setAttribute('aria-label', 'Add to wishlist');
+    }
+  }
+
+  // Set initial state on page load
+  updateBtn(getWishlist().includes(handle));
+
+  btn.addEventListener('click', function() {
+    const wishlist = getWishlist();
+    const idx      = wishlist.indexOf(handle);
+    if (idx === -1) {
+      wishlist.push(handle);
+    } else {
+      wishlist.splice(idx, 1);
+    }
+    setWishlist(wishlist);
+    updateBtn(wishlist.includes(handle));
+  });
+})();
+</script>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Button atc",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "product_button_wishlist",
+            "label": "Show Button Wishlist",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "quantity_enabled",
+            "label": "Show quantity picker",
+            "default": true
+        },
+        {
+            "type": "select",
+            "id": "quantity_selector",
+            "label": "Quantity type",
+            "options": [
+                {
+                    "value": "text",
+                    "label": "Text"
+                },
+                {
+                    "value": "select",
+                    "label": "Dropdown"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "Add to cart button"
+        },
+        {
+            "type": "color",
+            "id": "atc_button_color",
+            "label": "Add to cart button background",
+            "default": "#000"
+        },
+        {
+            "type": "header",
+            "content": "Buy now button"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_payment_button",
+            "label": "Show dynamic checkout button",
+            "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "payment_button_color",
+            "label": "Checkout button background",
+            "default": "#fff"
+        },
+        {
+            "type": "color",
+            "id": "payment_text_color",
+            "label": "Checkout button color",
+            "default": "#ed5d43"
+        }
+    ],
+    "presets": [{"name": "Button atc","category": "Single product"}]
+  }
+{% endschema %}

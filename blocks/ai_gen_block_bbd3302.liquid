@@ -1,0 +1,718 @@
+{% doc %}
+  @prompt
+    Create a new homepage section called “As Spotted On”.
+    
+    Goal:
+    Make a horizontally scrollable banner/carousel where I can add images of people wearing our jewellery.
+    
+    Section Requirements:
+    - Section heading: “AS SPOTTED ON”
+    - Horizontally scrollable on mobile and desktop
+    - Show image cards in one row
+    - Smooth swipe/scroll behavior on mobile
+    - Image-first layout
+    - Clean, premium jewellery brand look
+    - No clutter
+    
+    Image Card Requirements:
+    - Each card should contain:
+      - Image of person wearing jewellery
+      - Optional name/text below image
+      - Optional short caption below name
+    - Images should have consistent size and ratio
+    - Use portrait ratio, preferably 4:5
+    - Rounded corners optional
+    - Equal spacing between cards
+    
+    Editable Settings:
+    Make this section editable from the Shopify theme editor.
+    
+    I should be able to edit:
+    - Section heading text
+    - Heading font size
+    - Heading font weight
+    - Heading alignment
+    - Card image size
+    - Image corner radius
+    - Space between cards
+    - Top padding
+    - Bottom padding
+    - Background color
+    - Text color
+    - Caption text
+    - Number of image cards
+    - Image upload for each card
+    
+    Design Style:
+    - Premium but simple
+    - Suitable for an affordable jewellery brand
+    - Should feel like social proof, not an ad
+    - Should look good on mobile first
+    - Keep it elegant and minimal
+    
+    Mobile Requirements:
+    - Show 1.3 to 1.5 cards visible at a time
+    - Allow horizontal swipe
+    - Do not stack vertically
+    - Keep heading readable
+    - Keep padding balanced
+    
+    Desktop Requirements:
+    - Show 4 to 5 cards visible at a time
+    - Allow horizontal scroll if more cards are added
+    - Keep cards aligned neatly
+    
+    Default Content:
+    Use placeholder cards with:
+    - Image placeholder
+    - Text: “Worn by our community”
+    - Caption: “Styled with DK jewellery”
+    
+    Final Result:
+    A reusable editable Shopify homepage section named “As Spotted On” that I can customize without a developer. It should help build trust by showing real people wearing our jewellery.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-spotted-on-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  }
+
+  .ai-spotted-on-container-{{ ai_gen_id }} {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ai-spotted-on-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: {{ block.settings.heading_weight }};
+    text-align: {{ block.settings.heading_alignment }};
+    color: {{ block.settings.text_color }};
+    margin: 0 0 {{ block.settings.heading_bottom_spacing }}px;
+    padding: 0 20px;
+    letter-spacing: 2px;
+  }
+
+  .ai-spotted-on-scroll-wrapper-{{ ai_gen_id }} {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .ai-spotted-on-scroll-wrapper-{{ ai_gen_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-spotted-on-cards-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.card_spacing }}px;
+    padding: 0 20px;
+    width: max-content;
+  }
+
+  .ai-spotted-on-card-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.card_width_mobile }}px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-spotted-on-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    background-color: #f5f5f5;
+  }
+
+  .ai-spotted-on-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-spotted-on-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+  }
+
+  .ai-spotted-on-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-spotted-on-card-name-{{ ai_gen_id }} {
+    font-size: 14px;
+    font-weight: 500;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    text-align: center;
+  }
+
+  .ai-spotted-on-card-caption-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    margin: 0;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-spotted-on-card-{{ ai_gen_id }} {
+      width: {{ block.settings.card_width_desktop }}px;
+    }
+
+    .ai-spotted-on-heading-{{ ai_gen_id }} {
+      padding: 0 40px;
+    }
+
+    .ai-spotted-on-cards-{{ ai_gen_id }} {
+      padding: 0 40px;
+    }
+  }
+{% endstyle %}
+
+<as-spotted-on-{{ ai_gen_id }} class="ai-spotted-on-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-spotted-on-container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-spotted-on-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="ai-spotted-on-scroll-wrapper-{{ ai_gen_id }}">
+      <div class="ai-spotted-on-cards-{{ ai_gen_id }}">
+        {% for i in (1..12) %}
+          {% liquid
+            assign image_key = 'card_image_' | append: i
+            assign name_key = 'card_name_' | append: i
+            assign caption_key = 'card_caption_' | append: i
+            
+            assign card_image = block.settings[image_key]
+            assign card_name = block.settings[name_key]
+            assign card_caption = block.settings[caption_key]
+          %}
+
+          <div class="ai-spotted-on-card-{{ ai_gen_id }}">
+            <div class="ai-spotted-on-image-wrapper-{{ ai_gen_id }}">
+              {% if card_image %}
+                <img
+                  src="{{ card_image | image_url: width: 600 }}"
+                  alt="{{ card_name | escape }}"
+                  loading="lazy"
+                  width="600"
+                  height="750"
+                  class="ai-spotted-on-image-{{ ai_gen_id }}"
+                >
+              {% else %}
+                <div class="ai-spotted-on-image-placeholder-{{ ai_gen_id }}">
+                  {{ 'image' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+
+            {% if card_name != blank %}
+              <p class="ai-spotted-on-card-name-{{ ai_gen_id }}">{{ card_name }}</p>
+            {% endif %}
+
+            {% if card_caption != blank %}
+              <p class="ai-spotted-on-card-caption-{{ ai_gen_id }}">{{ card_caption }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</as-spotted-on-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class AsSpottedOn{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.scrollWrapper = this.querySelector('.ai-spotted-on-scroll-wrapper-{{ ai_gen_id }}');
+        this.setupSmoothScroll();
+      }
+
+      setupSmoothScroll() {
+        if (!this.scrollWrapper) return;
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        this.scrollWrapper.addEventListener('mousedown', (e) => {
+          isDown = true;
+          this.scrollWrapper.style.cursor = 'grabbing';
+          startX = e.pageX - this.scrollWrapper.offsetLeft;
+          scrollLeft = this.scrollWrapper.scrollLeft;
+        });
+
+        this.scrollWrapper.addEventListener('mouseleave', () => {
+          isDown = false;
+          this.scrollWrapper.style.cursor = 'grab';
+        });
+
+        this.scrollWrapper.addEventListener('mouseup', () => {
+          isDown = false;
+          this.scrollWrapper.style.cursor = 'grab';
+        });
+
+        this.scrollWrapper.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - this.scrollWrapper.offsetLeft;
+          const walk = (x - startX) * 2;
+          this.scrollWrapper.scrollLeft = scrollLeft - walk;
+        });
+
+        this.scrollWrapper.style.cursor = 'grab';
+      }
+    }
+
+    customElements.define('as-spotted-on-{{ ai_gen_id }}', AsSpottedOn{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "As spotted on",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "AS SPOTTED ON"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing",
+      "label": "Space below heading",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Card settings"
+    },
+    {
+      "type": "range",
+      "id": "card_width_mobile",
+      "label": "Card width (mobile)",
+      "min": 200,
+      "max": 350,
+      "step": 10,
+      "unit": "px",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "card_width_desktop",
+      "label": "Card width (desktop)",
+      "min": 200,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "card_spacing",
+      "label": "Space between cards",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_1",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_1",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_1",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_2",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_2",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_2",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_3",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_3",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_3",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_4",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_4",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_4",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_5",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_5",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_5",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_6",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_6",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_6",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_7",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_7",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_7",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_8",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_8",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_8",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_9",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_9",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_9",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 10"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_10",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_10",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_10",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 11"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_11",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_11",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_11",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    },
+    {
+      "type": "header",
+      "content": "Card 12"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image_12",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_name_12",
+      "label": "Name",
+      "default": "Worn by our community"
+    },
+    {
+      "type": "text",
+      "id": "card_caption_12",
+      "label": "Caption",
+      "default": "Styled with DK jewellery"
+    }
+  ],
+  "presets": [
+    {
+      "name": "As spotted on"
+    }
+  ]
+}
+{% endschema %}

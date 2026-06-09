@@ -1,0 +1,841 @@
+{% doc %}
+  @prompt
+    Okay, so you are going to create a template. That template has basically a list of all the products available on the website. It is from a collection; it is not all the products; it is the products that are under a certain collection.
+    You will show the images. Make sure that there is padding towards the left and the right side of the website, a little padding so that the buttons and the images do not overflow. There should be:
+    - the image
+    - the price (the original price if it is cut off) and then the discounted price
+    - the name of the product as well
+    - below that, a view product button
+    Above all this, there should be a filter and sort button, above which there should be a collection name button. If the collection name is earring, that earring should be in the centre. At the top, below that, towards the left-hand side, there should be a filter and sort button. I can be able to sort by alphabetically A to Z and Z to A, price-wise higher to lower, lower to higher as well as date-wise, old to new and new to old. I should also be able to filter:
+    - availability (in stock or out of stock)
+    - price range
+    Reset and apply buttons should also be there. Since this is a template, I will be clicking, let's say, best sellers from another part of the page. Once I click on that, this page will open, so make sure that the collection is taken directly from what I have clicked. Make sure that it looks good on phone as well. Make sure it is responsive. , Few things:
+    - The collection title should be all capitals, underlined, and in the New York font.
+    - The buttons that are present, the view product button and the filter sort button, are black buttons with white text. Make them white buttons with black text.
+    - The filter and sort button should be one button, and it should have both the features in that one button and have no borders for the filter and sort button, so it will just be black text.
+    - Also, each and every product has a border around them; remove this border., Also, when my mouse hovers over the product, it sort of pops up or something. There's that effect; remove that effect. Also, the view product and the statement earring, all of these texts, should be in the new york font. The collection title should not be bold. The view product text should be in capital. The filter and sort button is a sort of a pop-up. It should not be that; it should be a sidebar kind of thing. , Reduce the text size of the view product button. The button is way too big, and the photos are way too small, so make the photos bigger and the text inside the button smaller. Also, the rectangle that is around the view product is curved on the edges; make it sharp. , Make the images bigger. , Okay, now make it infinite scrollable, as in when I scroll down, more products continuously are loading infinitely. Right now, a set of what, 12 to 20 products are being shown, and then let's just stop. As soon as I scroll down, more should appear. , I cannot. When I scroll down towards the end of the products that are already shown, more products should load, right, but they are not loading. It's just not loading. It should continuously keep loading more and more products as soon as I scroll down. , Ok, perfect. The only issue is that you are displaying the price of the products wrong. That is all. The issue is just to make the price of the products right., Ok, very good, perfect. Just remove the View Product button and also separate the Filter and Sort into two different buttons. , The prices are being imported incorrectly, so please change that. Each product on the top right-hand side of the product photo should have two white buttons:
+    - A heart button that will add to the wishlist
+    - A cart button that will add to the cart
+    Remove the connection title completely. And filter and sort are both towards the left-hand side. Shift sort towards the right-hand side. , Make the cart and the heart buttons smaller, and the photos of the products bigger. , The prices are not being imported correctly. The thing is, if it is the price of 1,299, it is becoming 12.99, so let's change that, fix that. Otherwise, all is absolutely perfect; don't change anything., Two to three things:
+    1. The photos are not being imported. They are currently being imported, but they are not seen. I can only see the name of the photos; I cannot see the actual photo itself.
+    2. The price is not being correctly imported. It is simply adding a decimal point incorrectly.
+    3. The filter and sort buttons are present, but it is not working., The prices are importing incorrectly; you must adjust the currency logic to treat the values as whole numbers—for example, a price of 1299 should display as ₹1,299.00 rather than 12.99.Fix the image loading by ensuring the source paths correctly map to the product library so they aren't replaced by broken alt-text., Also, one thing: make the photo, like the product photo, also clickable, which will go to that view product, not just the text part. , Ok, right now the filter and sort buttons are opening the same thing, which has both filter and sort inside that. Right now, change it so that sort should only open a menu that only has sortings, and filter should only have that which filters. Also make sure that it works. , Just make the images of the product a little longer and a little bigger. 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-collection-template-{{ ai_gen_id }} {
+    width: 100%;
+    display: block;
+    padding: 0 {{ block.settings.horizontal_padding }}px;
+    font-family: 'New York', serif;
+  }
+
+  .ai-collection-controls-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+  }
+
+  .ai-collection-filter-btn-{{ ai_gen_id }},
+  .ai-collection-sort-btn-{{ ai_gen_id }} {
+    background: transparent;
+    border: none;
+    color: #000000;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 0;
+    font-family: 'New York', serif;
+  }
+
+  .ai-collection-filter-btn-{{ ai_gen_id }}:hover,
+  .ai-collection-sort-btn-{{ ai_gen_id }}:hover {
+    opacity: 0.7;
+  }
+
+  .ai-collection-sidebar-{{ ai_gen_id }} {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 320px;
+    height: 100%;
+    background: #ffffff;
+    z-index: 9999;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+
+  .ai-collection-sidebar-{{ ai_gen_id }}.active {
+    left: 0;
+  }
+
+  .ai-collection-sort-sidebar-{{ ai_gen_id }} {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    height: 100%;
+    background: #ffffff;
+    z-index: 9999;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  }
+
+  .ai-collection-sort-sidebar-{{ ai_gen_id }}.active {
+    right: 0;
+  }
+
+  .ai-collection-sidebar-overlay-{{ ai_gen_id }} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .ai-collection-sidebar-overlay-{{ ai_gen_id }}.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ai-collection-sidebar-header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .ai-collection-sidebar-title-{{ ai_gen_id }} {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    font-family: 'New York', serif;
+  }
+
+  .ai-collection-sidebar-close-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-collection-sidebar-content-{{ ai_gen_id }} {
+    padding: 20px;
+  }
+
+  .ai-collection-filter-section-{{ ai_gen_id }} {
+    margin-bottom: 30px;
+  }
+
+  .ai-collection-filter-heading-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    font-family: 'New York', serif;
+  }
+
+  .ai-collection-filter-option-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .ai-collection-filter-option-{{ ai_gen_id }} input[type="checkbox"],
+  .ai-collection-filter-option-{{ ai_gen_id }} input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  .ai-collection-filter-option-{{ ai_gen_id }} label {
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'New York', serif;
+  }
+
+  .ai-collection-price-inputs-{{ ai_gen_id }} {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .ai-collection-price-inputs-{{ ai_gen_id }} input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    font-family: 'New York', serif;
+  }
+
+  .ai-collection-sidebar-actions-{{ ai_gen_id }} {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .ai-collection-reset-btn-{{ ai_gen_id }},
+  .ai-collection-apply-btn-{{ ai_gen_id }} {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'New York', serif;
+  }
+
+  .ai-collection-reset-btn-{{ ai_gen_id }} {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+  }
+
+  .ai-collection-apply-btn-{{ ai_gen_id }} {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+  }
+
+  .ai-collection-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .ai-collection-product-{{ ai_gen_id }} {
+    position: relative;
+    font-family: 'New York', serif;
+  }
+
+  .ai-collection-product-image-link-{{ ai_gen_id }} {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 150%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background-color: #f5f5f5;
+    text-decoration: none;
+  }
+
+  .ai-collection-product-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-collection-product-actions-{{ ai_gen_id }} {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .ai-collection-wishlist-btn-{{ ai_gen_id }},
+  .ai-collection-cart-btn-{{ ai_gen_id }} {
+    width: 35px;
+    height: 35px;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .ai-collection-wishlist-btn-{{ ai_gen_id }}:hover,
+  .ai-collection-cart-btn-{{ ai_gen_id }}:hover {
+    background: #f0f0f0;
+  }
+
+  .ai-collection-wishlist-btn-{{ ai_gen_id }} svg,
+  .ai-collection-cart-btn-{{ ai_gen_id }} svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ai-collection-product-info-{{ ai_gen_id }} {
+    text-align: left;
+  }
+
+  .ai-collection-product-title-{{ ai_gen_id }} {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-family: 'New York', serif;
+    font-weight: 400;
+  }
+
+  .ai-collection-product-title-{{ ai_gen_id }} a {
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .ai-collection-product-price-{{ ai_gen_id }} {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-family: 'New York', serif;
+  }
+
+  .ai-collection-price-compare-{{ ai_gen_id }} {
+    text-decoration: line-through;
+    color: #999999;
+    margin-right: 8px;
+  }
+
+  .ai-collection-price-final-{{ ai_gen_id }} {
+    color: #000000;
+  }
+
+  .ai-collection-loading-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 40px;
+    font-size: 16px;
+    font-family: 'New York', serif;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-collection-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .ai-collection-sidebar-{{ ai_gen_id }},
+    .ai-collection-sort-sidebar-{{ ai_gen_id }} {
+      width: 280px;
+    }
+  }
+{% endstyle %}
+
+<collection-template-{{ ai_gen_id }}
+  class="ai-collection-template-{{ ai_gen_id }}"
+  data-collection-handle="{{ collection.handle }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-collection-controls-{{ ai_gen_id }}">
+    <button class="ai-collection-filter-btn-{{ ai_gen_id }}" aria-label="Open filters">
+      Filter
+    </button>
+    <button class="ai-collection-sort-btn-{{ ai_gen_id }}" aria-label="Open sort options">
+      Sort
+    </button>
+  </div>
+
+  <div class="ai-collection-sidebar-overlay-{{ ai_gen_id }}"></div>
+
+  <div class="ai-collection-sidebar-{{ ai_gen_id }}">
+    <div class="ai-collection-sidebar-header-{{ ai_gen_id }}">
+      <h3 class="ai-collection-sidebar-title-{{ ai_gen_id }}">Filter</h3>
+      <button class="ai-collection-sidebar-close-{{ ai_gen_id }}" data-sidebar="filter" aria-label="Close sidebar">×</button>
+    </div>
+
+    <div class="ai-collection-sidebar-content-{{ ai_gen_id }}">
+      <div class="ai-collection-filter-section-{{ ai_gen_id }}">
+        <h4 class="ai-collection-filter-heading-{{ ai_gen_id }}">Availability</h4>
+        <div class="ai-collection-filter-option-{{ ai_gen_id }}">
+          <input type="checkbox" id="in-stock-{{ ai_gen_id }}" value="in-stock">
+          <label for="in-stock-{{ ai_gen_id }}">In Stock</label>
+        </div>
+        <div class="ai-collection-filter-option-{{ ai_gen_id }}">
+          <input type="checkbox" id="out-stock-{{ ai_gen_id }}" value="out-stock">
+          <label for="out-stock-{{ ai_gen_id }}">Out of Stock</label>
+        </div>
+      </div>
+
+      <div class="ai-collection-filter-section-{{ ai_gen_id }}">
+        <h4 class="ai-collection-filter-heading-{{ ai_gen_id }}">Price Range</h4>
+        <div class="ai-collection-price-inputs-{{ ai_gen_id }}">
+          <input type="number" placeholder="Min" id="price-min-{{ ai_gen_id }}">
+          <input type="number" placeholder="Max" id="price-max-{{ ai_gen_id }}">
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-collection-sidebar-actions-{{ ai_gen_id }}">
+      <button class="ai-collection-reset-btn-{{ ai_gen_id }}" data-type="filter">Reset</button>
+      <button class="ai-collection-apply-btn-{{ ai_gen_id }}" data-type="filter">Apply</button>
+    </div>
+  </div>
+
+  <div class="ai-collection-sort-sidebar-{{ ai_gen_id }}">
+    <div class="ai-collection-sidebar-header-{{ ai_gen_id }}">
+      <h3 class="ai-collection-sidebar-title-{{ ai_gen_id }}">Sort</h3>
+      <button class="ai-collection-sidebar-close-{{ ai_gen_id }}" data-sidebar="sort" aria-label="Close sidebar">×</button>
+    </div>
+
+    <div class="ai-collection-sidebar-content-{{ ai_gen_id }}">
+      <div class="ai-collection-filter-section-{{ ai_gen_id }}">
+        <div class="ai-collection-filter-option-{{ ai_gen_id }}">
+          <input type="radio" name="sort-{{ ai_gen_id }}" value="title-asc" id="sort-az-{{ ai_gen_id }}">
+          <label for="sort-az-{{ ai_gen_id }}">Alphabetically, A-Z</label>
+        </div>
+        <div class="ai-collection-filter-option-{{ ai_gen_id }}">
+          <input type="radio" name="sort-{{ ai_gen_id }}" value="title-desc" id="sort-za-{{ ai_gen_id }}">
+          <label for="sort-za-{{ ai_gen_id }}">Alphabetically, Z-A</label>
+        </div>
+        <div class="ai-collection-filter-option-{{ ai_gen_id }}">
+          <input type="radio" name="sort-{{ ai_gen_id }}" value="price-asc" id="sort-price-low-{{ ai_gen_id }}">
+          <label for="sort-price-low-{{ ai_gen_id }}">Price, Low to High</label>
+        </div>
+        <div class="ai-collection-filter-option-{{ ai_gen_id }}">
+          <input type="radio" name="sort-{{ ai_gen_id }}" value="price-desc" id="sort-price-high-{{ ai_gen_id }}">
+          <label for="sort-price-high-{{ ai_gen_id }}">Price, High to Low</label>
+        </div>
+        <div class="ai-collection-filter-option-{{ ai_gen_id }}">
+          <input type="radio" name="sort-{{ ai_gen_id }}" value="created-asc" id="sort-old-{{ ai_gen_id }}">
+          <label for="sort-old-{{ ai_gen_id }}">Date, Old to New</label>
+        </div>
+        <div class="ai-collection-filter-option-{{ ai_gen_id }}">
+          <input type="radio" name="sort-{{ ai_gen_id }}" value="created-desc" id="sort-new-{{ ai_gen_id }}">
+          <label for="sort-new-{{ ai_gen_id }}">Date, New to Old</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-collection-sidebar-actions-{{ ai_gen_id }}">
+      <button class="ai-collection-reset-btn-{{ ai_gen_id }}" data-type="sort">Reset</button>
+      <button class="ai-collection-apply-btn-{{ ai_gen_id }}" data-type="sort">Apply</button>
+    </div>
+  </div>
+
+  <div class="ai-collection-grid-{{ ai_gen_id }}"></div>
+  <div class="ai-collection-loading-{{ ai_gen_id }}" style="display: none;">Loading more products...</div>
+</collection-template-{{ ai_gen_id }}>
+
+<script>
+(function() {
+  class CollectionTemplate{{ ai_gen_id }} extends HTMLElement {
+    constructor() {
+      super();
+      this.currentPage = 1;
+      this.loading = false;
+      this.hasMore = true;
+      this.allProducts = [];
+      this.filteredProducts = [];
+      this.sortBy = '';
+      this.filters = {
+        availability: [],
+        priceMin: null,
+        priceMax: null
+      };
+    }
+
+    connectedCallback() {
+      this.collectionHandle = this.dataset.collectionHandle || '{{ collection.handle }}';
+      this.grid = this.querySelector('.ai-collection-grid-{{ ai_gen_id }}');
+      this.loadingEl = this.querySelector('.ai-collection-loading-{{ ai_gen_id }}');
+      this.filterSidebar = this.querySelector('.ai-collection-sidebar-{{ ai_gen_id }}');
+      this.sortSidebar = this.querySelector('.ai-collection-sort-sidebar-{{ ai_gen_id }}');
+      this.overlay = this.querySelector('.ai-collection-sidebar-overlay-{{ ai_gen_id }}');
+      
+      this.setupEventListeners();
+      this.loadProducts();
+      this.setupInfiniteScroll();
+    }
+
+    setupEventListeners() {
+      const filterBtn = this.querySelector('.ai-collection-filter-btn-{{ ai_gen_id }}');
+      const sortBtn = this.querySelector('.ai-collection-sort-btn-{{ ai_gen_id }}');
+      const closeBtns = this.querySelectorAll('.ai-collection-sidebar-close-{{ ai_gen_id }}');
+      const applyBtns = this.querySelectorAll('.ai-collection-apply-btn-{{ ai_gen_id }}');
+      const resetBtns = this.querySelectorAll('.ai-collection-reset-btn-{{ ai_gen_id }}');
+
+      if (filterBtn) filterBtn.addEventListener('click', () => this.openFilterSidebar());
+      if (sortBtn) sortBtn.addEventListener('click', () => this.openSortSidebar());
+      
+      closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sidebarType = btn.dataset.sidebar;
+          if (sidebarType === 'filter') {
+            this.closeFilterSidebar();
+          } else if (sidebarType === 'sort') {
+            this.closeSortSidebar();
+          }
+        });
+      });
+
+      if (this.overlay) {
+        this.overlay.addEventListener('click', () => {
+          this.closeFilterSidebar();
+          this.closeSortSidebar();
+        });
+      }
+
+      applyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const type = btn.dataset.type;
+          if (type === 'filter') {
+            this.applyFilters();
+          } else if (type === 'sort') {
+            this.applySort();
+          }
+        });
+      });
+
+      resetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const type = btn.dataset.type;
+          if (type === 'filter') {
+            this.resetFilters();
+          } else if (type === 'sort') {
+            this.resetSort();
+          }
+        });
+      });
+    }
+
+    openFilterSidebar() {
+      if (this.filterSidebar) this.filterSidebar.classList.add('active');
+      if (this.overlay) this.overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    closeFilterSidebar() {
+      if (this.filterSidebar) this.filterSidebar.classList.remove('active');
+      if (this.overlay) this.overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    openSortSidebar() {
+      if (this.sortSidebar) this.sortSidebar.classList.add('active');
+      if (this.overlay) this.overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    closeSortSidebar() {
+      if (this.sortSidebar) this.sortSidebar.classList.remove('active');
+      if (this.overlay) this.overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    async loadProducts() {
+      if (this.loading || !this.hasMore) return;
+      
+      this.loading = true;
+      if (this.loadingEl) this.loadingEl.style.display = 'block';
+
+      try {
+        const response = await fetch(`/collections/${this.collectionHandle}/products.json?page=${this.currentPage}&limit=20`);
+        const data = await response.json();
+        
+        if (data.products && data.products.length > 0) {
+          this.allProducts = [...this.allProducts, ...data.products];
+          this.filteredProducts = [...this.allProducts];
+          this.renderProducts(data.products);
+          this.currentPage++;
+          
+          if (data.products.length < 20) {
+            this.hasMore = false;
+          }
+        } else {
+          this.hasMore = false;
+        }
+      } catch (error) {
+        console.error('Error loading products:', error);
+      } finally {
+        this.loading = false;
+        if (this.loadingEl) this.loadingEl.style.display = 'none';
+      }
+    }
+
+    renderProducts(products) {
+      products.forEach(product => {
+        const productEl = this.createProductElement(product);
+        if (this.grid) this.grid.appendChild(productEl);
+      });
+    }
+
+    createProductElement(product) {
+      const div = document.createElement('div');
+      div.className = 'ai-collection-product-{{ ai_gen_id }}';
+      
+      const price = product.variants[0].price;
+      const comparePrice = product.variants[0].compare_at_price;
+      
+      let imageUrl = '';
+      if (product.images && product.images.length > 0) {
+        if (typeof product.images[0] === 'string') {
+          imageUrl = product.images[0];
+        } else if (product.images[0].src) {
+          imageUrl = product.images[0].src;
+        }
+      }
+
+      const formattedPrice = this.formatPrice(price);
+      const formattedComparePrice = comparePrice ? this.formatPrice(comparePrice) : null;
+
+      div.innerHTML = `
+        <a href="/products/${product.handle}" class="ai-collection-product-image-link-{{ ai_gen_id }}">
+          ${imageUrl ? `<img src="${imageUrl}" alt="${this.escapeHtml(product.title)}" class="ai-collection-product-image-{{ ai_gen_id }}" loading="lazy">` : ''}
+          <div class="ai-collection-product-actions-{{ ai_gen_id }}">
+            <button class="ai-collection-wishlist-btn-{{ ai_gen_id }}" data-product-id="${product.id}" aria-label="Add to wishlist">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+            <button class="ai-collection-cart-btn-{{ ai_gen_id }}" data-variant-id="${product.variants[0].id}" aria-label="Add to cart">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+            </button>
+          </div>
+        </a>
+        <div class="ai-collection-product-info-{{ ai_gen_id }}">
+          <h3 class="ai-collection-product-title-{{ ai_gen_id }}">
+            <a href="/products/${product.handle}">${this.escapeHtml(product.title)}</a>
+          </h3>
+          <div class="ai-collection-product-price-{{ ai_gen_id }}">
+            ${formattedComparePrice ? `<span class="ai-collection-price-compare-{{ ai_gen_id }}">₹${formattedComparePrice}</span>` : ''}
+            <span class="ai-collection-price-final-{{ ai_gen_id }}">₹${formattedPrice}</span>
+          </div>
+        </div>
+      `;
+
+      const cartBtn = div.querySelector('.ai-collection-cart-btn-{{ ai_gen_id }}');
+      if (cartBtn) {
+        cartBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.addToCart(product.variants[0].id);
+        });
+      }
+
+      const wishlistBtn = div.querySelector('.ai-collection-wishlist-btn-{{ ai_gen_id }}');
+      if (wishlistBtn) {
+        wishlistBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.addToWishlist(product.id);
+        });
+      }
+
+      return div;
+    }
+
+    formatPrice(priceInCents) {
+      const priceValue = parseFloat(priceInCents);
+      return priceValue.toLocaleString('en-IN', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    setupInfiniteScroll() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.loading && this.hasMore) {
+            this.loadProducts();
+          }
+        });
+      }, {
+        rootMargin: '200px'
+      });
+
+      if (this.loadingEl) observer.observe(this.loadingEl);
+    }
+
+    applyFilters() {
+      const inStockEl = this.querySelector('#in-stock-{{ ai_gen_id }}');
+      const outStockEl = this.querySelector('#out-stock-{{ ai_gen_id }}');
+      const inStockChecked = inStockEl ? inStockEl.checked : false;
+      const outStockChecked = outStockEl ? outStockEl.checked : false;
+      
+      this.filters.availability = [];
+      if (inStockChecked) this.filters.availability.push('in-stock');
+      if (outStockChecked) this.filters.availability.push('out-stock');
+
+      const priceMinEl = this.querySelector('#price-min-{{ ai_gen_id }}');
+      const priceMaxEl = this.querySelector('#price-max-{{ ai_gen_id }}');
+      this.filters.priceMin = priceMinEl ? parseFloat(priceMinEl.value) || null : null;
+      this.filters.priceMax = priceMaxEl ? parseFloat(priceMaxEl.value) || null : null;
+
+      this.filterAndSort();
+      this.closeFilterSidebar();
+    }
+
+    applySort() {
+      const sortRadios = this.querySelectorAll('input[name="sort-{{ ai_gen_id }}"]:checked');
+      this.sortBy = sortRadios.length > 0 ? sortRadios[0].value : '';
+
+      this.filterAndSort();
+      this.closeSortSidebar();
+    }
+
+    resetFilters() {
+      const inStockEl = this.querySelector('#in-stock-{{ ai_gen_id }}');
+      const outStockEl = this.querySelector('#out-stock-{{ ai_gen_id }}');
+      const priceMinEl = this.querySelector('#price-min-{{ ai_gen_id }}');
+      const priceMaxEl = this.querySelector('#price-max-{{ ai_gen_id }}');
+      
+      if (inStockEl) inStockEl.checked = false;
+      if (outStockEl) outStockEl.checked = false;
+      if (priceMinEl) priceMinEl.value = '';
+      if (priceMaxEl) priceMaxEl.value = '';
+      
+      this.filters = {
+        availability: [],
+        priceMin: null,
+        priceMax: null
+      };
+
+      this.filterAndSort();
+      this.closeFilterSidebar();
+    }
+
+    resetSort() {
+      this.querySelectorAll('input[name="sort-{{ ai_gen_id }}"]').forEach(radio => radio.checked = false);
+      this.sortBy = '';
+
+      this.filterAndSort();
+      this.closeSortSidebar();
+    }
+
+    filterAndSort() {
+      this.filteredProducts = [...this.allProducts];
+
+      if (this.filters.availability.length > 0) {
+        this.filteredProducts = this.filteredProducts.filter(product => {
+          const isAvailable = product.variants.some(v => v.available);
+          if (this.filters.availability.includes('in-stock') && isAvailable) return true;
+          if (this.filters.availability.includes('out-stock') && !isAvailable) return true;
+          return false;
+        });
+      }
+
+      if (this.filters.priceMin !== null || this.filters.priceMax !== null) {
+        this.filteredProducts = this.filteredProducts.filter(product => {
+          const price = parseFloat(product.variants[0].price);
+          if (this.filters.priceMin !== null && price < this.filters.priceMin) return false;
+          if (this.filters.priceMax !== null && price > this.filters.priceMax) return false;
+          return true;
+        });
+      }
+
+      if (this.sortBy) {
+        this.filteredProducts.sort((a, b) => {
+          if (this.sortBy === 'title-asc') {
+            return a.title.localeCompare(b.title);
+          }
+          if (this.sortBy === 'title-desc') {
+            return b.title.localeCompare(a.title);
+          }
+          if (this.sortBy === 'price-asc') {
+            return parseFloat(a.variants[0].price) - parseFloat(b.variants[0].price);
+          }
+          if (this.sortBy === 'price-desc') {
+            return parseFloat(b.variants[0].price) - parseFloat(a.variants[0].price);
+          }
+          if (this.sortBy === 'created-asc') {
+            return new Date(a.created_at) - new Date(b.created_at);
+          }
+          if (this.sortBy === 'created-desc') {
+            return new Date(b.created_at) - new Date(a.created_at);
+          }
+          return 0;
+        });
+      }
+
+      if (this.grid) {
+        this.grid.innerHTML = '';
+        this.renderProducts(this.filteredProducts);
+      }
+    }
+
+    async addToCart(variantId) {
+      try {
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: variantId,
+            quantity: 1
+          })
+        });
+
+        if (response.ok) {
+          window.location.href = '/cart';
+        }
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+      }
+    }
+
+    addToWishlist(productId) {
+      let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+      if (!wishlist.includes(productId)) {
+        wishlist.push(productId);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        alert('Added to wishlist!');
+      } else {
+        alert('Already in wishlist!');
+      }
+    }
+  }
+
+  customElements.define('collection-template-{{ ai_gen_id }}', CollectionTemplate{{ ai_gen_id }});
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Collection template",
+  "settings": [
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection template"
+    }
+  ]
+}
+{% endschema %}

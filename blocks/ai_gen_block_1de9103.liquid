@@ -1,0 +1,349 @@
+{% doc %}
+  @prompt
+    add a block that has 2 columns - left and right and in each column there are 4 links that are one below the other which basically are things that are present in a footer like terms and conditions, shopping policy, contact us, helpa nd all of that. so what you need to do is that you need to make it entirely cutomizable. so i will add ech one and then the page link will also be editable so i can link the thing to that page. it shoul dnot be button format. just hosul b d liek. text that has gets underlined when i hover over it.also all parts of it should be customizable. as in the padding between two, the color of the tects, the bolding, underlining, all of that, in phone they are all in one like singular column only for some reason. even in phone it hsould be 2 columsn
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-footer-links-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-footer-links__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ block.settings.column_gap }}px;
+  }
+
+  .ai-footer-links__column-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.link_spacing }}px;
+  }
+
+  .ai-footer-links__link-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: {{ block.settings.font_weight }};
+    text-decoration: {% if block.settings.default_underline %}underline{% else %}none{% endif %};
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .ai-footer-links__link-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.hover_color }};
+    text-decoration: {% if block.settings.hover_underline %}underline{% else %}none{% endif %};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-footer-links__container-{{ ai_gen_id }} {
+      gap: {{ block.settings.mobile_column_gap }}px;
+    }
+  }
+{% endstyle %}
+
+<footer-links-{{ ai_gen_id }} class="ai-footer-links-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-footer-links__container-{{ ai_gen_id }}">
+    <div class="ai-footer-links__column-{{ ai_gen_id }}">
+      {% if block.settings.link_1_text != blank %}
+        <a href="{{ block.settings.link_1_url }}" class="ai-footer-links__link-{{ ai_gen_id }}">
+          {{ block.settings.link_1_text }}
+        </a>
+      {% endif %}
+      {% if block.settings.link_2_text != blank %}
+        <a href="{{ block.settings.link_2_url }}" class="ai-footer-links__link-{{ ai_gen_id }}">
+          {{ block.settings.link_2_text }}
+        </a>
+      {% endif %}
+      {% if block.settings.link_3_text != blank %}
+        <a href="{{ block.settings.link_3_url }}" class="ai-footer-links__link-{{ ai_gen_id }}">
+          {{ block.settings.link_3_text }}
+        </a>
+      {% endif %}
+      {% if block.settings.link_4_text != blank %}
+        <a href="{{ block.settings.link_4_url }}" class="ai-footer-links__link-{{ ai_gen_id }}">
+          {{ block.settings.link_4_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="ai-footer-links__column-{{ ai_gen_id }}">
+      {% if block.settings.link_5_text != blank %}
+        <a href="{{ block.settings.link_5_url }}" class="ai-footer-links__link-{{ ai_gen_id }}">
+          {{ block.settings.link_5_text }}
+        </a>
+      {% endif %}
+      {% if block.settings.link_6_text != blank %}
+        <a href="{{ block.settings.link_6_url }}" class="ai-footer-links__link-{{ ai_gen_id }}">
+          {{ block.settings.link_6_text }}
+        </a>
+      {% endif %}
+      {% if block.settings.link_7_text != blank %}
+        <a href="{{ block.settings.link_7_url }}" class="ai-footer-links__link-{{ ai_gen_id }}">
+          {{ block.settings.link_7_text }}
+        </a>
+      {% endif %}
+      {% if block.settings.link_8_text != blank %}
+        <a href="{{ block.settings.link_8_url }}" class="ai-footer-links__link-{{ ai_gen_id }}">
+          {{ block.settings.link_8_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</footer-links-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FooterLinks{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.links = this.querySelectorAll('.ai-footer-links__link-{{ ai_gen_id }}');
+      }
+    }
+
+    customElements.define('footer-links-{{ ai_gen_id }}', FooterLinks{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Footer links",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left column"
+    },
+    {
+      "type": "text",
+      "id": "link_1_text",
+      "label": "Link 1 text",
+      "default": "Terms and conditions"
+    },
+    {
+      "type": "url",
+      "id": "link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_2_text",
+      "label": "Link 2 text",
+      "default": "Shipping policy"
+    },
+    {
+      "type": "url",
+      "id": "link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_3_text",
+      "label": "Link 3 text",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "link_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_4_text",
+      "label": "Link 4 text",
+      "default": "Help"
+    },
+    {
+      "type": "url",
+      "id": "link_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "header",
+      "content": "Right column"
+    },
+    {
+      "type": "text",
+      "id": "link_5_text",
+      "label": "Link 5 text",
+      "default": "Privacy policy"
+    },
+    {
+      "type": "url",
+      "id": "link_5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_6_text",
+      "label": "Link 6 text",
+      "default": "Refund policy"
+    },
+    {
+      "type": "url",
+      "id": "link_6_url",
+      "label": "Link 6 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_7_text",
+      "label": "Link 7 text",
+      "default": "About us"
+    },
+    {
+      "type": "url",
+      "id": "link_7_url",
+      "label": "Link 7 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_8_text",
+      "label": "Link 8 text",
+      "default": "FAQ"
+    },
+    {
+      "type": "url",
+      "id": "link_8_url",
+      "label": "Link 8 URL"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_gap",
+      "label": "Mobile column gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "link_spacing",
+      "label": "Link spacing",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "checkbox",
+      "id": "default_underline",
+      "label": "Underline by default",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_underline",
+      "label": "Underline on hover",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer links"
+    }
+  ]
+}
+{% endschema %}

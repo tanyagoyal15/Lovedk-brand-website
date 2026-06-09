@@ -1,0 +1,539 @@
+{% doc %}
+  @prompt
+    Recreate a responsive "Shop by Category" section featuring six perfectly circular product images with centered text labels underneath each one (e.g., "Necklace", "Bracelet", "Earring", anklet, waist chain, rings) in a serif New York font. On desktop, all six circles should be displayed in a single horizontal row. For mobile and tablet views, the section must become a touch-friendly slider that shows exactly three circles at a time to prevent overcrowding; crucially, add two visible, minimalist arrow icons (chevron style) on the far left and right sides of the slider so users know they can scroll. The images should have a clean, high-resolution appearance with no borders, and the text below should be perfectly aligned with the center of each circle. Ensure the entire element (circle + text) is clickable and points to its respective collection. The background should be a solid, clean white with consistent top and bottom padding, maintaining a professional and elegant aesthetic that matches the "New York" typography used throughout the site. Each circle thing is also like a link to a collection they can open. And also I can set the image that is present in the circle. , Okay, rather than showing arrows on the left and right, can you just, at the bottom, make some sort of a slider thing, not a slider exactly, like at the bottom a bar or something, so when I slide it, it moves too? 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-shop-category-{{ ai_gen_id }} {
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_top }}px 0 {{ block.settings.padding_bottom }}px;
+    display: block;
+  }
+
+  .ai-shop-category-container-{{ ai_gen_id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-shop-category-desktop-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: {{ block.settings.spacing }}px;
+  }
+
+  .ai-shop-category-mobile-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-shop-category-slider-wrapper-{{ ai_gen_id }} {
+    margin-bottom: 20px;
+  }
+
+  .ai-shop-category-slider-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: {{ block.settings.spacing }}px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .ai-shop-category-slider-{{ ai_gen_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-shop-category-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-shop-category-item-{{ ai_gen_id }}:hover {
+    transform: translateY(-5px);
+  }
+
+  .ai-shop-category-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .ai-shop-category-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-shop-category-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-shop-category-placeholder-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.3;
+  }
+
+  .ai-shop-category-label-{{ ai_gen_id }} {
+    font-family: 'New York', serif;
+    font-size: {{ block.settings.label_font_size }}px;
+    color: {{ block.settings.label_color }};
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .ai-shop-category-scrollbar-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.scrollbar_height }}px;
+    background-color: {{ block.settings.scrollbar_track_color }};
+    border-radius: {{ block.settings.scrollbar_height | divided_by: 2 }}px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .ai-shop-category-scrollbar-thumb-{{ ai_gen_id }} {
+    height: 100%;
+    background-color: {{ block.settings.scrollbar_thumb_color }};
+    border-radius: {{ block.settings.scrollbar_height | divided_by: 2 }}px;
+    position: absolute;
+    left: 0;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-shop-category-scrollbar-thumb-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.scrollbar_thumb_hover_color }};
+  }
+
+  @media screen and (max-width: 1024px) {
+    .ai-shop-category-desktop-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-shop-category-mobile-{{ ai_gen_id }} {
+      display: block;
+    }
+
+    .ai-shop-category-slider-{{ ai_gen_id }} {
+      grid-template-columns: repeat(6, calc(33.333% - {{ block.settings.spacing | times: 2 | divided_by: 3.0 }}px));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-shop-category-slider-{{ ai_gen_id }} {
+      grid-template-columns: repeat(6, calc(33.333% - {{ block.settings.spacing | times: 2 | divided_by: 3.0 }}px));
+    }
+
+    .ai-shop-category-label-{{ ai_gen_id }} {
+      font-size: {{ block.settings.label_font_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<shop-by-category-{{ ai_gen_id }} class="ai-shop-category-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-shop-category-container-{{ ai_gen_id }}">
+    <div class="ai-shop-category-desktop-{{ ai_gen_id }}">
+      {% for i in (1..6) %}
+        {% liquid
+          assign collection_key = 'collection_' | append: i
+          assign label_key = 'label_' | append: i
+          assign image_key = 'image_' | append: i
+          
+          assign collection = block.settings[collection_key]
+          assign label = block.settings[label_key]
+          assign image = block.settings[image_key]
+        %}
+        
+        {% if collection != blank %}
+          <a href="{{ collection.url }}" class="ai-shop-category-item-{{ ai_gen_id }}">
+            <div class="ai-shop-category-image-wrapper-{{ ai_gen_id }}">
+              {% if image != blank %}
+                <img
+                  src="{{ image | image_url: width: 400 }}"
+                  alt="{{ label | escape }}"
+                  class="ai-shop-category-image-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="400"
+                  height="400"
+                >
+              {% else %}
+                <div class="ai-shop-category-placeholder-{{ ai_gen_id }}">
+                  {{ 'collection-1' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+            {% if label != blank %}
+              <span class="ai-shop-category-label-{{ ai_gen_id }}">{{ label }}</span>
+            {% endif %}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="ai-shop-category-mobile-{{ ai_gen_id }}">
+      <div class="ai-shop-category-slider-wrapper-{{ ai_gen_id }}">
+        <div class="ai-shop-category-slider-{{ ai_gen_id }}">
+          {% for i in (1..6) %}
+            {% liquid
+              assign collection_key = 'collection_' | append: i
+              assign label_key = 'label_' | append: i
+              assign image_key = 'image_' | append: i
+              
+              assign collection = block.settings[collection_key]
+              assign label = block.settings[label_key]
+              assign image = block.settings[image_key]
+            %}
+            
+            {% if collection != blank %}
+              <a href="{{ collection.url }}" class="ai-shop-category-item-{{ ai_gen_id }}">
+                <div class="ai-shop-category-image-wrapper-{{ ai_gen_id }}">
+                  {% if image != blank %}
+                    <img
+                      src="{{ image | image_url: width: 400 }}"
+                      alt="{{ label | escape }}"
+                      class="ai-shop-category-image-{{ ai_gen_id }}"
+                      loading="lazy"
+                      width="400"
+                      height="400"
+                    >
+                  {% else %}
+                    <div class="ai-shop-category-placeholder-{{ ai_gen_id }}">
+                      {{ 'collection-1' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                </div>
+                {% if label != blank %}
+                  <span class="ai-shop-category-label-{{ ai_gen_id }}">{{ label }}</span>
+                {% endif %}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ai-shop-category-scrollbar-{{ ai_gen_id }}">
+        <div class="ai-shop-category-scrollbar-thumb-{{ ai_gen_id }}"></div>
+      </div>
+    </div>
+  </div>
+</shop-by-category-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ShopByCategory{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.isDragging = false;
+      }
+
+      connectedCallback() {
+        this.slider = this.querySelector('.ai-shop-category-slider-{{ ai_gen_id }}');
+        this.scrollbar = this.querySelector('.ai-shop-category-scrollbar-{{ ai_gen_id }}');
+        this.thumb = this.querySelector('.ai-shop-category-scrollbar-thumb-{{ ai_gen_id }}');
+
+        if (this.slider && this.scrollbar && this.thumb) {
+          this.setupEventListeners();
+          this.updateThumb();
+        }
+      }
+
+      setupEventListeners() {
+        this.slider.addEventListener('scroll', () => this.updateThumb());
+        
+        this.thumb.addEventListener('mousedown', (e) => this.startDrag(e));
+        this.thumb.addEventListener('touchstart', (e) => this.startDrag(e));
+        
+        this.scrollbar.addEventListener('click', (e) => this.handleScrollbarClick(e));
+        
+        document.addEventListener('mousemove', (e) => this.onDrag(e));
+        document.addEventListener('touchmove', (e) => this.onDrag(e));
+        
+        document.addEventListener('mouseup', () => this.stopDrag());
+        document.addEventListener('touchend', () => this.stopDrag());
+
+        window.addEventListener('resize', () => this.updateThumb());
+      }
+
+      updateThumb() {
+        const scrollPercentage = this.slider.scrollLeft / (this.slider.scrollWidth - this.slider.clientWidth);
+        const thumbWidth = (this.slider.clientWidth / this.slider.scrollWidth) * 100;
+        const maxThumbPosition = 100 - thumbWidth;
+        
+        this.thumb.style.width = thumbWidth + '%';
+        this.thumb.style.left = (scrollPercentage * maxThumbPosition) + '%';
+      }
+
+      startDrag(e) {
+        this.isDragging = true;
+        this.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        this.startScrollLeft = this.slider.scrollLeft;
+        e.preventDefault();
+      }
+
+      onDrag(e) {
+        if (!this.isDragging) return;
+        
+        const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        const deltaX = x - this.startX;
+        const scrollbarWidth = this.scrollbar.offsetWidth;
+        const scrollRatio = this.slider.scrollWidth / scrollbarWidth;
+        
+        this.slider.scrollLeft = this.startScrollLeft + (deltaX * scrollRatio);
+      }
+
+      stopDrag() {
+        this.isDragging = false;
+      }
+
+      handleScrollbarClick(e) {
+        if (e.target === this.thumb) return;
+        
+        const scrollbarRect = this.scrollbar.getBoundingClientRect();
+        const clickPosition = e.clientX - scrollbarRect.left;
+        const scrollbarWidth = this.scrollbar.offsetWidth;
+        const clickPercentage = clickPosition / scrollbarWidth;
+        
+        this.slider.scrollLeft = clickPercentage * (this.slider.scrollWidth - this.slider.clientWidth);
+      }
+    }
+
+    customElements.define('shop-by-category-{{ ai_gen_id }}', ShopByCategory{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Shop by category",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Spacing between items",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Category 1"
+    },
+    {
+      "type": "collection",
+      "id": "collection_1",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "label_1",
+      "label": "Label",
+      "default": "Necklace"
+    },
+    {
+      "type": "header",
+      "content": "Category 2"
+    },
+    {
+      "type": "collection",
+      "id": "collection_2",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "label_2",
+      "label": "Label",
+      "default": "Bracelet"
+    },
+    {
+      "type": "header",
+      "content": "Category 3"
+    },
+    {
+      "type": "collection",
+      "id": "collection_3",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "label_3",
+      "label": "Label",
+      "default": "Earring"
+    },
+    {
+      "type": "header",
+      "content": "Category 4"
+    },
+    {
+      "type": "collection",
+      "id": "collection_4",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "label_4",
+      "label": "Label",
+      "default": "Anklet"
+    },
+    {
+      "type": "header",
+      "content": "Category 5"
+    },
+    {
+      "type": "collection",
+      "id": "collection_5",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "label_5",
+      "label": "Label",
+      "default": "Waist chain"
+    },
+    {
+      "type": "header",
+      "content": "Category 6"
+    },
+    {
+      "type": "collection",
+      "id": "collection_6",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "label_6",
+      "label": "Label",
+      "default": "Rings"
+    },
+    {
+      "type": "header",
+      "content": "Label style"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Scrollbar style"
+    },
+    {
+      "type": "range",
+      "id": "scrollbar_height",
+      "label": "Height",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_track_color",
+      "label": "Track color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_thumb_color",
+      "label": "Thumb color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "scrollbar_thumb_hover_color",
+      "label": "Thumb hover color",
+      "default": "#333333"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by category"
+    }
+  ]
+}
+{% endschema %}

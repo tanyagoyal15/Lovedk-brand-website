@@ -1,0 +1,115 @@
+{% assign margin = block.settings.margin | split: "|" %}
+{% assign padding = block.settings.padding | split: "|" %}
+
+<style>
+  #shopify-block-{{ block.id }} .card-header{
+    border-radius: {{ block.settings.border-radius }};
+    border-width: {{ block.settings.border-width }};
+    border-style: solid;
+    border-color: {{ block.settings.border-color }};
+    background: {{ block.settings.background }};
+  }
+
+  {%- if margin[0] != blank or padding[0] != blank -%}
+  #shopify-block-{{ block.id }} .card-header{
+    {%- if margin[0] != blank -%}margin: {{ margin[0] }};{%- endif -%}
+    {%- if padding[0] != blank -%}padding: {{ padding[0] }};{%- endif -%}
+  }
+  {%- endif -%}
+</style>
+
+<div class="card-header">
+  <a
+    class="card-link icons-{{ block.settings.position }}"
+    data-toggle="collapse"
+    style="display:block;width:100%;text-decoration:none;"
+  >
+
+    <!-- TABLE LAYOUT (BULLETPROOF) -->
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+
+        <!-- LEFT TEXT -->
+        <td align="left" valign="middle">
+          {% content_for "block", type: "title", id: "title" %}
+        </td>
+
+        <!-- RIGHT ICON -->
+        <td align="right" valign="middle" width="1%">
+          {% if block.settings.icon_normal != blank %}
+            <span
+              style="
+                color: {{ block.settings.icon_color }};
+                font-size: {{ block.settings.icon_size }}px;
+                display:inline-block;
+              "
+            >
+              <i class="{{ block.settings.icon_normal }}"></i>
+            </span>
+          {% endif %}
+        </td>
+
+      </tr>
+    </table>
+
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "Collapsible header",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "padding",
+      "label": "Padding",
+      "info": "Desktop | 1200px | 991px | 767px"
+    },
+    {
+      "type": "textarea",
+      "id": "margin",
+      "label": "Margin",
+      "info": "Desktop | 1200px | 991px | 767px"
+    },
+    {
+      "type": "text",
+      "id": "icon_normal",
+      "label": "Icon normal",
+      "default": "feather-plus"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color"
+    },
+    {
+      "type": "number",
+      "id": "icon_size",
+      "label": "Icon Size",
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "border-radius",
+      "label": "Border radius",
+      "default": "0px"
+    },
+    {
+      "type": "text",
+      "id": "border-width",
+      "label": "Border width",
+      "default": "0px"
+    },
+    {
+      "type": "color",
+      "id": "border-color",
+      "label": "Border color"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    }
+  ]
+}
+{% endschema %}

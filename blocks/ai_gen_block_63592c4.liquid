@@ -1,0 +1,327 @@
+{% doc %}
+  @prompt
+    you need to create a rolling view that loops around and shows 5 trust badges - like a conveyer belt. i will upload the 5 photos of the badges. make sure that they are shwon proerly
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-trust-badges-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_vertical }}px 0;
+  }
+
+  .ai-trust-badges-container-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    animation: ai-trust-badges-scroll-{{ ai_gen_id }} {{ block.settings.animation_speed }}s linear infinite;
+  }
+
+  .ai-trust-badges-track-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.badge_spacing }}px;
+  }
+
+  .ai-trust-badge-item-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.badge_width }}px;
+    height: {{ block.settings.badge_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ block.settings.badge_background }};
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    padding: {{ block.settings.badge_padding }}px;
+    box-sizing: border-box;
+  }
+
+  .ai-trust-badge-item-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-trust-badge-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ block.settings.badge_border_radius }}px;
+  }
+
+  .ai-trust-badge-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  @keyframes ai-trust-badges-scroll-{{ ai_gen_id }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-{{ block.settings.badge_width }}px * 5 - {{ block.settings.badge_spacing }}px * 5));
+    }
+  }
+
+  .ai-trust-badges-container-{{ ai_gen_id }}:hover {
+    animation-play-state: {{ block.settings.pause_on_hover | default: true | if: 'paused', 'running' }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-trust-badge-item-{{ ai_gen_id }} {
+      width: {{ block.settings.badge_width | times: 0.8 }}px;
+      height: {{ block.settings.badge_height | times: 0.8 }}px;
+    }
+
+    @keyframes ai-trust-badges-scroll-{{ ai_gen_id }} {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-{{ block.settings.badge_width | times: 0.8 }}px * 5 - {{ block.settings.badge_spacing }}px * 5));
+      }
+    }
+  }
+{% endstyle %}
+
+<trust-badges-{{ ai_gen_id }} class="ai-trust-badges-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-trust-badges-container-{{ ai_gen_id }}">
+    <div class="ai-trust-badges-track-{{ ai_gen_id }}">
+      {% for i in (1..5) %}
+        {% liquid
+          assign badge_key = 'badge_' | append: i
+          assign badge_image = block.settings[badge_key]
+        %}
+        <div class="ai-trust-badge-item-{{ ai_gen_id }}">
+          {% if badge_image %}
+            <img
+              src="{{ badge_image | image_url: width: 400 }}"
+              alt="{{ badge_image.alt | escape }}"
+              loading="lazy"
+              width="{{ block.settings.badge_width }}"
+              height="{{ block.settings.badge_height }}"
+            >
+          {% else %}
+            <div class="ai-trust-badge-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="ai-trust-badges-track-{{ ai_gen_id }}">
+      {% for i in (1..5) %}
+        {% liquid
+          assign badge_key = 'badge_' | append: i
+          assign badge_image = block.settings[badge_key]
+        %}
+        <div class="ai-trust-badge-item-{{ ai_gen_id }}">
+          {% if badge_image %}
+            <img
+              src="{{ badge_image | image_url: width: 400 }}"
+              alt="{{ badge_image.alt | escape }}"
+              loading="lazy"
+              width="{{ block.settings.badge_width }}"
+              height="{{ block.settings.badge_height }}"
+            >
+          {% else %}
+            <div class="ai-trust-badge-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</trust-badges-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TrustBadges{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.container = this.querySelector('.ai-trust-badges-container-{{ ai_gen_id }}');
+        
+        if (this.container) {
+          this.setupAccessibility();
+        }
+      }
+
+      setupAccessibility() {
+        this.container.setAttribute('role', 'region');
+        this.container.setAttribute('aria-label', 'Trust badges carousel');
+      }
+    }
+
+    customElements.define('trust-badges-{{ ai_gen_id }}', TrustBadges{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Trust badges carousel",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Badge images"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_1",
+      "label": "Badge 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_2",
+      "label": "Badge 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_3",
+      "label": "Badge 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_4",
+      "label": "Badge 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_5",
+      "label": "Badge 5"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "badge_width",
+      "label": "Badge width",
+      "min": 80,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "badge_height",
+      "label": "Badge height",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "badge_spacing",
+      "label": "Space between badges",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Badge style"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Badge background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "label": "Badge border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "badge_padding",
+      "label": "Badge padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "Animation speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f8f8f2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust badges carousel"
+    }
+  ]
+}
+{% endschema %}
