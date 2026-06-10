@@ -1,0 +1,232 @@
+/* =============================================================
+   LoveDK — Custom Styles
+   All project-specific overrides go here.
+   Load order: last (after all theme CSS)
+   Sections:
+     1. Design Tokens
+     2. Typography
+     3. Buttons
+     4. Product Cards
+     5. PDP (Product Detail Page)
+     6. Header / Mega Menu
+     7. Homepage Sections
+     8. Search
+     9. Footer
+     10. Utilities
+   ============================================================= */
+
+
+/* ─────────────────────────────────────────────
+   1. DESIGN TOKENS
+   ───────────────────────────────────────────── */
+:root {
+  /* Brand Colors */
+  --ldk-black:        #000000;
+  --ldk-white:        #ffffff;
+  --ldk-cream:        #f8f8f2;
+  --ldk-brown:        #4d3f38;
+  --ldk-brown-light:  #92614c;
+  --ldk-silver:       #dadada;
+  --ldk-border:       #e8e8e0;
+
+  /* Typography */
+  --ldk-font-heading: proxima-nova, 'Plus Jakarta Sans', sans-serif;
+  --ldk-font-body:    'Assistant', sans-serif;
+
+  /* Font sizes */
+  --ldk-text-xs:   11px;
+  --ldk-text-sm:   12px;
+  --ldk-text-base: 14px;
+  --ldk-text-md:   16px;
+  --ldk-text-lg:   18px;
+  --ldk-text-xl:   22px;
+  --ldk-text-2xl:  28px;
+  --ldk-text-3xl:  36px;
+
+  /* Spacing */
+  --ldk-space-xs:  4px;
+  --ldk-space-sm:  8px;
+  --ldk-space-md:  16px;
+  --ldk-space-lg:  24px;
+  --ldk-space-xl:  40px;
+  --ldk-space-2xl: 64px;
+
+  /* Border radius */
+  --ldk-radius-sm:   4px;
+  --ldk-radius-md:   8px;
+  --ldk-radius-lg:   12px;
+  --ldk-radius-pill: 100px;
+
+  /* Transitions */
+  --ldk-transition: 0.25s ease;
+
+  /* Z-index layers */
+  --ldk-z-header:   100;
+  --ldk-z-megamenu: 200;
+  --ldk-z-drawer:   300;
+  --ldk-z-overlay:  400;
+  --ldk-z-toast:    500;
+}
+
+
+/* ─────────────────────────────────────────────
+   2. TYPOGRAPHY
+   ───────────────────────────────────────────── */
+
+/* Override theme font with LoveDK fonts */
+body {
+  font-family: var(--ldk-font-body);
+  font-size: var(--ldk-text-base);
+  color: var(--ldk-brown);
+  background-color: var(--ldk-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--ldk-font-heading);
+  color: var(--ldk-black);
+  letter-spacing: -0.01em;
+}
+
+/* Section headings */
+.ldk-section-title {
+  font-family: var(--ldk-font-heading);
+  font-size: var(--ldk-text-2xl);
+  font-weight: 600;
+  color: var(--ldk-black);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--ldk-space-lg);
+}
+
+@media (max-width: 767px) {
+  .ldk-section-title {
+    font-size: var(--ldk-text-xl);
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   3. BUTTONS
+   ───────────────────────────────────────────── */
+
+/* Primary button */
+.ldk-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ldk-space-sm);
+  background-color: var(--ldk-black);
+  color: var(--ldk-white);
+  font-family: var(--ldk-font-body);
+  font-size: var(--ldk-text-base);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 14px var(--ldk-space-xl);
+  border: 1.5px solid var(--ldk-black);
+  border-radius: var(--ldk-radius-sm);
+  cursor: pointer;
+  transition: background-color var(--ldk-transition), color var(--ldk-transition);
+  text-decoration: none;
+}
+
+.ldk-btn-primary:hover {
+  background-color: var(--ldk-brown);
+  border-color: var(--ldk-brown);
+  color: var(--ldk-white);
+}
+
+/* Secondary / outline button */
+.ldk-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--ldk-black);
+  font-family: var(--ldk-font-body);
+  font-size: var(--ldk-text-base);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 13px var(--ldk-space-xl);
+  border: 1.5px solid var(--ldk-black);
+  border-radius: var(--ldk-radius-sm);
+  cursor: pointer;
+  transition: background-color var(--ldk-transition), color var(--ldk-transition);
+  text-decoration: none;
+}
+
+.ldk-btn-outline:hover {
+  background-color: var(--ldk-black);
+  color: var(--ldk-white);
+}
+
+
+/* ─────────────────────────────────────────────
+   4. PRODUCT CARDS
+   — Styles added here in feature/product-cards
+   ───────────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────────
+   5. PDP (PRODUCT DETAIL PAGE)
+   — Styles added here in feature/pdp
+   ───────────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────────
+   6. HEADER / MEGA MENU
+   — Styles added here in feature/mega-menu
+   ───────────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────────
+   7. HOMEPAGE SECTIONS
+   — Styles added here in feature/homepage
+   ───────────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────────
+   8. SEARCH
+   — Styles added here in feature/search
+   ───────────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────────
+   9. FOOTER
+   — Styles added here in feature/footer
+   ───────────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────────
+   10. UTILITIES
+   ───────────────────────────────────────────── */
+
+.ldk-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ldk-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--ldk-z-overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ldk-transition);
+}
+
+.ldk-overlay.is-active {
+  opacity: 1;
+  pointer-events: all;
+}
