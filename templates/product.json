@@ -16,31 +16,6 @@
         "text_align": "left"
       }
     },
-    "1775464578927b01a6": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_d56b6c1_r4Tazh": {
-          "type": "ai_gen_block_d56b6c1",
-          "settings": {
-            "desktop_width_percent": 60,
-            "gap": 40,
-            "border_radius": 0,
-            "loop_videos": true,
-            "thumbnail_width": 90,
-            "thumbnail_width_mobile": 70,
-            "thumbnail_gap": 10,
-            "thumbnail_border_radius": 0,
-            "active_border_color": "#000000",
-            "placeholder_bg": "#f5f5f5"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_d56b6c1_r4Tazh"
-      ],
-      "settings": {}
-    },
     "main": {
       "type": "product-template",
       "blocks": {
@@ -67,17 +42,14 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "list_product_sidebar_JNMNda"
-          ]
+          "block_order": ["list_product_sidebar_JNMNda"]
         },
         "single_product_image_qQ7qki": {
           "type": "_single-product-image",
           "name": "Single product image",
-          "disabled": true,
           "settings": {
-            "width": "60% | 100%",
-            "padding": "0 15px"
+            "width": "50% | 100%",
+            "padding": "0 0"
           },
           "blocks": {}
         },
@@ -85,10 +57,10 @@
           "type": "_single-product-info",
           "name": "Single product info",
           "settings": {
-            "width": "40% | 100%",
-            "padding": "0 15px",
+            "width": "42% | 100%",
+            "padding": "0 0 0 48px",
             "sticky": true,
-            "top": 0
+            "top": 80
           },
           "blocks": {
             "single_review_NYh6J6": {
@@ -361,9 +333,7 @@
               "name": "Single buy together",
               "disabled": true,
               "settings": {
-                "metafields_buy_together": [
-                  "bow-bracelet"
-                ],
+                "metafields_buy_together": ["bow-bracelet"],
                 "product_buy_together_margin": "0 0 50px",
                 "buy_together_title": "Frequently Bought Together"
               },
@@ -437,7 +407,7 @@
         "bg_section": "#ffffff",
         "padding_section": "0px 0px 0px 0px",
         "show_sticky_cart": true,
-        "media_layout": "thumbnails",
+        "media_layout": "stacked",
         "position_thumbnails": "bottom",
         "thumbnail_count": 5,
         "enable_video_looping": true
@@ -557,9 +527,7 @@
             "subheading": "Complete your look",
             "product_source": "collection",
             "selected_collection": "after-party",
-            "selected_products": [
-              "koyal-necklace"
-            ],
+            "selected_products": ["koyal-necklace"],
             "products_limit": 4,
             "section_max_width": 1200,
             "products_per_row": 4,
@@ -681,7 +649,6 @@
   },
   "order": [
     "breadcrumb",
-    "1775464578927b01a6",
     "main",
     "buy-together",
     "product-tab",

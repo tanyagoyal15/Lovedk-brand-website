@@ -1,4 +1,4 @@
-<div class="js-product-media-group js-product-media-group-{{ section.id }}{%- if varriant_array != blank -%}-{{ forloop.index }}{% endif %} product-single__media-group"{% if section.settings.media_layout == "slider" %} data-infinite="true" data-centeredslides="true" data-slidesperview="1.8"{%- endif -%}>
+<div class="js-product-media-group js-product-media-group-{{ section.id }}{%- if varriant_array != blank -%}-{{ forloop.index }}{% endif %} product-single__media-group"{% if section.settings.media_layout == "slider" %} data-infinite="true" data-centeredslides="true" data-slidesperview="1.8"{%- endif -%}{% if section.settings.media_layout == "stacked" %} data-draggable="true"{% endif %}>
   <div class="swiper-wrapper">
 	{%- assign width = 770 -%}
 	{%- assign height = 770 -%}

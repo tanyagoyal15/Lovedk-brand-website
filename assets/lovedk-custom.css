@@ -15,59 +15,57 @@
      10. Utilities
    ============================================================= */
 
-
 /* ─────────────────────────────────────────────
    1. DESIGN TOKENS
    ───────────────────────────────────────────── */
 :root {
   /* Brand Colors */
-  --ldk-black:        #000000;
-  --ldk-white:        #ffffff;
-  --ldk-cream:        #f8f8f2;
-  --ldk-brown:        #4d3f38;
-  --ldk-brown-light:  #92614c;
-  --ldk-silver:       #dadada;
-  --ldk-border:       #e8e8e0;
+  --ldk-black: #000000;
+  --ldk-white: #ffffff;
+  --ldk-cream: #f8f8f2;
+  --ldk-brown: #4d3f38;
+  --ldk-brown-light: #92614c;
+  --ldk-silver: #dadada;
+  --ldk-border: #e8e8e0;
 
   /* Typography */
-  --ldk-font-heading: proxima-nova, 'Plus Jakarta Sans', sans-serif;
-  --ldk-font-body:    'Assistant', sans-serif;
+  --ldk-font-heading: proxima-nova, "Plus Jakarta Sans", sans-serif;
+  --ldk-font-body: "Assistant", sans-serif;
 
   /* Font sizes */
-  --ldk-text-xs:   11px;
-  --ldk-text-sm:   12px;
+  --ldk-text-xs: 11px;
+  --ldk-text-sm: 12px;
   --ldk-text-base: 14px;
-  --ldk-text-md:   16px;
-  --ldk-text-lg:   18px;
-  --ldk-text-xl:   22px;
-  --ldk-text-2xl:  28px;
-  --ldk-text-3xl:  36px;
+  --ldk-text-md: 16px;
+  --ldk-text-lg: 18px;
+  --ldk-text-xl: 22px;
+  --ldk-text-2xl: 28px;
+  --ldk-text-3xl: 36px;
 
   /* Spacing */
-  --ldk-space-xs:  4px;
-  --ldk-space-sm:  8px;
-  --ldk-space-md:  16px;
-  --ldk-space-lg:  24px;
-  --ldk-space-xl:  40px;
+  --ldk-space-xs: 4px;
+  --ldk-space-sm: 8px;
+  --ldk-space-md: 16px;
+  --ldk-space-lg: 24px;
+  --ldk-space-xl: 40px;
   --ldk-space-2xl: 64px;
 
   /* Border radius */
-  --ldk-radius-sm:   4px;
-  --ldk-radius-md:   8px;
-  --ldk-radius-lg:   12px;
+  --ldk-radius-sm: 4px;
+  --ldk-radius-md: 8px;
+  --ldk-radius-lg: 12px;
   --ldk-radius-pill: 100px;
 
   /* Transitions */
   --ldk-transition: 0.25s ease;
 
   /* Z-index layers */
-  --ldk-z-header:   100;
+  --ldk-z-header: 100;
   --ldk-z-megamenu: 200;
-  --ldk-z-drawer:   300;
-  --ldk-z-overlay:  400;
-  --ldk-z-toast:    500;
+  --ldk-z-drawer: 300;
+  --ldk-z-overlay: 400;
+  --ldk-z-toast: 500;
 }
-
 
 /* ─────────────────────────────────────────────
    2. TYPOGRAPHY
@@ -83,8 +81,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   font-family: var(--ldk-font-heading);
   color: var(--ldk-black);
   letter-spacing: -0.01em;
@@ -105,7 +113,6 @@ h1, h2, h3, h4, h5, h6,
     font-size: var(--ldk-text-xl);
   }
 }
-
 
 /* ─────────────────────────────────────────────
    3. BUTTONS
@@ -128,7 +135,9 @@ h1, h2, h3, h4, h5, h6,
   border: 1.5px solid var(--ldk-black);
   border-radius: var(--ldk-radius-sm);
   cursor: pointer;
-  transition: background-color var(--ldk-transition), color var(--ldk-transition);
+  transition:
+    background-color var(--ldk-transition),
+    color var(--ldk-transition);
   text-decoration: none;
 }
 
@@ -154,7 +163,9 @@ h1, h2, h3, h4, h5, h6,
   border: 1.5px solid var(--ldk-black);
   border-radius: var(--ldk-radius-sm);
   cursor: pointer;
-  transition: background-color var(--ldk-transition), color var(--ldk-transition);
+  transition:
+    background-color var(--ldk-transition),
+    color var(--ldk-transition);
   text-decoration: none;
 }
 
@@ -163,42 +174,142 @@ h1, h2, h3, h4, h5, h6,
   color: var(--ldk-white);
 }
 
-
 /* ─────────────────────────────────────────────
    4. PRODUCT CARDS
    — Styles added here in feature/product-cards
    ───────────────────────────────────────────── */
 
-
 /* ─────────────────────────────────────────────
    5. PDP (PRODUCT DETAIL PAGE)
-   — Styles added here in feature/pdp
    ───────────────────────────────────────────── */
 
+.template-product .product-single.stacked {
+  align-items: flex-start;
+}
+
+.template-product .product-single.stacked .bwp-single-image {
+  padding: 0 !important;
+  margin-left: 0 !important;
+}
+
+.template-product .product-single.stacked .product-single__main-media {
+  margin-bottom: 0 !important;
+  display: block;
+}
+.product-single__media--stacked .product-single__media-item {
+  margin-bottom: 0 !important;
+}
+
+.template-product
+  .product-single__media--stacked
+  .product-single__media-item
+  img,
+.template-product
+  .product-single__media--stacked
+  .product-single__media-item
+  .media {
+  aspect-ratio: 4/5 !important;
+  object-fit: cover;
+}
+
+@media (max-width: 991px) {
+  /* Remove Bootstrap column padding causing right-side gap */
+  .template-product .product-single__media--stacked .row,
+  .template-product .product-single__media--stacked .col-md-12 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .template-product .product-single__media--stacked .slick-prev,
+  .template-product .product-single__media--stacked .slick-next,
+  .template-product .product-single__media--stacked .slick-arrow,
+  .template-product .product-single__media--stacked button[data-slick-previous],
+  .template-product .product-single__media--stacked button[data-slick-next] {
+    display: none !important;
+  }
+
+  .template-product .product-single__media--stacked .swiper-slide img {
+    width: 100%;
+    aspect-ratio: 4/5 !important;
+    object-fit: cover;
+  }
+
+  .template-product .product-single__media--stacked .swiper-pagination {
+    display: block;
+    bottom: 12px;
+  }
+  .template-product .product-single__media--stacked .swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.6;
+    width: 6px;
+    height: 6px;
+  }
+  .template-product
+    .product-single__media--stacked
+    .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #fff;
+  }
+}
+
+.template-product .product-single.stacked .product-media__wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.template-product .wpbingo-section .container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.template-product .product-single.stacked .bwp-product-info {
+  padding-right: 40px !important;
+}
+
+.template-product .product-single.stacked .bwp-product-info {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.template-product .product-single.stacked .bwp-product-info::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .template-product .product-single.stacked .bwp-product-info {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
 
 /* ─────────────────────────────────────────────
    6. HEADER / MEGA MENU
    — Styles added here in feature/mega-menu
    ───────────────────────────────────────────── */
 
-
 /* ─────────────────────────────────────────────
    7. HOMEPAGE SECTIONS
    — Styles added here in feature/homepage
    ───────────────────────────────────────────── */
-
 
 /* ─────────────────────────────────────────────
    8. SEARCH
    — Styles added here in feature/search
    ───────────────────────────────────────────── */
 
-
 /* ─────────────────────────────────────────────
    9. FOOTER
    — Styles added here in feature/footer
    ───────────────────────────────────────────── */
-
 
 /* ─────────────────────────────────────────────
    10. UTILITIES
