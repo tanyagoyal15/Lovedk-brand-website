@@ -9,13 +9,13 @@
  */
 {
   "current": {
-    "theme-color": "#000000",
+    "theme-color": "#503829",
     "color_secondary": "#dadada",
     "gray-dark": "#000000",
-    "hover-color": "#000000",
+    "hover-color": "#503829",
     "text-color": "#4d3f38",
-    "color_body_bg": "#f8f8f2",
-    "color_border": "#fdfdfb",
+    "color_body_bg": "#faf9f6",
+    "color_border": "#e8e0d8",
     "font-family-second-google-link": "<link href='https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap' rel='stylesheet'>",
     "font-family-second": "proxima-nova, 'Plus Jakarta Sans', sans-serif",
     "font-size-heading": 28,
@@ -435,10 +435,7 @@
             }
           }
         },
-        "block_order": [
-          "d43272b8-2a5b-432a-a9a5-59cabbd244ad",
-          "item_UEgbKj"
-        ],
+        "block_order": ["d43272b8-2a5b-432a-a9a5-59cabbd244ad", "item_UEgbKj"],
         "settings": {
           "enable": true,
           "bgimage": true,
@@ -605,9 +602,7 @@
                 "blocks": {}
               }
             },
-            "block_order": [
-              "menu_list_pCQMLC"
-            ]
+            "block_order": ["menu_list_pCQMLC"]
           },
           "mainmenu_item_XzFrRn": {
             "type": "_mainmenu-item",
@@ -714,9 +709,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_cDayJU"
-            ]
+            "block_order": ["megamenu_container_cDayJU"]
           },
           "mainmenu_item_f9pHmD": {
             "type": "_mainmenu-item",
@@ -805,9 +798,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_keiKic"
-            ]
+            "block_order": ["megamenu_container_keiKic"]
           },
           "mainmenu_item_Ugidhx": {
             "type": "_mainmenu-item",
@@ -858,15 +849,10 @@
                     "blocks": {}
                   }
                 },
-                "block_order": [
-                  "megamenu_item_qdq6VT",
-                  "megamenu_item_PjUtFL"
-                ]
+                "block_order": ["megamenu_item_qdq6VT", "megamenu_item_PjUtFL"]
               }
             },
-            "block_order": [
-              "megamenu_container_4giUfD"
-            ]
+            "block_order": ["megamenu_container_4giUfD"]
           },
           "mainmenu_item_rwAF6f": {
             "type": "_mainmenu-item",
@@ -971,9 +957,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_LXEH9D"
-            ]
+            "block_order": ["megamenu_container_LXEH9D"]
           }
         },
         "block_order": [
@@ -1139,9 +1123,7 @@
                 "blocks": {}
               }
             },
-            "block_order": [
-              "menu_list_gwHwBm"
-            ]
+            "block_order": ["menu_list_gwHwBm"]
           },
           "mainmenu_item_78Vxxr": {
             "type": "_mainmenu-item",
@@ -1248,9 +1230,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_gF6ybd"
-            ]
+            "block_order": ["megamenu_container_gF6ybd"]
           },
           "mainmenu_item_wKDVQU": {
             "type": "_mainmenu-item",
@@ -1339,9 +1319,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_QLqxEB"
-            ]
+            "block_order": ["megamenu_container_QLqxEB"]
           },
           "mainmenu_item_i86GGA": {
             "type": "_mainmenu-item",
@@ -1392,15 +1370,10 @@
                     "blocks": {}
                   }
                 },
-                "block_order": [
-                  "megamenu_item_x9e7Yc",
-                  "megamenu_item_3iKTRH"
-                ]
+                "block_order": ["megamenu_item_x9e7Yc", "megamenu_item_3iKTRH"]
               }
             },
-            "block_order": [
-              "megamenu_container_fHyTJ6"
-            ]
+            "block_order": ["megamenu_container_fHyTJ6"]
           },
           "mainmenu_item_LyMrLH": {
             "type": "_mainmenu-item",
@@ -1505,9 +1478,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_iCXwjd"
-            ]
+            "block_order": ["megamenu_container_iCXwjd"]
           }
         },
         "block_order": [
@@ -1556,9 +1527,7 @@
                 "blocks": {}
               }
             },
-            "block_order": [
-              "menu_list_JDKaJW"
-            ]
+            "block_order": ["menu_list_JDKaJW"]
           },
           "mainmenu_item_94Lp76": {
             "type": "_mainmenu-item",
@@ -1665,9 +1634,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_TKkfHH"
-            ]
+            "block_order": ["megamenu_container_TKkfHH"]
           },
           "mainmenu_item_FAE3Dk": {
             "type": "_mainmenu-item",
@@ -1756,9 +1723,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_yEcDpD"
-            ]
+            "block_order": ["megamenu_container_yEcDpD"]
           },
           "mainmenu_item_wLxJYy": {
             "type": "_mainmenu-item",
@@ -1809,15 +1774,10 @@
                     "blocks": {}
                   }
                 },
-                "block_order": [
-                  "megamenu_item_dVJpP4",
-                  "megamenu_item_RktkMa"
-                ]
+                "block_order": ["megamenu_item_dVJpP4", "megamenu_item_RktkMa"]
               }
             },
-            "block_order": [
-              "megamenu_container_3eWDpL"
-            ]
+            "block_order": ["megamenu_container_3eWDpL"]
           },
           "mainmenu_item_jJVQYa": {
             "type": "_mainmenu-item",
@@ -1922,9 +1882,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_6nKyRP"
-            ]
+            "block_order": ["megamenu_container_6nKyRP"]
           }
         },
         "block_order": [
@@ -1972,9 +1930,7 @@
                 "blocks": {}
               }
             },
-            "block_order": [
-              "menu_list_LCQHqh"
-            ]
+            "block_order": ["menu_list_LCQHqh"]
           },
           "mainmenu_item_Gw496t": {
             "type": "_mainmenu-item",
@@ -2081,9 +2037,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_LBFX6j"
-            ]
+            "block_order": ["megamenu_container_LBFX6j"]
           },
           "mainmenu_item_BgM9jK": {
             "type": "_mainmenu-item",
@@ -2172,9 +2126,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_LReka3"
-            ]
+            "block_order": ["megamenu_container_LReka3"]
           },
           "mainmenu_item_Le4QVU": {
             "type": "_mainmenu-item",
@@ -2225,15 +2177,10 @@
                     "blocks": {}
                   }
                 },
-                "block_order": [
-                  "megamenu_item_i6HRtt",
-                  "megamenu_item_Gcr9ay"
-                ]
+                "block_order": ["megamenu_item_i6HRtt", "megamenu_item_Gcr9ay"]
               }
             },
-            "block_order": [
-              "megamenu_container_jqnALc"
-            ]
+            "block_order": ["megamenu_container_jqnALc"]
           },
           "mainmenu_item_tKG3Wn": {
             "type": "_mainmenu-item",
@@ -2338,9 +2285,7 @@
                 ]
               }
             },
-            "block_order": [
-              "megamenu_container_HeXDjC"
-            ]
+            "block_order": ["megamenu_container_HeXDjC"]
           }
         },
         "block_order": [
@@ -2394,9 +2339,7 @@
         }
       }
     },
-    "content_for_index": [
-      "bccf919c-929e-43b6-9577-1510fb31e9d9"
-    ],
+    "content_for_index": ["bccf919c-929e-43b6-9577-1510fb31e9d9"],
     "blocks": {
       "6452524992531916979": {
         "type": "shopify://apps/nector-loyalty-rewards/blocks/floating_widget/1c1144ea-67f0-4232-93c6-0d8fbb8c8d3a",
