@@ -1,0 +1,84 @@
+{%- comment -%}
+  LoveDK Coupons & Offers + Free gift banner.
+
+  Data (managed in Shopify admin):
+    • Coupon metaobject library — fields: badge, description, code
+    • shop.metafields.custom.coupons    → list of Coupon (store-wide, all products)
+    • product.metafields.custom.coupons → list of Coupon (this product only, optional)
+    • product.metafields.custom.free_gift → text shown in the free-gift banner
+
+  NOTE: This only DISPLAYS offers. The actual discount/free-gift logic is handled
+  by Shopify Discounts / your free-gift app — not here.
+
+  Whole section auto-hides when there are no coupons and no free gift.
+{%- endcomment -%}
+
+{%- liquid
+  comment
+    Store-wide coupons = all entries in the Coupon metaobject library.
+    Optional: curate a specific subset via the theme-customizer picker (store_coupons),
+    which then overrides "show all".
+  endcomment
+  assign store_coupons = block.settings.store_coupons
+  if store_coupons == blank
+    assign store_coupons = shop.metaobjects.coupon.values
+  endif
+  assign product_coupons = closest.product.metafields.custom.coupons.value
+  assign free_gift       = closest.product.metafields.custom.free_gift
+
+  assign has_shop = false
+  if store_coupons != blank and store_coupons.size > 0
+    assign has_shop = true
+  endif
+  assign has_product = false
+  if product_coupons != blank and product_coupons.size > 0
+    assign has_product = true
+  endif
+-%}
+
+{%- if has_shop or has_product or free_gift != blank -%}
+<div class="ldk-offers"{% if block.settings.offers_margin != blank %} style="margin:{{ block.settings.offers_margin }}"{% endif %}>
+
+  {%- if free_gift != blank -%}
+  <div class="ldk-giftbanner">
+    <span class="ldk-giftbanner__icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+      </svg>
+    </span>
+    <span class="ldk-giftbanner__text">
+      <span class="ldk-giftbanner__main">{{ free_gift }}</span>
+      <span class="ldk-giftbanner__sub">{{ block.settings.gift_subtext | default: 'Automatically added at checkout' }}</span>
+    </span>
+  </div>
+  {%- endif -%}
+
+  {%- if has_shop or has_product -%}
+  <div class="ldk-offers__title">{{ block.settings.offers_title | default: 'Coupons & Offers' }}</div>
+  <div class="ldk-coupons">
+    {%- if has_shop -%}{%- for c in store_coupons -%}{% render 'lovedk-coupon-card', coupon: c %}{%- endfor -%}{%- endif -%}
+    {%- if has_product -%}{%- for c in product_coupons -%}{% render 'lovedk-coupon-card', coupon: c %}{%- endfor -%}{%- endif -%}
+  </div>
+  {%- endif -%}
+
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Single Coupons",
+  "settings": [
+    {
+      "type": "metaobject_list",
+      "id": "store_coupons",
+      "label": "Store-wide coupons",
+      "metaobject_type": "coupon",
+      "info": "Shown on every product. Product-specific coupons can be added via the product's 'Coupons' metafield."
+    },
+    { "type": "text", "id": "offers_title", "label": "Section title", "default": "Coupons & Offers" },
+    { "type": "text", "id": "gift_subtext", "label": "Free gift subtext", "default": "Automatically added at checkout" },
+    { "type": "text", "id": "offers_margin", "label": "Margin", "info": "Example(top right bottom left): 16px 0" }
+  ],
+  "presets": [{ "name": "Single Coupons", "category": "Single product" }]
+}
+{% endschema %}

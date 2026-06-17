@@ -1,0 +1,66 @@
+{%- comment -%}
+  LoveDK USP strip — icon + text, managed entirely in Shopify.
+
+  Source: the FIRST of the product's collections that has the "USP Items"
+  metafield (custom.usp_items) filled in. That collection is treated as the
+  product's category, so USPs vary by category with ZERO per-product work.
+
+  Expected setup:
+    Metaobject "USP Item" fields:  icon (File)  +  text (Single line text)
+    Collection metafield:          custom.usp_items  (list of USP Item refs)
+{%- endcomment -%}
+
+{%- liquid
+  assign usp_list = null
+  for c in product.collections
+    assign maybe = c.metafields.custom.usp_items.value
+    if maybe != blank and maybe.size > 0
+      assign usp_list = maybe
+      break
+    endif
+  endfor
+-%}
+
+{%- if usp_list != blank and usp_list.size > 0 -%}
+  <div class="ldk-usp"{% if block.settings.usp_margin != blank %} style="margin:{{ block.settings.usp_margin }}"{% endif %}>
+    {%- for item in usp_list -%}
+      {%- liquid
+        assign icon_file = item.icon.value
+        assign icon_url = icon_file.url
+        if icon_url == blank
+          assign icon_url = icon_file | image_url: width: 96
+        endif
+
+        comment
+          The "Text" field is rich text, so it stringifies to JSON. Pull the
+          plain text out. If it's already plain (or rendered HTML), use as-is.
+        endcomment
+        assign usp_text = item.text
+        if usp_text contains '"value":"'
+          assign usp_text = usp_text | split: '"value":"' | last | split: '"}' | first
+        endif
+      -%}
+      <div class="ldk-usp__item">
+        {%- if icon_url != blank -%}
+          <img class="ldk-usp__icon" src="{{ icon_url }}" alt="" width="22" height="22" loading="lazy">
+        {%- endif -%}
+        <span class="ldk-usp__text">{{ usp_text }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Single USP",
+  "settings": [
+    {
+      "type": "text",
+      "id": "usp_margin",
+      "label": "Margin",
+      "info": "Example(top right bottom left): 16px 0 0 0"
+    }
+  ],
+  "presets": [{ "name": "Single USP", "category": "Single product" }]
+}
+{% endschema %}

@@ -1,0 +1,90 @@
+{%- comment -%}
+  LoveDK clean product card.
+  Param: card_product (product object)
+  - Shows ALL badges the product qualifies for (Bestseller / Trending / New in)
+  - Swipeable gallery (up to 4 images) with dots
+  - Quick add (opens quick view); NO wishlist
+{%- endcomment -%}
+{%- liquid
+  assign bestseller = false
+  assign trending = false
+  assign newin = false
+  for c in card_product.collections
+    case c.handle
+      when 'best-seller'
+        assign bestseller = true
+      when 'best-selling-1'
+        assign trending = true
+      when 'new-arrivals-menu'
+        assign newin = true
+    endcase
+  endfor
+
+  # Single priority badge: Bestseller > Trending > New in
+  assign badge_label = ''
+  if bestseller
+    assign badge_label = 'Bestseller'
+  elsif trending
+    assign badge_label = 'Trending'
+  elsif newin
+    assign badge_label = 'New in'
+  endif
+
+  assign on_sale = false
+  assign save_pct = 0
+  if card_product.compare_at_price > card_product.price
+    assign on_sale = true
+    assign price_diff = card_product.compare_at_price | minus: card_product.price | times: 100.00
+    assign save_pct = price_diff | divided_by: card_product.compare_at_price | round
+  endif
+
+  assign img_count = card_product.images.size
+  if img_count > 4
+    assign img_count = 4
+  endif
+-%}
+<div class="ldk-card">
+  <div class="ldk-card__media">
+    {%- if badge_label != blank -%}<span class="ldk-card__badge ldk-card__badge--corner ldk-card__badge--left">{{ badge_label }}</span>{%- endif -%}
+    {%- if on_sale -%}<span class="ldk-card__badge ldk-card__badge--corner ldk-card__badge--sale ldk-card__badge--right">Save {{ save_pct }}%</span>{%- endif -%}
+
+    <a class="ldk-card__media-link" href="{{ card_product.url }}">
+      <div class="ldk-card__gallery">
+        {%- for image in card_product.images limit: 4 -%}
+          <img class="ldk-card__img" src="{{ image | image_url: width: 600 }}" alt="{{ card_product.title | escape }}" loading="lazy" width="480" height="600">
+        {%- endfor -%}
+      </div>
+    </a>
+
+    {%- if img_count > 1 -%}
+    <div class="ldk-card__dots">
+      {%- for i in (1..img_count) -%}<span class="ldk-card__dot{% if forloop.first %} is-active{% endif %}"></span>{%- endfor -%}
+    </div>
+    {%- endif -%}
+
+    {%- if card_product.available -%}
+    <div class="ldk-card__addform product-card__form" data-handle="{{ card_product.handle }}">
+      <form action="/cart/add" method="post" enctype="multipart/form-data" class="form-addtocart" data-product-form>
+        <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="ldk-card__quickadd js-btn-addtocart" aria-label="Add {{ card_product.title | escape }} to cart">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </form>
+    </div>
+    {%- endif -%}
+  </div>
+
+  <a class="ldk-card__info" href="{{ card_product.url }}">
+    <h3 class="ldk-card__title">{{ card_product.title }}</h3>
+    <div class="ldk-card__price">
+      {%- if on_sale -%}
+        <span class="ldk-card__price-sale">{{ card_product.price | money }}</span>
+        <span class="ldk-card__price-compare">{{ card_product.compare_at_price | money }}</span>
+      {%- else -%}
+        <span class="ldk-card__price-regular">{{ card_product.price | money }}</span>
+      {%- endif -%}
+    </div>
+  </a>
+</div>

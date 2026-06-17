@@ -1,0 +1,23 @@
+{%- comment -%}
+  LoveDK short product description shown after the price line.
+  "More details" smooth-scrolls to (and opens) the Description accordion.
+{%- endcomment -%}
+{%- assign desc = closest.product.description | strip_html | strip -%}
+{%- if desc != blank -%}
+<div class="ldk-pdp-desc"{% if block.settings.margin != blank %} style="margin:{{ block.settings.margin }}"{% endif %}>
+  <p class="ldk-pdp-desc__text">{{ desc | truncate: block.settings.truncate_length }}</p>
+  <button type="button" class="ldk-pdp-desc__more" data-ldk-scroll-details>{{ block.settings.more_label | default: 'More details' }}</button>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Single PDP description",
+  "settings": [
+    { "type": "text", "id": "more_label", "label": "More link label", "default": "More details" },
+    { "type": "range", "id": "truncate_length", "label": "Characters before truncating", "min": 80, "max": 400, "step": 20, "default": 200 },
+    { "type": "text", "id": "margin", "label": "Margin", "info": "Example(top right bottom left): 14px 0 0" }
+  ],
+  "presets": [{ "name": "Single PDP description", "category": "Single product" }]
+}
+{% endschema %}

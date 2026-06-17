@@ -1,0 +1,27 @@
+{%- comment -%}
+  Renders one coupon card from a "Coupon" metaobject.
+  Expected metaobject fields: badge, description, code (all single line text).
+  Param: coupon (metaobject)
+{%- endcomment -%}
+<div class="ldk-coupon">
+  <div class="ldk-coupon__badge">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle>
+    </svg>
+    <span>{{ coupon.badge.value }}</span>
+  </div>
+  {%- if coupon.description.value != blank or coupon.code.value != blank -%}
+  <div class="ldk-coupon__body">
+    {%- if coupon.description.value != blank -%}<span class="ldk-coupon__desc">{{ coupon.description.value }}</span>{%- endif -%}
+    {%- if coupon.code.value != blank -%}
+    <button type="button" class="ldk-coupon__code" data-ldk-copy="{{ coupon.code.value | escape }}" aria-label="Copy code {{ coupon.code.value | escape }}">
+      <span class="ldk-coupon__code-text">{{ coupon.code.value }}</span>
+      <svg class="ldk-coupon__copy-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+      <span class="ldk-coupon__copied">Copied</span>
+    </button>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
+</div>

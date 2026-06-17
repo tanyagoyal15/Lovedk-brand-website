@@ -1,0 +1,46 @@
+{%- comment -%}
+  LoveDK product badges — driven by COLLECTION MEMBERSHIP.
+
+  Mapping (edit handles here if collections change):
+    Bestseller → handle: best-seller        (above product name)
+    Trending   → handle: best-selling-1      (on image)  [Shopify title: "Trending"]
+    New in     → handle: new-arrivals-menu   (on image)  [Shopify title: "New Arrivals - menu"]
+
+  Params:
+    product   — product object (required)
+    placement — 'title' (above name) | 'image' (on media)
+
+  Products may belong to any combination — each badge shows independently.
+{%- endcomment -%}
+
+{%- liquid
+  assign bestseller_handle = 'best-seller'
+  assign trending_handle   = 'best-selling-1'
+  assign newin_handle      = 'new-arrivals-menu'
+
+  assign is_bestseller = false
+  assign is_trending   = false
+  assign is_newin      = false
+  for c in product.collections
+    if c.handle == bestseller_handle
+      assign is_bestseller = true
+    elsif c.handle == trending_handle
+      assign is_trending = true
+    elsif c.handle == newin_handle
+      assign is_newin = true
+    endif
+  endfor
+-%}
+
+{%- if placement == 'title' -%}
+  {%- if is_bestseller -%}
+    <span class="ldk-badge ldk-badge--bestseller ldk-title-badge">Bestseller</span>
+  {%- endif -%}
+{%- elsif placement == 'image' -%}
+  {%- if is_newin or is_trending -%}
+    <div class="ldk-badge-stack">
+      {%- if is_newin -%}<span class="ldk-badge ldk-badge--newin">New in</span>{%- endif -%}
+      {%- if is_trending -%}<span class="ldk-badge ldk-badge--trending">Trending</span>{%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endif -%}

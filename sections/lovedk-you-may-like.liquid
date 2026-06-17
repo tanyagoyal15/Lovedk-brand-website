@@ -1,0 +1,61 @@
+{%- comment -%}
+  LoveDK "You may also like" — clean product cards, native horizontal scroll (no arrows).
+  Source: Shopify recommendations when available, else products from the product's
+  first collection (excluding the current product).
+{%- endcomment -%}
+{%- liquid
+  assign limit = section.settings.limit | default: 12
+  assign rec = recommendations.products
+  if rec == blank or rec.size == 0
+    assign rec = product.collections.first.products
+  endif
+-%}
+
+{%- if rec != blank and rec.size > 0 -%}
+<section class="ldk-yml" style="margin:{{ section.settings.margin }}">
+  <div class="ldk-yml__container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ldk-yml__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    <div class="ldk-yml__track">
+      {%- assign shown = 0 -%}
+      {%- for card_product in rec -%}
+        {%- if card_product.id == product.id -%}{%- continue -%}{%- endif -%}
+        {%- if shown >= limit -%}{%- break -%}{%- endif -%}
+        <div class="ldk-yml__item">{% render 'lovedk-product-card', card_product: card_product %}</div>
+        {%- assign shown = shown | plus: 1 -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<script>
+  (function () {
+    document.querySelectorAll('.ldk-card__gallery').forEach(function (g) {
+      var dots = g.closest('.ldk-card__media').querySelectorAll('.ldk-card__dot');
+      if (!dots.length) return;
+      var raf;
+      g.addEventListener('scroll', function () {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          var idx = Math.round(g.scrollLeft / g.clientWidth);
+          dots.forEach(function (d, i) { d.classList.toggle('is-active', i === idx); });
+          raf = null;
+        });
+      }, { passive: true });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "You may also like",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "You may also like" },
+    { "type": "range", "id": "limit", "label": "Max products", "min": 4, "max": 20, "step": 1, "default": 12 },
+    { "type": "text", "id": "margin", "label": "Margin", "default": "20px 0" }
+  ],
+  "presets": [{ "name": "You may also like" }]
+}
+{% endschema %}
