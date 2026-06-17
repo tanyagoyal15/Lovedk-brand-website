@@ -92,7 +92,7 @@
     "user_purchased": "Jhon (Tokyo) | James (New York) | David (Ohio) | Jack (Monaco) | Lindan (California) | Grap (Texas) | Sabo (Florida) | Pain (Illinois) | Kakuzu (Washington) | Sukuna (Nevada)",
     "time_suggest": "5 minutes ago | 10 minutes ago | 15 minutes ago | 20 minutes ago | 35 minutes ago | 50 minutes ago | 1 hours ago | 2 hours ago | 3 hours ago | 4 hours ago",
     "limit_nofication": 10,
-    "cart_type": "modal",
+    "cart_type": "drawer",
     "price_shipping_bar": "100",
     "cart_fire_work": true,
     "show_gift_card": true,
