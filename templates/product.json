@@ -9,13 +9,13 @@
  */
 {
   "sections": {
-    "breadcrumb": {
-      "type": "product-breadcrumb",
-      "settings": {
-        "color_breadcrumb": "#000000",
-        "text_align": "left"
-      }
-    },
+    // "breadcrumb": {
+    //   "type": "product-breadcrumb",
+    //   "settings": {
+    //     "color_breadcrumb": "#000000",
+    //     "text_align": "left"
+    //   }
+    // },
     "main": {
       "type": "product-template",
       "blocks": {
@@ -57,8 +57,8 @@
           "type": "_single-product-info",
           "name": "Single product info",
           "settings": {
-            "width": "42% | 100%",
-            "padding": "0 0 0 48px",
+            "width": "50% | 100%",
+            "padding": "60px 80px | 16px 32px",
             "sticky": true,
             "top": 80
           },
@@ -74,10 +74,10 @@
               "type": "single-title",
               "name": "Single product title",
               "settings": {
-                "product_title_margin": "10 0 10px",
-                "title_size": 45,
+                "product_title_margin": "0 0 8px",
+                "title_size": 24,
                 "title_color": "#000000",
-                "title_transform": "uppercase"
+                "title_transform": "unset"
               },
               "blocks": {}
             },
@@ -85,10 +85,10 @@
               "type": "single-price",
               "name": "Single product price",
               "settings": {
-                "product_price_margin": "15px 0 17px",
-                "price_size": 17,
-                "price_color": "#92614c",
-                "price_color_sale": "#000000"
+                "product_price_margin": "8px 0 0 0",
+                "price_size": 18,
+                "price_color": "#000000",
+                "price_color_sale": "#92614c"
               },
               "blocks": {}
             },
@@ -106,9 +106,20 @@
               },
               "blocks": {}
             },
+            "single_pdp_desc_lovedk": {
+              "type": "single-pdp-desc",
+              "name": "Single PDP description",
+              "settings": {
+                "more_label": "More details",
+                "truncate_length": 200,
+                "margin": "0 0 18px"
+              },
+              "blocks": {}
+            },
             "single_short_description_6QDXzB": {
               "type": "single-short-description",
               "name": "Single short description",
+              "disabled": true,
               "settings": {
                 "content_short_description": "",
                 "description_margin": "0 0 20px",
@@ -220,10 +231,10 @@
                     "product_button_wishlist": true,
                     "quantity_enabled": true,
                     "quantity_selector": "text",
-                    "atc_button_color": "#000000",
+                    "atc_button_color": "#faf9f6",
                     "enable_payment_button": true,
-                    "payment_button_color": "#000000",
-                    "payment_text_color": "#ffffff"
+                    "payment_button_color": "#a38f83",
+                    "payment_text_color": "#503829"
                   },
                   "blocks": {}
                 }
@@ -283,6 +294,24 @@
               },
               "blocks": {}
             },
+            "single_usp_lovedk": {
+              "type": "single-usp",
+              "name": "Single USP",
+              "settings": {
+                "usp_margin": ""
+              },
+              "blocks": {}
+            },
+            "single_coupons_lovedk": {
+              "type": "single-coupons",
+              "name": "Single Coupons",
+              "settings": {
+                "offers_title": "Coupons & Offers",
+                "gift_subtext": "Automatically added at checkout",
+                "offers_margin": "22px 0 18px 0"
+              },
+              "blocks": {}
+            },
             "single_buy_more_AUFHjV": {
               "type": "single-buy-more",
               "name": "Single buy more",
@@ -300,6 +329,7 @@
             "single_pick_up_7Cr6pT": {
               "type": "single-pick-up",
               "name": "Single Pick Up",
+              "disabled": true,
               "settings": {
                 "product_pick_up_margin": ""
               },
@@ -345,20 +375,42 @@
               "settings": {
                 "product_product_tab_margin": "",
                 "tab_title": "Description",
-                "product_tab_selector": "custom",
-                "tab_content": "{{ closest.product.description }}"
+                "content_source": "description"
+              },
+              "blocks": {}
+            },
+            "single_product_tab_details": {
+              "type": "single-product-tab",
+              "name": "Single product tabs",
+              "settings": {
+                "product_product_tab_margin": "",
+                "tab_title": "Product Details",
+                "content_source": "metafield",
+                "metafield_namespace": "custom",
+                "metafield_key": "product_details"
+              },
+              "blocks": {}
+            },
+            "single_product_tab_wear": {
+              "type": "single-product-tab",
+              "name": "Single product tabs",
+              "settings": {
+                "product_product_tab_margin": "",
+                "tab_title": "Where to Wear",
+                "content_source": "metafield",
+                "metafield_namespace": "custom",
+                "metafield_key": "where_to_wear"
               },
               "blocks": {}
             },
             "single_product_tab_9QWQzR": {
               "type": "single-product-tab",
               "name": "Single product tabs",
-              "disabled": true,
               "settings": {
                 "product_product_tab_margin": "",
-                "tab_title": "Shipping",
-                "product_tab_selector": "custom",
-                "tab_content": "<p>For orders placed before 7am AEDT, we endeavour to process the same business day. Orders placed after 11am AEDT will be processed the next business day.</p><p>During sale events and new collection launches, there may be a slighly longer processing time.</p><p>All Auguste orders are hand-picked and packed with love from Byron Bay, Australie.</p>"
+                "tab_title": "Jewellery Care",
+                "content_source": "custom",
+                "tab_content": "<ul><li>Avoid contact with water, perfume, lotions and sweat to keep the shine lasting longer.</li><li>Remove jewellery before swimming, bathing or working out.</li><li>Store each piece separately in a soft pouch or box to prevent scratches.</li><li>Gently wipe with a soft dry cloth after each wear.</li></ul>"
               },
               "blocks": {}
             },
@@ -367,9 +419,9 @@
               "name": "Single product tabs",
               "settings": {
                 "product_product_tab_margin": "",
-                "tab_title": "Return",
-                "product_tab_selector": "custom",
-                "tab_content": "<p>You can choose between a refund or a credit note on full priced items.</p><ul><li>Item(s) must be returned in their original condition and packaging: unworn, unwashed and with all tags attached.</li><li>Earrings cannot be returned due to health and safety reasons.</li><li>Return shipping methods and associated costs are the responsibility of the customer.</li><li>Sale items can not be refunded for change of mind.</li></ul>"
+                "tab_title": "Return & Shipping",
+                "content_source": "custom",
+                "tab_content": "<p><strong>Shipping:</strong> Orders are dispatched within 1-2 business days and typically delivered in 5-7 days. Free shipping on orders over Rs.1499.</p><p><strong>Returns:</strong> You can choose between a refund or a credit note on full priced items.</p><ul><li>Item(s) must be returned in their original condition and packaging: unworn and with all tags attached.</li><li>Earrings cannot be returned due to health and safety reasons.</li><li>Sale items cannot be refunded for change of mind.</li></ul>"
               },
               "blocks": {}
             }
@@ -379,20 +431,25 @@
             "single_title_hygtzn",
             "single_price_rWCFQG",
             "line_MPbEdE",
+            "single_pdp_desc_lovedk",
             "single_short_description_6QDXzB",
             "single_real_time_kzbcCU",
             "single_count_sale_WXDgqa",
             "single_countdown_Y3DXH4",
             "single_inventory_cUbwac",
             "single_form_atc_iEEP6B",
+            "single_coupons_lovedk",
             "single_ask_share_YEiq7A",
             "single_estimated_delivery_DqmejQ",
+            "single_usp_lovedk",
             "single_buy_more_AUFHjV",
             "single_pick_up_7Cr6pT",
             "single_buy_it_with_VRUHwN",
             "single_trust_barget_WiLaqT",
             "single_buy_together_6pLxD7",
             "single_product_tab_trraiM",
+            "single_product_tab_details",
+            "single_product_tab_wear",
             "single_product_tab_9QWQzR",
             "single_product_tab_4LmchF"
           ]
@@ -411,6 +468,21 @@
         "position_thumbnails": "bottom",
         "thumbnail_count": 5,
         "enable_video_looping": true
+      }
+    },
+    "lovedk_you_may_like": {
+      "type": "lovedk-you-may-like",
+      "settings": {
+        "heading": "You may also like",
+        "limit": 12
+        // "margin": "40px 0 | 20px 0"
+      }
+    },
+    "lovedk_reviews": {
+      "type": "lovedk-reviews",
+      "settings": {
+        "heading": "",
+        "margin": "20px 0 60px"
       }
     },
     "buy-together": {
@@ -513,147 +585,149 @@
         "column4": 1.5,
         "space_column4": 15
       }
-    },
-    "177445272308700896": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_2857ac0_XfAq6k": {
-          "type": "ai_gen_block_2857ac0",
-          "disabled": true,
-          "settings": {
-            "show_heading": true,
-            "heading": "Frequently Bought Together",
-            "show_subheading": true,
-            "subheading": "Complete your look",
-            "product_source": "collection",
-            "selected_collection": "after-party",
-            "selected_products": ["koyal-necklace"],
-            "products_limit": 4,
-            "section_max_width": 1200,
-            "products_per_row": 4,
-            "products_per_row_tablet": 3,
-            "products_per_row_mobile": "2",
-            "product_gap": 15,
-            "product_gap_mobile": 15,
-            "text_alignment": "center",
-            "padding_top": 45,
-            "padding_bottom": 50,
-            "padding_left": 20,
-            "padding_right": 20,
-            "padding_top_mobile": 30,
-            "padding_bottom_mobile": 10,
-            "padding_left_mobile": 15,
-            "padding_right_mobile": 15,
-            "header_spacing": 30,
-            "subheading_spacing": 10,
-            "grid_bottom_spacing": 20,
-            "section_bg_color": "#ffffff",
-            "card_bg_color": "#ffffff",
-            "image_bg_color": "#f5f5f5",
-            "card_border_radius": 0,
-            "card_padding": 15,
-            "show_card_border": false,
-            "card_border_color": "#e5e5e5",
-            "show_card_shadow": false,
-            "show_product_image": true,
-            "image_ratio": 100,
-            "heading_font": "assistant_n4",
-            "heading_size": 32,
-            "heading_line_height": 1.2,
-            "heading_letter_spacing": 0,
-            "heading_color": "#000000",
-            "subheading_size": 16,
-            "subheading_line_height": 1.5,
-            "subheading_letter_spacing": 0,
-            "subheading_color": "#666666",
-            "show_product_title": true,
-            "product_title_size": 19,
-            "product_title_weight": 400,
-            "product_title_line_height": 1.4,
-            "product_title_letter_spacing": 0,
-            "product_title_color": "#000000",
-            "product_title_hover_color": "#666666",
-            "title_spacing": 10,
-            "show_price": true,
-            "show_compare_price": true,
-            "product_price_size": 16,
-            "product_price_weight": 600,
-            "product_price_color": "#000000",
-            "compare_price_color": "#999999",
-            "price_spacing": 15,
-            "show_reviews": false,
-            "reviews_spacing": 10,
-            "show_variant_selector": true,
-            "variant_spacing": 15,
-            "show_quantity_selector": false,
-            "quantity_spacing": 15,
-            "input_border_radius": 4,
-            "show_add_to_cart": false,
-            "add_to_cart_text": "Add to Cart",
-            "button_font_size": 14,
-            "button_font_weight": 600,
-            "button_letter_spacing": 0.5,
-            "button_text_transform": "uppercase",
-            "button_padding_vertical": 12,
-            "button_padding_horizontal": 25,
-            "button_border_radius": 0,
-            "button_bg_color": "#000000",
-            "button_text_color": "#ffffff",
-            "button_hover_bg_color": "#333333",
-            "button_hover_text_color": "#ffffff"
-          },
-          "blocks": {}
-        },
-        "ai_gen_block_648f798_xqRg6y": {
-          "type": "ai_gen_block_648f798",
-          "settings": {
-            "heading": "Frequently bought together",
-            "heading_size": 30,
-            "heading_color": "#000000",
-            "heading_alignment": "left",
-            "heading_spacing": 15,
-            "desktop_width_percent": 100,
-            "section_padding": 35,
-            "section_horizontal_padding": 20,
-            "background_color": "#f8f8f2",
-            "product_width": 280,
-            "product_gap": 20,
-            "image_height": 240,
-            "image_border_radius": 6,
-            "card_bg": "#ffffff",
-            "card_padding": 12,
-            "text_alignment": "left",
-            "title_size": 16,
-            "title_font_weight": "500",
-            "title_color": "#000000",
-            "title_hover_color": "#666666",
-            "price_size": 13,
-            "price_font_weight": "400",
-            "price_color": "#19130d",
-            "compare_price_size": 12,
-            "compare_price_font_weight": "400",
-            "compare_price_color": "#888888",
-            "nav_bg_color": "#ffffff",
-            "nav_bg_hover_color": "#f5f5f5",
-            "nav_icon_color": "#000000"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_2857ac0_XfAq6k",
-        "ai_gen_block_648f798_xqRg6y"
-      ],
-      "settings": {}
     }
+    // "177445272308700896": {
+    //   "type": "_blocks",
+    //   "blocks": {
+    //     "ai_gen_block_2857ac0_XfAq6k": {
+    //       "type": "ai_gen_block_2857ac0",
+    //       "disabled": true,
+    //       "settings": {
+    //         "show_heading": true,
+    //         "heading": "Frequently Bought Together",
+    //         "show_subheading": true,
+    //         "subheading": "Complete your look",
+    //         "product_source": "collection",
+    //         "selected_collection": "after-party",
+    //         "selected_products": ["koyal-necklace"],
+    //         "products_limit": 4,
+    //         "section_max_width": 1200,
+    //         "products_per_row": 4,
+    //         "products_per_row_tablet": 3,
+    //         "products_per_row_mobile": "2",
+    //         "product_gap": 15,
+    //         "product_gap_mobile": 15,
+    //         "text_alignment": "center",
+    //         "padding_top": 45,
+    //         "padding_bottom": 50,
+    //         "padding_left": 20,
+    //         "padding_right": 20,
+    //         "padding_top_mobile": 30,
+    //         "padding_bottom_mobile": 10,
+    //         "padding_left_mobile": 15,
+    //         "padding_right_mobile": 15,
+    //         "header_spacing": 30,
+    //         "subheading_spacing": 10,
+    //         "grid_bottom_spacing": 20,
+    //         "section_bg_color": "#ffffff",
+    //         "card_bg_color": "#ffffff",
+    //         "image_bg_color": "#f5f5f5",
+    //         "card_border_radius": 0,
+    //         "card_padding": 15,
+    //         "show_card_border": false,
+    //         "card_border_color": "#e5e5e5",
+    //         "show_card_shadow": false,
+    //         "show_product_image": true,
+    //         "image_ratio": 100,
+    //         "heading_font": "assistant_n4",
+    //         "heading_size": 32,
+    //         "heading_line_height": 1.2,
+    //         "heading_letter_spacing": 0,
+    //         "heading_color": "#000000",
+    //         "subheading_size": 16,
+    //         "subheading_line_height": 1.5,
+    //         "subheading_letter_spacing": 0,
+    //         "subheading_color": "#666666",
+    //         "show_product_title": true,
+    //         "product_title_size": 19,
+    //         "product_title_weight": 400,
+    //         "product_title_line_height": 1.4,
+    //         "product_title_letter_spacing": 0,
+    //         "product_title_color": "#000000",
+    //         "product_title_hover_color": "#666666",
+    //         "title_spacing": 10,
+    //         "show_price": true,
+    //         "show_compare_price": true,
+    //         "product_price_size": 16,
+    //         "product_price_weight": 600,
+    //         "product_price_color": "#000000",
+    //         "compare_price_color": "#999999",
+    //         "price_spacing": 15,
+    //         "show_reviews": false,
+    //         "reviews_spacing": 10,
+    //         "show_variant_selector": true,
+    //         "variant_spacing": 15,
+    //         "show_quantity_selector": false,
+    //         "quantity_spacing": 15,
+    //         "input_border_radius": 4,
+    //         "show_add_to_cart": false,
+    //         "add_to_cart_text": "Add to Cart",
+    //         "button_font_size": 14,
+    //         "button_font_weight": 600,
+    //         "button_letter_spacing": 0.5,
+    //         "button_text_transform": "uppercase",
+    //         "button_padding_vertical": 12,
+    //         "button_padding_horizontal": 25,
+    //         "button_border_radius": 0,
+    //         "button_bg_color": "#000000",
+    //         "button_text_color": "#ffffff",
+    //         "button_hover_bg_color": "#333333",
+    //         "button_hover_text_color": "#ffffff"
+    //       },
+    //       "blocks": {}
+    //     },
+    //     "ai_gen_block_648f798_xqRg6y": {
+    //       "type": "ai_gen_block_648f798",
+    //       "settings": {
+    //         "heading": "Frequently bought together",
+    //         "heading_size": 30,
+    //         "heading_color": "#000000",
+    //         "heading_alignment": "left",
+    //         "heading_spacing": 15,
+    //         "desktop_width_percent": 100,
+    //         "section_padding": 35,
+    //         "section_horizontal_padding": 20,
+    //         "background_color": "#f8f8f2",
+    //         "product_width": 280,
+    //         "product_gap": 20,
+    //         "image_height": 240,
+    //         "image_border_radius": 6,
+    //         "card_bg": "#ffffff",
+    //         "card_padding": 12,
+    //         "text_alignment": "left",
+    //         "title_size": 16,
+    //         "title_font_weight": "500",
+    //         "title_color": "#000000",
+    //         "title_hover_color": "#666666",
+    //         "price_size": 13,
+    //         "price_font_weight": "400",
+    //         "price_color": "#19130d",
+    //         "compare_price_size": 12,
+    //         "compare_price_font_weight": "400",
+    //         "compare_price_color": "#888888",
+    //         "nav_bg_color": "#ffffff",
+    //         "nav_bg_hover_color": "#f5f5f5",
+    //         "nav_icon_color": "#000000"
+    //       },
+    //       "blocks": {}
+    //     }
+    //   },
+    //   "block_order": [
+    //     "ai_gen_block_2857ac0_XfAq6k",
+    //     "ai_gen_block_648f798_xqRg6y"
+    //   ],
+    //   "settings": {}
+    // }
   },
   "order": [
-    "breadcrumb",
+    // "breadcrumb",
     "main",
+    "lovedk_you_may_like",
+    "lovedk_reviews",
     "buy-together",
     "product-tab",
     "product-recommendations",
-    "recently-viewed",
-    "177445272308700896"
+    "recently-viewed"
+    // "177445272308700896"
   ]
 }

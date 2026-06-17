@@ -19,11 +19,18 @@
    1. DESIGN TOKENS
    ───────────────────────────────────────────── */
 :root {
-  /* Brand Colors */
+  /* ── LOCKED BRAND COLORS ──
+     1. Theme  — dark brown   (brown bg → off-white text, and vice versa)
+     2. Contrast — off-white  (page background + text on brown)
+     3. Accent — champagne gold (sale badges, highlights, small accents ONLY) */
+  --ldk-brown: #503829; /* theme color */
+  --ldk-off-white: #faf9f6; /* contrast */
+  --ldk-gold: #c9a36a; /* accent / misc */
+
+  /* Neutrals (supporting, not brand) */
   --ldk-black: #000000;
   --ldk-white: #ffffff;
   --ldk-cream: #f8f8f2;
-  --ldk-brown: #4d3f38;
   --ldk-brown-light: #92614c;
   --ldk-silver: #dadada;
   --ldk-border: #e8e8e0;
@@ -76,7 +83,7 @@ body {
   font-family: var(--ldk-font-body);
   font-size: var(--ldk-text-base);
   color: var(--ldk-brown);
-  background-color: var(--ldk-cream);
+  background-color: var(--ldk-off-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -175,13 +182,403 @@ h6,
 }
 
 /* ─────────────────────────────────────────────
-   4. PRODUCT CARDS
-   — Styles added here in feature/product-cards
+   4. PRODUCT CARDS  (clean — used in "You may also like")
    ───────────────────────────────────────────── */
+
+/* Section */
+.ldk-yml__container {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.ldk-yml__heading {
+  font-family: var(--ldk-font-heading);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ldk-brown);
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+}
+
+/* Native horizontal scroll — no arrows, sleek thin scrollbar */
+.ldk-yml__track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 26px; /* breathing room between cards and scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #e0d6c8 transparent;
+}
+.ldk-yml__track::-webkit-scrollbar {
+  height: 3px;
+}
+.ldk-yml__track::-webkit-scrollbar-thumb {
+  background: #e0d6c8;
+  border-radius: 99px;
+}
+.ldk-yml__track:hover::-webkit-scrollbar-thumb {
+  background: #d2c4b0;
+}
+.ldk-yml__track::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ldk-yml__item {
+  flex: 0 0 auto;
+  width: calc((100% - 72px) / 5); /* 5 cards on desktop (4 gaps × 18px) */
+  min-width: 200px;
+  scroll-snap-align: start;
+}
+
+/* Card */
+.ldk-card {
+  display: block;
+}
+.ldk-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #f1ece5;
+  margin-bottom: 12px;
+}
+.ldk-card__media-link {
+  display: block;
+  height: 100%;
+}
+
+/* Swipeable image gallery inside the card */
+.ldk-card__gallery {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.ldk-card__gallery::-webkit-scrollbar {
+  display: none;
+}
+.ldk-card__img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+
+/* Dots */
+.ldk-card__dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  pointer-events: none;
+}
+.ldk-card__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.ldk-card__dot.is-active {
+  background: #fff;
+  transform: scale(1.25);
+}
+
+/* Badges — priority on the left, discount on the right */
+.ldk-card__badge {
+  padding: 4px 7px;
+  background: var(--ldk-off-white);
+  color: var(--ldk-brown);
+  font-family: var(--ldk-font-body);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(80, 56, 41, 0.1);
+}
+.ldk-card__badge--corner {
+  position: absolute;
+  top: 12px;
+  z-index: 3;
+  pointer-events: none;
+}
+.ldk-card__badge--left {
+  left: 12px;
+}
+.ldk-card__badge--right {
+  right: 12px;
+}
+/* Discount badge — solid brown to stand out */
+.ldk-card__badge--sale {
+  background: var(--ldk-brown);
+  color: var(--ldk-off-white);
+}
+
+/* Quick add — clean circular "+" button (direct add to cart) */
+.ldk-card__addform {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 3;
+  margin: 0;
+}
+.ldk-card__quickadd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--ldk-off-white);
+  color: var(--ldk-brown);
+  border: 1px solid var(--ldk-brown);
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(80, 56, 41, 0.15);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    opacity 0.25s,
+    transform 0.25s;
+  opacity: 0;
+  transform: translateY(6px);
+}
+.ldk-card__media:hover .ldk-card__quickadd {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ldk-card__quickadd:hover {
+  background: var(--ldk-brown);
+  color: var(--ldk-off-white);
+}
+
+.ldk-card__info {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.ldk-card__title {
+  font-family: var(--ldk-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ldk-brown);
+  margin: 0 0 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ldk-card__price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ldk-font-body);
+  font-size: 13px;
+}
+.ldk-card__price-regular {
+  color: var(--ldk-brown);
+  font-weight: 500;
+}
+.ldk-card__price-sale {
+  color: var(--ldk-brown-light);
+  font-weight: 600;
+}
+.ldk-card__price-compare {
+  color: #aaa;
+  text-decoration: line-through;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+@media (max-width: 1199px) {
+  .ldk-yml__item {
+    width: calc((100% - 54px) / 4);
+  }
+}
+@media (max-width: 991px) {
+  .ldk-yml__item {
+    width: calc((100% - 36px) / 3);
+  }
+}
+@media (max-width: 767px) {
+  .ldk-yml__container {
+    padding: 0 16px;
+  }
+  .ldk-yml__heading {
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+  .ldk-yml__track {
+    gap: 12px;
+    padding-bottom: 22px;
+  }
+  .ldk-yml__item {
+    width: 46%;
+    min-width: 150px;
+  }
+  .ldk-card__title {
+    font-size: 12px;
+  }
+  /* Smaller badges on mobile so they don't cover the image */
+  .ldk-card__badge {
+    font-size: 6.5px;
+    padding: 3px 5px;
+    letter-spacing: 0.05em;
+  }
+  .ldk-card__badge--corner {
+    top: 8px;
+  }
+  .ldk-card__badge--left {
+    left: 8px;
+  }
+  .ldk-card__badge--right {
+    right: 8px;
+  }
+  /* Quick add always visible on touch */
+  .ldk-card__quickadd {
+    opacity: 1;
+    transform: none;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ── Star rating under title (Judge.me preview-badge app block) ── */
+.template-product
+  .bwp-product-info
+  .shopify-app-block:has(.jdgm-preview-badge) {
+  margin: 0 !important;
+}
+/* Gap lives on the badge as PADDING (margins collapse; padding doesn't) */
+.template-product .bwp-product-info .jdgm-preview-badge {
+  display: block;
+  margin: 0 !important;
+  padding: 8px 0 0 !important;
+  line-height: 1 !important;
+}
+.template-product .bwp-product-info .jdgm-prev-badge,
+.template-product .bwp-product-info .jdgm-prev-badge__stars {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+.template-product .bwp-product-info .jdgm-prev-badge__text {
+  font-family: var(--ldk-font-body);
+  font-size: 12px;
+  color: var(--ldk-brown);
+  margin-left: 6px;
+}
+/* Tighten the title bottom + give an even gap before the price */
+.template-product .ldk-title-row .product-single__title {
+  margin-bottom: 0 !important;
+}
+.template-product .bwp-product-info .price-single-product,
+.template-product .bwp-product-info .price-container {
+  margin-top: 8px !important;
+}
+
+/* Brand-color the Judge.me stars (brown) */
+.template-product .jdgm-star.jdgm--on,
+.ldk-reviews .jdgm-star.jdgm--on {
+  color: var(--ldk-brown) !important;
+}
+
+/* ── Customer Reviews section ── */
+.ldk-reviews__container {
+  /* max-width: 1000px;  */
+  /* margin: 0 auto; */
+  padding: 0 24px;
+}
+.ldk-reviews__heading {
+  font-family: var(--ldk-font-heading);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ldk-brown);
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin: 0 0 24px;
+}
+@media (max-width: 767px) {
+  .ldk-reviews__container {
+    padding: 0 16px;
+  }
+  .ldk-reviews__heading {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+}
+/* Hide the rating summary + histogram block (kept the reviews list + write-a-review) */
+#ldk-reviews .jdgm-rev-widg__summary-stars,
+#ldk-reviews .jdgm-rev-widg__summary-text,
+#ldk-reviews .jdgm-histogram {
+  display: none !important;
+}
+/* Smaller review heart/star icons (glyph is in ::before, must target it) */
+#ldk-reviews .jdgm-star,
+#ldk-reviews .jdgm-star::before {
+  font-size: 14px !important;
+  line-height: 1 !important;
+  width: auto !important;
+  height: auto !important;
+}
+/* Smaller stars in the under-title rating */
+.template-product .ldk-title-rating .jdgm-star,
+.template-product .ldk-title-rating .jdgm-star::before {
+  font-size: 12px !important;
+  line-height: 1 !important;
+}
 
 /* ─────────────────────────────────────────────
    5. PDP (PRODUCT DETAIL PAGE)
    ───────────────────────────────────────────── */
+
+/* Off-white page background on PDP */
+body.template-product,
+body.template-product .main-content,
+body.template-product .wpbingo-section {
+  background-color: #faf9f6 !important;
+}
+
+/* Remove theme's 25px margin-top on mobile info panel */
+@media (max-width: 991px) {
+  .template-product .product-single .bwp-single-info {
+    margin-top: 0 !important;
+  }
+}
+
+/* Hide wishlist in original ATC position until JS moves it to title row.
+   display:none (not visibility:hidden) so it takes zero space — prevents
+   ATC button from being narrower during the 100ms before JS moves it. */
+.template-product .product-single__add-to-cart .button-wishlist {
+  display: none;
+}
+/* Once moved into .ldk-title-row, show it */
+.template-product .ldk-title-row .button-wishlist {
+  display: block;
+}
+
+/* Fix horizontal scroll caused by Bootstrap .row negative margins (-15px each
+   side) + full-bleed image. overflow-x:clip (not hidden) clips the overflow
+   WITHOUT creating a scroll container, so the sticky info panel still works. */
+body.template-product {
+  overflow-x: clip;
+}
+.template-product .wpbingo-section,
+.template-product .wpbingo-section .container,
+.template-product .product-single.stacked {
+  overflow-x: clip;
+}
 
 .template-product .product-single.stacked {
   align-items: flex-start;
@@ -213,7 +610,6 @@ h6,
 }
 
 @media (max-width: 991px) {
-  /* Remove Bootstrap column padding causing right-side gap */
   .template-product .product-single__media--stacked .row,
   .template-product .product-single__media--stacked .col-md-12 {
     padding-left: 0 !important;
@@ -264,8 +660,11 @@ h6,
   padding-right: 0 !important;
 }
 
-.template-product .product-single.stacked .bwp-product-info {
-  padding-right: 40px !important;
+/* Desktop only — mobile overridden in the 991px block below */
+@media (min-width: 992px) {
+  .template-product .product-single.stacked .bwp-product-info {
+    padding-right: 40px !important;
+  }
 }
 
 .template-product .product-single.stacked .bwp-product-info {
@@ -288,6 +687,1072 @@ h6,
     overflow-y: visible;
     padding-left: 16px !important;
     padding-right: 16px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   PRODUCT INFO PANEL
+   ══════════════════════════════════════════════ */
+
+.template-product .bwp-product-info {
+  padding-top: 24px;
+}
+/* Kill any margin/padding WPBingo adds above the first shopify-block in the info panel */
+.template-product .bwp-product-info > .shopify-block:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* ── Title row — [title+price stack] + wishlist centered ── */
+.template-product .ldk-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 0;
+}
+/* Inner stack wraps title + price */
+.template-product .ldk-title-row .ldk-title-price-stack {
+  flex: 1;
+  min-width: 0;
+}
+.template-product .ldk-title-row .product-single__title {
+  margin-bottom: 0 !important;
+  padding-right: 0 !important;
+}
+.template-product .ldk-title-row .button-wishlist {
+  flex-shrink: 0;
+  align-self: center;
+}
+.template-product .ldk-title-row .wishlist-btn-pdp,
+.template-product .ldk-title-row .button-wishlist button {
+  width: 32px !important;
+  height: 32px !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* ══════════════════════════════════════════════
+   PRODUCT BADGES (Bestseller / Trending / New in)
+   ══════════════════════════════════════════════ */
+
+/* Base pill */
+.ldk-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--ldk-font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ── Bestseller — above product name (solid brown pill) ── */
+.template-product .ldk-title-badge {
+  padding: 5px 10px;
+  background: var(--ldk-brown);
+  color: var(--ldk-off-white);
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+/* When JS hasn't moved it yet, keep it block so it sits on its own line above title */
+.template-product .product-single__title + .ldk-title-badge,
+.template-product .ldk-title-badge {
+  display: inline-flex;
+}
+
+/* ── Image badges — top-left, stacked ── */
+.template-product .bwp-single-image {
+  position: relative;
+}
+.template-product .ldk-badge-stack {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* each badge sizes to its own text */
+  gap: 6px;
+  pointer-events: none;
+}
+/* Align the theme's discount badge (-24%) to the same top as our left badges */
+.template-product .product-single__main-media .product-card__label {
+  top: 16px !important;
+  right: 16px !important;
+}
+/* Match the discount pill's box + center its text exactly like the NEW IN / TRENDING pills */
+.template-product .product-single__main-media .product-card__label > * {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  padding: 6px 11px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  margin-right: 0 !important;
+  border-radius: 0 !important;
+}
+/* Off-white pill + brown text — clean, light on the photo */
+.template-product .ldk-badge--newin,
+.template-product .ldk-badge--trending {
+  padding: 6px 11px;
+  background: var(--ldk-off-white);
+  color: var(--ldk-brown);
+  box-shadow: 0 1px 5px rgba(80, 56, 41, 0.1);
+}
+
+@media (max-width: 767px) {
+  .template-product .ldk-badge-stack {
+    top: 14px;
+    left: 14px;
+    gap: 5px;
+  }
+  /* Keep discount badge aligned with left badges on mobile too */
+  .template-product .product-single__main-media .product-card__label {
+    top: 14px !important;
+    right: 14px !important;
+  }
+  .template-product .ldk-badge--newin,
+  .template-product .ldk-badge--trending,
+  .template-product .product-single__main-media .product-card__label > * {
+    font-size: 9px !important;
+    padding: 5px 9px !important;
+    line-height: 1 !important;
+  }
+  .template-product .ldk-title-badge {
+    font-size: 9px;
+    padding: 4px 9px;
+    margin-bottom: 8px;
+  }
+}
+
+/* ── Title ── */
+.template-product .product-single__title {
+  font-family: var(--ldk-font-heading);
+  font-size: var(--title-font-size, 22px);
+  font-weight: 500;
+  color: var(--title-color, #503829) !important;
+  text-transform: var(--title-text-transform, unset);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  padding-right: 44px;
+}
+
+/* ── Price ── */
+.template-product .price-single-product,
+.template-product .price-container {
+  font-family: var(--ldk-font-body);
+  font-size: var(--price-font-size, 16px);
+  font-weight: 500;
+  color: var(--price-color, #000);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+.template-product .price-single-product .price-item--regular,
+.template-product .product-price__sale .price-item--regular {
+  text-decoration: line-through;
+  color: #aaa;
+  font-weight: 400;
+  font-size: 14px;
+}
+.template-product .price-single-product .price-item--sale,
+.template-product .product-price__sale .price-item--sale {
+  color: var(--price-color-sale, #92614c);
+  font-weight: 600;
+}
+
+/* ── Short description (after price line) ── */
+.template-product .ldk-pdp-desc {
+  margin: 0 0 18px;
+}
+.template-product .ldk-pdp-desc__text {
+  font-family: var(--ldk-font-body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: #6a5b50;
+  margin: 0;
+}
+.template-product .ldk-pdp-desc__more {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--ldk-font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ldk-brown);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.template-product .ldk-pdp-desc__more:hover {
+  color: var(--ldk-brown-light);
+}
+
+/* ── Divider line ── */
+.template-product .bwp-product-info .wpb-line {
+  border: none;
+  border-top: 1px solid #ebebeb;
+  margin: 14px 0;
+}
+
+/* Gap above divider — compensates for price margin-bottom:0 */
+.template-product .ldk-title-row + .shopify-block .wpb-line,
+.template-product .ldk-title-row + * .wpb-line {
+  margin-top: 16px;
+}
+
+/* ══════════════════════════════════════════════
+   VARIANT / STYLE SELECTOR  (Option A — clean text pills)
+   Real markup: .variants-wrapper > .variants__label + .variants__options
+                > .single-option-selector > input(radio, hidden) + label
+   ══════════════════════════════════════════════ */
+
+/* Wrapper spacing */
+.template-product .variants-wrapper {
+  margin: 0 0 4px;
+}
+
+/* Selected-value label (no more "Style:" prefix) */
+.template-product .variants__label {
+  display: block;
+  margin: 0 0 10px;
+  font-family: var(--ldk-font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ldk-brown);
+}
+.template-product .variants__label span {
+  font-weight: 600;
+}
+
+/* Options row */
+.template-product .variants__options {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+
+/* Hide native radio (keep accessible) */
+.template-product .variants__options .single-option-selector input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+/* The pill */
+.template-product .variants__options .single-option-selector label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 36px;
+  margin: 0 !important;
+  padding: 7px 15px !important;
+  border: 1px solid var(--ldk-border) !important;
+  border-radius: 0 !important;
+  background: var(--ldk-white) !important;
+  font-family: var(--ldk-font-body);
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.1 !important;
+  color: var(--ldk-brown) !important;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  transition:
+    border-color 0.18s,
+    background 0.18s,
+    color 0.18s;
+}
+
+/* Hover + selected — both swap to brown bg + off-white text (locked contrast) */
+.template-product
+  .variants__options
+  .single-option-selector
+  label:not(.disabled):hover,
+.template-product
+  .variants__options
+  .single-option-selector
+  input:checked
+  + label {
+  border-color: var(--ldk-brown) !important;
+  background: var(--ldk-brown) !important;
+  color: var(--ldk-off-white) !important;
+}
+
+/* Disabled / sold out — clean muted pill, NO strikethrough */
+.template-product .variants__options .single-option-selector label.disabled,
+.template-product
+  .variants__options
+  .single-option-selector
+  input:disabled
+  + label {
+  border-color: #e6ded4 !important;
+  background: #faf8f4 !important;
+  color: #c7bcb1 !important;
+  cursor: not-allowed;
+}
+.template-product
+  .variants__options
+  .single-option-selector
+  label.disabled:hover,
+.template-product
+  .variants__options
+  .single-option-selector
+  input:disabled
+  + label:hover {
+  border-color: #e6ded4 !important;
+  background: #faf8f4 !important;
+  color: #c7bcb1 !important;
+}
+/* Kill theme's diagonal strike on disabled */
+.template-product
+  .variants__options
+  .single-option-selector
+  label.disabled::before,
+.template-product
+  .variants__options
+  .single-option-selector
+  label.disabled::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* "One size" placeholder pill — pre-selected look, non-interactive */
+.template-product .ldk-onesize .ldk-onesize-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 36px;
+  padding: 7px 15px;
+  border: 1px solid var(--ldk-brown);
+  background: var(--ldk-brown);
+  color: var(--ldk-off-white);
+  font-family: var(--ldk-font-body);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.1;
+  cursor: default;
+}
+
+/* ══════════════════════════════════════════════
+   COUPONS & OFFERS + FREE GIFT BANNER
+   ══════════════════════════════════════════════ */
+.template-product .ldk-offers {
+  margin: 4px 0 18px;
+}
+
+/* Free gift banner */
+.template-product .ldk-giftbanner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  background: #f3ece2;
+  border: 1px solid #e8ddca;
+}
+.template-product .ldk-giftbanner__icon {
+  flex-shrink: 0;
+  color: var(--ldk-brown);
+  display: flex;
+  align-items: center;
+}
+.template-product .ldk-giftbanner__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.template-product .ldk-giftbanner__main {
+  font-family: var(--ldk-font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ldk-brown);
+  line-height: 1.3;
+}
+.template-product .ldk-giftbanner__sub {
+  font-family: var(--ldk-font-body);
+  font-size: 11px;
+  color: #9a8b80;
+  line-height: 1.3;
+}
+
+/* Section title */
+.template-product .ldk-offers__title {
+  font-family: var(--ldk-font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ldk-brown);
+  margin-bottom: 10px;
+}
+
+/* Coupon cards — horizontal scroll when there are more than fit */
+.template-product .ldk-coupons {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: #d8cdbf transparent;
+}
+.template-product .ldk-coupons::-webkit-scrollbar {
+  height: 4px;
+}
+.template-product .ldk-coupons::-webkit-scrollbar-thumb {
+  background: #d8cdbf;
+  border-radius: 4px;
+}
+.template-product .ldk-coupons::-webkit-scrollbar-track {
+  background: transparent;
+}
+.template-product .ldk-coupon {
+  flex: 0 0 auto;
+  width: calc(50% - 5px);
+  min-width: 178px;
+  scroll-snap-align: start;
+  border: 1px solid var(--ldk-border);
+  padding: 10px;
+  /* background: var(--ldk-white); */
+}
+.template-product .ldk-coupon__badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 9px;
+  margin-bottom: 8px;
+  background: #efe6d6;
+  color: var(--ldk-brown);
+  font-family: var(--ldk-font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.template-product .ldk-coupon__badge svg {
+  flex-shrink: 0;
+}
+.template-product .ldk-coupon__body {
+  font-family: var(--ldk-font-body);
+  font-size: 12px;
+  line-height: 1.45;
+  color: #6a5b50;
+}
+.template-product .ldk-coupon__desc {
+  display: block;
+  margin-bottom: 8px;
+}
+/* Copyable code chip */
+.template-product .ldk-coupon__code {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: transparent;
+  border: 1px dashed #c7b49a;
+  color: var(--ldk-brown);
+  font-family: var(--ldk-font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.template-product .ldk-coupon__code:hover {
+  background: #f3ece2;
+  border-color: var(--ldk-brown);
+}
+.template-product .ldk-coupon__copy-icon {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.template-product .ldk-coupon__copied {
+  display: none;
+  color: #4a7c4a;
+}
+/* Copied state — swap code+icon for "Copied" */
+.template-product .ldk-coupon__code.is-copied {
+  border-color: #4a7c4a;
+  color: #4a7c4a;
+}
+.template-product .ldk-coupon__code.is-copied .ldk-coupon__code-text,
+.template-product .ldk-coupon__code.is-copied .ldk-coupon__copy-icon {
+  display: none;
+}
+.template-product .ldk-coupon__code.is-copied .ldk-coupon__copied {
+  display: inline;
+}
+
+@media (max-width: 767px) {
+  .template-product .ldk-coupon {
+    width: 80%;
+    min-width: 160px;
+  }
+  .template-product .ldk-giftbanner__main {
+    font-size: 12px;
+  }
+}
+
+/* ── Buttons area ─────────────────────────────
+   Row 1: [qty stepper] [ADD TO CART]
+   Row 2: [BUY IT NOW — full width]
+   ─────────────────────────────────────────── */
+.template-product .product-single .product-single__buttons {
+  display: grid !important;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  row-gap: 12px;
+  margin-top: 22px;
+}
+.template-product
+  .product-single
+  .product-single__buttons
+  .js-quantity-selector {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  align-self: stretch;
+}
+.template-product
+  .product-single
+  .product-single__buttons
+  .product-single__add-to-cart {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  flex: unset !important;
+  gap: 8px;
+  align-items: stretch;
+}
+.template-product .product-single .product-single__buttons form,
+.template-product .product-single .product-single__buttons #gokwik-buy-now {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+  width: 100% !important;
+  margin: 0;
+  display: block !important;
+}
+
+/* ADD TO CART */
+.template-product .product-single .product-single__buttons .btn--add-to-cart {
+  flex: 1 !important;
+  height: 46px !important;
+  background: #faf9f6 !important;
+  color: #503829 !important;
+  border: 1.5px solid #503829 !important;
+  border-radius: 15px !important;
+  font-family: var(--ldk-font-body) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  white-space: nowrap;
+}
+.template-product
+  .product-single
+  .product-single__buttons
+  .btn--add-to-cart:hover {
+  background: #503829 !important;
+  color: #faf9f6 !important;
+  border-color: #503829 !important;
+}
+.template-product
+  .product-single
+  .product-single__buttons
+  .btn--add-to-cart[disabled],
+.template-product
+  .product-single
+  .product-single__buttons
+  .btn--add-to-cart.disabled {
+  background: #f1ece4 !important;
+  border-color: #ddd2c5 !important;
+  color: #a89a8d !important;
+  cursor: not-allowed !important;
+}
+
+/* NOTIFY ME WHEN AVAILABLE (back in stock) — brand primary, matches buttons */
+.template-product .open-back_in_stock {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 46px;
+  margin-top: 12px;
+  background: var(--ldk-brown) !important;
+  color: var(--ldk-off-white) !important;
+  border: 1.5px solid var(--ldk-brown) !important;
+  border-radius: 15px !important;
+  font-family: var(--ldk-font-body) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.template-product .open-back_in_stock span {
+  color: inherit !important;
+}
+.template-product .open-back_in_stock:hover {
+  background: #3f2c20 !important;
+  border-color: #3f2c20 !important;
+}
+
+/* BUY IT NOW — Gokwik */
+.template-product #gokwik-buy-now {
+  display: block !important;
+  width: 100% !important;
+  height: 46px !important;
+  background: #503829 !important;
+  color: #faf9f6 !important;
+  border: 1.5px solid #503829 !important;
+  border-radius: 15px !important;
+  font-family: var(--ldk-font-body) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition:
+    border-color 0.2s,
+    background 0.2s !important;
+}
+.template-product #gokwik-buy-now:hover {
+  background: #5a4235 !important;
+  border-color: #5a4235 !important;
+}
+
+/* ── Wishlist button ── */
+.template-product .wishlist-btn-pdp,
+.template-product .button-wishlist button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  padding: 0 !important;
+  color: #503829;
+  transition: color 0.2s;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 1 !important;
+  font-size: 0 !important;
+}
+/* Kill ALL theme overrides on our wishlist button — icomoon ::before, active bg, load spinner */
+.template-product .wishlist-btn-pdp::before,
+.template-product .wishlist-btn-pdp::after,
+.template-product .button-wishlist button::before,
+.template-product .button-wishlist button::after {
+  display: none !important;
+  content: none !important;
+  animation: none !important;
+}
+/* WPBingo adds .active class — kill its background */
+.template-product .wishlist-btn-pdp.active,
+.template-product .button-wishlist button.active {
+  background: transparent !important;
+  border: none !important;
+  color: #503829 !important;
+  animation: none !important;
+}
+/* WPBingo adds .load-wishlist — kill the spinner animation */
+.template-product .wishlist-btn-pdp.load-wishlist,
+.template-product .button-wishlist button.load-wishlist {
+  background: transparent !important;
+  animation: none !important;
+}
+/* Wishlisted state — filled brown heart */
+.template-product .wishlist-btn-pdp.wishlisted {
+  color: #503829 !important;
+}
+.template-product .wishlist-btn-pdp:hover {
+  color: #92614c;
+  background: transparent !important;
+  border: none !important;
+}
+.template-product .wishlist-btn-pdp svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* ── Quantity stepper ── */
+.template-product .product-quantity__label {
+  display: none;
+}
+.template-product .wpbingo-qty {
+  display: inline-flex;
+  align-items: center;
+  height: 46px;
+  border: 1.5px solid #503829;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #faf9f6;
+}
+.template-product .wpbingo-qty__adjust {
+  width: 38px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #503829;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.template-product .wpbingo-qty__adjust:hover {
+  background: #f0ece7;
+}
+.template-product .wpbingo-qty__number {
+  width: 38px;
+  text-align: center;
+  border: none;
+  border-left: 1px solid #c4b0a6;
+  border-right: 1px solid #c4b0a6;
+  font-family: var(--ldk-font-body);
+  font-size: 14px;
+  font-weight: 500;
+  height: 100%;
+  outline: none;
+  background: #faf9f6;
+  color: #503829;
+}
+
+/* ── Estimated delivery ── */
+.template-product .section-estimated_delivery {
+  margin: 14px 0 0;
+  padding: 0;
+  background: none;
+}
+.template-product .estimated_delivery {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: var(--ldk-font-body);
+  font-size: 12px;
+  color: #666;
+  line-height: 1.5;
+}
+.template-product .estimated_delivery .icons {
+  color: #888;
+  font-size: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── USP strip (icon + text, metaobject-driven) — one per line ── */
+.template-product .ldk-usp {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0 0 4px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--ldk-border);
+}
+.template-product .ldk-usp__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.template-product .ldk-usp__icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.template-product .ldk-usp__text,
+.template-product .ldk-usp__text p {
+  margin: 0;
+  font-family: var(--ldk-font-body);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ldk-brown);
+}
+@media (max-width: 767px) {
+  .template-product .ldk-usp {
+    gap: 12px;
+    margin-top: 0;
+    padding-bottom: 16px;
+  }
+  .template-product .ldk-usp__text,
+  .template-product .ldk-usp__text p {
+    font-size: 12px;
+  }
+}
+
+/* ── Accordions ──────────────────────────────── */
+
+/* Kill ALL Bootstrap panel borders and spacing — prevents double lines */
+.template-product .product-more-info .panel,
+.template-product .product-more-info .panel-default,
+.template-product .product-more-info .panel-group,
+.template-product .product-more-info .panel-heading {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+
+/* First accordion block gets top margin; subsequent ones have no gap */
+.template-product
+  .shopify-block:has(.product-more-info.accordion):first-of-type
+  .product-more-info.accordion,
+.template-product .product-more-info.accordion {
+  margin-top: 0;
+}
+
+/* Add top margin only before the first accordion block */
+.template-product
+  .bwp-product-info
+  > .shopify-block:has(.product-more-info.accordion):first-of-type {
+  margin-top: 16px;
+}
+
+/* Each accordion block's inner wrapper — no extra spacing */
+/* Each accordion block wrapper: top + bottom border — no borders on the title itself */
+.template-product .product-more-info.accordion .product-more-info__inner {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #e0dbd6;
+  border-bottom: 1px solid #e0dbd6;
+}
+
+/* Adjacent blocks: the bottom of one + top of next would double up.
+   Collapse the gap by pulling the second block up so borders overlap. */
+.template-product
+  .shopify-block
+  + .shopify-block
+  .product-more-info.accordion
+  .product-more-info__inner {
+  border-top: none;
+}
+
+/* Accordion title row */
+.template-product .product-more-info.accordion .collapse_title {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 !important;
+  font-family: var(--ldk-font-body);
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  text-decoration: none;
+  border: none !important;
+  margin-bottom: 0 !important;
+  background: transparent !important;
+  width: 100%;
+  position: static !important;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.template-product .product-more-info.accordion .collapse_title:hover {
+  color: #000 !important;
+}
+
+/* Remove Feather ::before icon */
+.template-product .product-more-info.accordion .collapse_title::before {
+  display: none !important;
+  content: "" !important;
+}
+
+/* Clean +/- via ::after */
+.template-product .product-more-info.accordion .collapse_title::after {
+  content: "+";
+  font-family: var(--ldk-font-body);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1;
+  flex-shrink: 0;
+  color: #999;
+  transition: color 0.2s;
+}
+.template-product
+  .product-more-info.accordion
+  .collapse_title:not(.collapsed)::after {
+  content: "−";
+  color: #222;
+}
+
+/* Remove span underline from theme */
+.template-product .product-more-info.accordion .collapse_title span::before {
+  display: none !important;
+}
+
+/* Panel body */
+.template-product .product-more-info .panel-collapse .panel-body {
+  padding: 14px 0 20px !important;
+  font-family: var(--ldk-font-body);
+  font-size: 12px !important;
+  color: #666;
+  line-height: 1.85;
+  border: none !important;
+}
+.template-product .product-more-info .panel-body p {
+  margin-bottom: 8px;
+}
+.template-product .product-more-info .panel-body ul {
+  padding-left: 16px;
+  margin: 0;
+}
+.template-product .product-more-info .panel-body li {
+  margin-bottom: 4px;
+}
+/* Collapse blank trailing space from pasted content (empty <p>, stray <br>) */
+.template-product .product-more-info .panel-body p:empty {
+  display: none;
+}
+.template-product .product-more-info .panel-body > *:last-child {
+  margin-bottom: 0 !important;
+}
+.template-product .product-more-info .panel-body br:last-child {
+  display: none;
+}
+
+/* ── Mobile product info ──────────────────────── */
+@media (max-width: 767px) {
+  /* Info panel */
+  .template-product .bwp-product-info {
+    padding-top: 8px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Title */
+  .template-product .product-single__title {
+    font-size: 17px !important;
+    line-height: 1.3 !important;
+    padding-right: 32px;
+  }
+
+  /* Price */
+  .template-product .price-single-product,
+  .template-product .price-container {
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+
+  /* Divider */
+  .template-product .bwp-product-info .wpb-line {
+    margin: 12px 0;
+  }
+
+  /* Variant label */
+  .template-product .variants__label {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  /* Variant pills */
+  .template-product .variants__options {
+    gap: 8px;
+  }
+  .template-product .variants__options .single-option-selector label,
+  .template-product .ldk-onesize .ldk-onesize-pill {
+    min-height: 34px !important;
+    font-size: 12px !important;
+    padding: 6px 14px !important;
+  }
+
+  /* Buttons */
+  .template-product .product-single .product-single__buttons {
+    column-gap: 8px;
+    row-gap: 10px;
+    margin-top: 16px;
+  }
+
+  .template-product .product-single .product-single__buttons .btn--add-to-cart {
+    height: 44px !important;
+    font-size: 11px !important;
+    border-radius: 12px !important;
+  }
+
+  .template-product #gokwik-buy-now,
+  .template-product .open-back_in_stock {
+    height: 44px !important;
+    font-size: 11px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Qty stepper */
+  .template-product .wpbingo-qty {
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .template-product .wpbingo-qty__adjust {
+    width: 34px;
+    font-size: 15px;
+  }
+
+  .template-product .wpbingo-qty__number {
+    width: 34px;
+    font-size: 13px;
+  }
+
+  /* Estimated delivery */
+  .template-product .section-estimated_delivery {
+    margin-top: 12px;
+  }
+
+  .template-product .estimated_delivery {
+    font-size: 11px;
+  }
+
+  /* Accordion */
+  .template-product
+    .bwp-product-info
+    > .shopify-block:has(.product-more-info.accordion):first-of-type {
+    margin-top: 12px;
+  }
+
+  .template-product .product-more-info.accordion .collapse_title {
+    padding: 14px 0 !important;
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .template-product .product-more-info .panel-collapse .panel-body {
+    padding: 12px 0 16px !important;
+    font-size: 13px !important;
+    line-height: 1.7;
   }
 }
 

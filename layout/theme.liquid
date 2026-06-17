@@ -196,6 +196,87 @@
 		</script>
 		{% render 'footer-javascript' %}
 		{% render 'structured-data' %}
+		{%- if request.page_type == 'product' -%}
+		<script>
+		  // LoveDK: Move wishlist button next to product title+price block
+		  document.addEventListener('DOMContentLoaded', function() {
+		    setTimeout(function() {
+		      var wishlist = document.querySelector('.template-product .product-single__add-to-cart .button-wishlist');
+		      var title    = document.querySelector('.template-product .product-single__title');
+		      if (!wishlist || !title) return;
+
+		      // Find the price element (sibling shopify-block after title's block)
+		      var titleBlock = title.closest('.shopify-block') || title.parentNode;
+		      var priceEl = titleBlock.querySelector('.price-single-product, .price-container')
+		                    || titleBlock.nextElementSibling && titleBlock.nextElementSibling.querySelector('.price-single-product, .price-container');
+
+		      // Build: .ldk-title-row > [.ldk-title-price-stack > title + price] + wishlist
+		      var titleParent = title.parentNode;
+		      var row = document.createElement('div');
+		      row.className = 'ldk-title-row';
+
+		      var stack = document.createElement('div');
+		      stack.className = 'ldk-title-price-stack';
+
+		      // Bestseller badge (if present) sits above the title inside the stack
+		      var titleBadge = titleBlock.querySelector('.ldk-title-badge');
+		      // Star rating (if present) sits under the title, above price
+		      var titleRating = titleBlock.querySelector('.ldk-title-rating');
+
+		      titleParent.insertBefore(row, title);
+		      if (titleBadge) stack.appendChild(titleBadge);
+		      stack.appendChild(title);
+		      if (titleRating) stack.appendChild(titleRating);
+		      if (priceEl) stack.appendChild(priceEl);
+		      row.appendChild(stack);
+		      row.appendChild(wishlist);
+		      // CSS display:none → display:block reveals it now it's in the right place
+		    }, 100);
+		  });
+
+		  // LoveDK: star rating scrolls to the reviews section
+		  document.addEventListener('click', function(e) {
+		    var t = e.target.closest('[data-ldk-scroll-reviews]');
+		    if (!t) return;
+		    e.preventDefault();
+		    var rv = document.getElementById('ldk-reviews');
+		    if (rv) rv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		  });
+
+		  // LoveDK: "More details" scrolls to + opens the Description accordion
+		  document.addEventListener('click', function(e) {
+		    var trigger = e.target.closest('[data-ldk-scroll-details]');
+		    if (!trigger) return;
+		    e.preventDefault();
+		    var acc = document.querySelector('.template-product .product-more-info.accordion');
+		    if (!acc) return;
+		    var title = acc.querySelector('.collapse_title');
+		    if (title && title.classList.contains('collapsed')) { title.click(); }
+		    acc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		  });
+
+		  // LoveDK: copy coupon code to clipboard
+		  document.addEventListener('click', function(e) {
+		    var btn = e.target.closest('[data-ldk-copy]');
+		    if (!btn) return;
+		    e.preventDefault();
+		    var code = btn.getAttribute('data-ldk-copy');
+		    var done = function() {
+		      btn.classList.add('is-copied');
+		      setTimeout(function() { btn.classList.remove('is-copied'); }, 1500);
+		    };
+		    if (navigator.clipboard && navigator.clipboard.writeText) {
+		      navigator.clipboard.writeText(code).then(done).catch(function() {});
+		    } else {
+		      var t = document.createElement('textarea');
+		      t.value = code; t.style.position = 'fixed'; t.style.opacity = '0';
+		      document.body.appendChild(t); t.focus(); t.select();
+		      try { document.execCommand('copy'); done(); } catch (err) {}
+		      document.body.removeChild(t);
+		    }
+		  });
+		</script>
+		{%- endif -%}
 	<script src="{{ '//cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/booster-page-speed-optimizer.js?23' }}" defer="defer"></script>
 {% render 'kwikpass' %}
 </body>
