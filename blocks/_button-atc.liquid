@@ -129,14 +129,9 @@
   }
 
   function updateBtn(inWishlist) {
-    btn.innerHTML = emptyHeart + filledHeart;
-    if (inWishlist) {
-      btn.classList.add('wishlisted');
-      btn.setAttribute('aria-label', 'Remove from wishlist');
-    } else {
-      btn.classList.remove('wishlisted');
-      btn.setAttribute('aria-label', 'Add to wishlist');
-    }
+    btn.innerHTML = inWishlist ? filledHeart : emptyHeart;
+    btn.classList.toggle('wishlisted', inWishlist);
+    btn.setAttribute('aria-label', inWishlist ? 'Remove from wishlist' : 'Add to wishlist');
   }
 
   // Set initial state on page load

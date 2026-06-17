@@ -28,6 +28,7 @@
     				<div class="{%- if img_thumbnail and vertical -%}col-md-10 {% if gird-sticky %} left{% else %} {{ section.settings.position_thumbnails }}{% endif %}{%- else -%}col-md-12{%- endif -%}">
     					<div class="product-single__main-media">
     						{% render 'product-card_label',product: product %}
+    						{% render 'lovedk-product-badges', product: product, placement: 'image' %}
     						<div class="main_media-content">
     							{%- render 'product-media-image',product: product, variants_group_image: variants_group_image, loop: forloop.index, variant_featured_media: variant.featured_media -%}
     						</div>
@@ -53,6 +54,7 @@
 			<div class="{%- if img_thumbnail and vertical -%}col-md-10 {% if gird-sticky %} left{% else %} {{ section.settings.position_thumbnails }}{% endif %}{%- else -%}col-md-12{%- endif -%}">
 				<div class="product-single__main-media">
 					{% render 'product-card_label',product: product %}
+					{% render 'lovedk-product-badges', product: product, placement: 'image' %}
 					<div class="main_media-content">
 						{%- render 'product-media-image',product: product, loop: forloop.index, image_360: image_360 -%}
 					</div>

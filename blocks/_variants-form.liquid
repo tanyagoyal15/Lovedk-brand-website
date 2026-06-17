@@ -24,7 +24,7 @@
             {% else %}
                 {% assign current_option = current.option3 %}
             {% endif %}
-            <label class="variants__label">{{ option.name | escape }}: <span>{{ current_option }}</span></label>
+            <label class="variants__label"><span>{{ current_option }}</span></label>
             <div class="js-product-select-option--{{ forloop.index }} variants__options{% if type !='color' %} {{ block.settings.product_selector }}{% endif %}">
             {%- if block.settings.product_selector == 'radio' -%}
                 {%- assign option_index = forloop.index -%}
@@ -260,6 +260,17 @@
         </div>
     {%- endfor -%}
 {% endunless %}
+{%- comment -%} LoveDK: products with no real variants get a "One size" placeholder pill so the section keeps its space {%- endcomment -%}
+{% if product.has_only_default_variant %}
+    <div class="variants-wrapper product-form__item wpb-variants-swatch ldk-onesize-wrapper">
+        <label class="variants__label"><span>One size</span></label>
+        <div class="variants__options">
+            <div class="single-option-selector ldk-onesize">
+                <span class="ldk-onesize-pill" aria-disabled="true">One size</span>
+            </div>
+        </div>
+    </div>
+{% endif %}
 <select name="id" class="js-product-select--{{ section.id }} product-single__variants d-none">
     {%- for variant in product.variants -%}
         {%- if variant.available -%}

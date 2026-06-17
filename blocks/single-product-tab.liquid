@@ -1,25 +1,56 @@
+{%- comment -%}
+  LoveDK accordion tab — scalable content sourcing.
+
+  Each tab picks where its content comes from via "content_source":
+    • description → the product's built-in description
+    • metafield   → a product metafield (enter namespace + key, e.g. custom / product_details)
+    • custom      → static rich text typed into this block (same on every product)
+    • review      → Judge.me reviews widget
+
+  Per-product tabs (description / metafield) auto-hide when empty.
+  To add a NEW accordion in future: add a "Single product tabs" block,
+  set the title, pick the source. No code changes needed.
+{%- endcomment -%}
+
+{%- liquid
+  assign tab_body = ''
+  assign source = block.settings.content_source
+
+  if source == 'description'
+    assign tab_body = closest.product.description | replace: '<meta charset="utf-8">', '' | replace: '<p>&nbsp;</p>', '' | replace: '<p> </p>', '' | replace: '<p></p>', '' | strip
+  elsif source == 'metafield'
+    assign ns = block.settings.metafield_namespace | default: 'custom'
+    assign key = block.settings.metafield_key
+    if key != blank
+      assign tab_body = closest.product.metafields[ns][key]
+    endif
+  elsif source == 'custom'
+    assign tab_body = block.settings.tab_content
+  endif
+-%}
+
 <div class="product-more-info accordion"{% if block.settings.product_product_tab_margin != blank %} style="margin:{{ block.settings.product_product_tab_margin }}"{% endif %}>
 	<div class="product-more-info__inner">
-		{%- if block.settings.product_tab_selector == 'custom' -%}
+		{%- if source != 'review' and tab_body != blank -%}
 		<div class="accordion-item panel panel-default">
 			<a class="collapse_title collapsed" data-toggle="collapse" data-parent="#accordion" href="#js-tabs-{{ block.id }}"><span>{{ block.settings.tab_title }}</span></a>
 			<div id="js-tabs-{{ block.id }}" class="panel-collapse collapse">
 				<div class="panel-body">
-					{{ block.settings.tab_content }}
+					{%- if source == 'metafield' -%}{{ tab_body | metafield_tag }}{%- else -%}{{ tab_body }}{%- endif -%}
 				</div>
 			</div>
 		</div>
 		{%- endif -%}
-		{%- if settings.product_reviews_enable and block.settings.product_tab_selector == 'review' -%}
+		{%- if settings.product_reviews_enable and source == 'review' -%}
 			<div class="accordion-item panel panel-default">
 				<a class="collapse_title collapsed" data-toggle="collapse" data-parent="#accordion" href="#reviews"><span>{{ block.settings.tab_title }}</span></a>
 				<div id="reviews" class="panel-collapse collapse">
 					<div class="panel-body">
-						<!-- Start of Judge.me code --> 
-                        <div style='clear:both'></div> 
-                        <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}' data-auto-install='false'> 
-                            {{ product.metafields.judgeme.widget }} 
-                        </div> 
+						<!-- Start of Judge.me code -->
+                        <div style='clear:both'></div>
+                        <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-product-title='{{ closest.product.title | escape }}' data-id='{{ closest.product.id }}' data-auto-install='false'>
+                            {{ closest.product.metafields.judgeme.widget }}
+                        </div>
                         <!-- End of Judge.me code -->
 					</div>
 				</div>
@@ -44,23 +75,40 @@
         },
         {
             "type": "select",
-            "id": "product_tab_selector",
-            "label": "Product tab type",
+            "id": "content_source",
+            "label": "Content source",
+            "default": "custom",
             "options": [
-                {
-                    "value": "custom",
-                    "label": "Custom"
-                },
-                {
-                    "value": "review",
-                    "label": "Review"
-                }
+                { "value": "description", "label": "Product description" },
+                { "value": "metafield", "label": "Product metafield" },
+                { "value": "custom", "label": "Custom text (same on all products)" },
+                { "value": "review", "label": "Reviews" }
             ]
+        },
+        {
+            "type": "header",
+            "content": "Metafield source"
+        },
+        {
+            "type": "text",
+            "id": "metafield_namespace",
+            "label": "Metafield namespace",
+            "default": "custom"
+        },
+        {
+            "type": "text",
+            "id": "metafield_key",
+            "label": "Metafield key",
+            "info": "e.g. product_details or where_to_wear"
+        },
+        {
+            "type": "header",
+            "content": "Custom content"
         },
         {
             "type": "richtext",
             "id": "tab_content",
-            "label": "Tab Content.Use only when selecting the custom tab"
+            "label": "Tab content"
         }
     ],
     "presets": [{"name": "Single product tabs","category": "Single product"}]
