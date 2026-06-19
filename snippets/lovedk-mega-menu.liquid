@@ -1,0 +1,65 @@
+{%- comment -%}
+  LoveDK desktop nav, driven by the 'main-menu' linklist.
+  - Top-level item with children that include sub-parents (children-of-children)
+    → full-width MEGA panel (childless children → first column, each sub-parent → a column).
+  - Top-level item whose children are all childless → compact DROPDOWN list.
+  - Top-level item without children → simple link.
+{%- endcomment -%}
+{%- for link in linklists['main-menu'].links -%}
+  {%- if link.links != blank -%}
+    {%- liquid
+      assign has_childless = false
+      assign has_subparent = false
+      for c in link.links
+        if c.links == blank
+          assign has_childless = true
+        else
+          assign has_subparent = true
+        endif
+      endfor
+    -%}
+    {%- if has_subparent -%}
+      <li class="ldk-nav__item ldk-has-mega">
+        <a class="ldk-nav__link" href="{{ link.url }}">{{ link.title }}</a>
+        <div class="ldk-mega">
+          <div class="ldk-mega__inner container">
+            {%- if has_childless -%}
+              <div class="ldk-mega__col ldk-mega__col--links">
+                {%- for c in link.links -%}
+                  {%- if c.links == blank -%}<a class="ldk-mega__toplink" href="{{ c.url }}">{{ c.title }}</a>{%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            {%- for c in link.links -%}
+              {%- if c.links != blank -%}
+                <div class="ldk-mega__col">
+                  <a class="ldk-mega__heading" href="{{ c.url }}">{{ c.title }}</a>
+                  <ul class="ldk-mega__list">
+                    {%- for sub in c.links -%}
+                      <li><a class="ldk-mega__link" href="{{ sub.url }}">{{ sub.title }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      </li>
+    {%- else -%}
+      <li class="ldk-nav__item ldk-has-dropdown">
+        <a class="ldk-nav__link" href="{{ link.url }}">{{ link.title }}</a>
+        <div class="ldk-dropdown">
+          <ul class="ldk-dropdown__list">
+            {%- for c in link.links -%}
+              <li><a class="ldk-dropdown__link" href="{{ c.url }}">{{ c.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </li>
+    {%- endif -%}
+  {%- else -%}
+    <li class="ldk-nav__item">
+      <a class="ldk-nav__link" href="{{ link.url }}">{{ link.title }}</a>
+    </li>
+  {%- endif -%}
+{%- endfor -%}

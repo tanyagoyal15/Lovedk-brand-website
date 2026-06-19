@@ -43,6 +43,7 @@
 {{ 'css-design-mode.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 {{ 'lovedk-custom.css' | asset_url | stylesheet_tag }}
+{{ 'lovedk-header.css' | asset_url | stylesheet_tag }}
 {%- style -%}
 	{% assign shopify_color_metaobjects = shop.metaobjects['shopify--color-pattern'] %}
   {% paginate shopify_color_metaobjects.values by 1000 %}

@@ -1,0 +1,414 @@
+/* =============================================================
+   LoveDK — Header (desktop). Mobile styles added in Phase 2.
+   Loaded after lovedk-custom.css. Kept separate (header branch).
+   ============================================================= */
+
+/* ── Header bar: off-white (Option A) ── */
+.header .header-desktop {
+  background: var(--ldk-off-white, #faf9f6);
+  border-bottom: 1px solid var(--ldk-border, #e8e0d8);
+}
+
+/* Positioning context for the full-width mega panel (header wrapper is full width) */
+.bwp-header {
+  position: relative;
+}
+
+/* ── Nav row ── */
+.ldk-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ldk-nav__item {
+  position: static; /* mega panel spans full width, not item width */
+}
+.ldk-nav__link {
+  display: inline-block;
+  position: relative;
+  padding: 14px 0;
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ldk-brown, #503829);
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: color 0.2s;
+  position: relative;
+}
+/* Hover → theme color + subtle underline */
+.ldk-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 1.5px;
+  background: var(--ldk-brown, #503829);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.ldk-nav__item:hover .ldk-nav__link,
+.ldk-nav__link:hover {
+  color: var(--ldk-brown, #503829);
+}
+.ldk-nav__item:hover .ldk-nav__link::after {
+  transform: scaleX(1);
+}
+
+/* ── Mega panel ── */
+.ldk-mega {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 200;
+  background: var(--ldk-off-white, #faf9f6);
+  border-top: 1px solid var(--ldk-border, #e8e0d8);
+  box-shadow: 0 14px 24px -16px rgba(80, 56, 41, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+  pointer-events: none;
+}
+.ldk-has-mega:hover .ldk-mega {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* Per-link bridge (only under the hovered item, not full-width) so moving the
+   cursor down enters the panel without closing, but sibling items stay hoverable. */
+.ldk-has-mega:hover .ldk-nav__link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 70px;
+}
+/* Inner reuses theme .container so the first column lines up with the nav.
+   Only vertical padding + flex here; .container handles width + left edge. */
+.ldk-mega__inner {
+  display: flex;
+  gap: 48px;
+  padding-top: 34px;
+  padding-bottom: 40px;
+}
+.ldk-mega__col {
+  min-width: 150px;
+}
+/* First column (childless top links) — slightly bolder list */
+.ldk-mega__col--links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 8px;
+}
+.ldk-mega__toplink {
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ldk-brown, #503829);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ldk-mega__heading {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9a8b80;
+  text-decoration: none;
+}
+.ldk-mega__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.ldk-mega__link {
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 13.5px;
+  color: #5a4a3e;
+  text-decoration: none;
+  transition: color 0.18s;
+}
+/* Hover on any mega link → theme color */
+.ldk-mega__toplink:hover,
+.ldk-mega__heading:hover,
+.ldk-mega__link:hover {
+  color: var(--ldk-brown, #503829);
+}
+
+/* ── Compact dropdown (for items whose children are all simple links) ── */
+.ldk-has-dropdown {
+  position: relative;
+}
+.ldk-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 200;
+  min-width: 200px;
+  padding: 14px 0;
+  background: var(--ldk-off-white, #faf9f6);
+  border: 1px solid var(--ldk-border, #e8e0d8);
+  box-shadow: 0 14px 24px -16px rgba(80, 56, 41, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+  pointer-events: none;
+}
+.ldk-has-dropdown:hover .ldk-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.ldk-dropdown__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ldk-dropdown__link {
+  display: block;
+  padding: 0 22px;
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 13.5px;
+  color: #5a4a3e;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.18s;
+}
+.ldk-dropdown__link:hover {
+  color: var(--ldk-brown, #503829);
+}
+
+/* ── Hover liveliness ── */
+.ldk-mega__toplink,
+.ldk-mega__link,
+.ldk-dropdown__link {
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+.ldk-mega__toplink:hover,
+.ldk-mega__link:hover,
+.ldk-dropdown__link:hover {
+  transform: translateX(4px);
+}
+.ldk-mega__heading {
+  transition: color 0.18s ease;
+}
+/* Mobile: image cards zoom slightly on tap/hover; list links nudge */
+.ldk-mmcard__img img {
+  transition: transform 0.35s ease;
+}
+.ldk-mmcard:hover .ldk-mmcard__img img,
+.ldk-mmcard:active .ldk-mmcard__img img {
+  transform: scale(1.05);
+}
+.ldk-mmlist__link,
+.ldk-mmacc__body li a {
+  transition:
+    color 0.18s ease,
+    padding-left 0.18s ease;
+}
+.ldk-mmlist__link:hover,
+.ldk-mmlist__link:active,
+.ldk-mmacc__body li a:hover,
+.ldk-mmacc__body li a:active {
+  color: var(--ldk-brown, #503829);
+  padding-left: 4px;
+}
+
+/* Desktop nav is inside .header-desktop, which the theme already hides on mobile. */
+
+/* ═══════════════════════════════════════════════
+   MOBILE MENU — 3 tabs (Shop / Mood / Gifting)
+   ═══════════════════════════════════════════════ */
+.ldk-mmenu .menu-mobile__inner {
+  background: var(--ldk-off-white, #faf9f6);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Close (cross) row on top */
+.ldk-mmenu__top {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 25px 16px 4px;
+  flex: 0 0 auto;
+}
+.ldk-mmenu__close {
+  /* display: inline-flex; */
+  /* align-items: center; */
+  justify-content: center;
+  padding: 4px;
+  background: none;
+  border: none;
+  color: var(--ldk-brown, #503829);
+  cursor: pointer;
+  line-height: 0;
+}
+
+/* Tab row (sticky so it stays while the panel scrolls) */
+.ldk-mmenu__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--ldk-border, #e8e0d8);
+  margin-top: 8px;
+  flex: 0 0 auto;
+}
+.ldk-mmenu__tab {
+  flex: 1;
+  padding: 14px 6px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9a8b80;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+
+/* Panels area scrolls so the whole menu is reachable */
+.ldk-mmenu__panels {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(100vh - 130px);
+}
+.ldk-mmenu__tab.is-active {
+  color: var(--ldk-brown, #503829);
+  border-bottom-color: var(--ldk-brown, #503829);
+}
+
+/* Panels */
+.ldk-mmenu__panel {
+  display: none;
+  padding: 16px 0 40px;
+}
+.ldk-mmenu__panel.is-active {
+  display: block;
+}
+
+/* Mood image cards */
+.ldk-mmenu__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 4px 16px 0;
+}
+.ldk-mmcard {
+  display: block;
+  text-decoration: none;
+  color: var(--ldk-brown, #503829);
+}
+.ldk-mmcard__img {
+  display: block;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #f1ece5;
+  margin-bottom: 8px;
+}
+.ldk-mmcard__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ldk-mmcard__title {
+  display: block;
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* List / accordion (Shop, Gifting) */
+.ldk-mmlist {
+  margin: 0;
+  padding: 0 16px;
+  list-style: none;
+}
+.ldk-mmlist > li {
+  border-bottom: 1px solid #efe9e1;
+}
+.ldk-mmlist__link {
+  display: block;
+  padding: 14px 0;
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 14px;
+  color: var(--ldk-brown, #503829);
+  text-decoration: none;
+}
+.ldk-mmacc__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ldk-brown, #503829);
+  cursor: pointer;
+}
+.ldk-mmacc__head i {
+  transition: transform 0.25s ease;
+  color: #9a8b80;
+}
+.ldk-mmacc.is-open .ldk-mmacc__head i {
+  transform: rotate(180deg);
+}
+.ldk-mmacc__body {
+  margin: 0;
+  padding: 0 0 6px 12px;
+  list-style: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.ldk-mmacc.is-open .ldk-mmacc__body {
+  max-height: 600px;
+}
+.ldk-mmacc__body li a {
+  display: block;
+  padding: 9px 0;
+  font-family: var(--ldk-font-body, sans-serif);
+  font-size: 13.5px;
+  color: #5a4a3e;
+  text-decoration: none;
+}
